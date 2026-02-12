@@ -1,0 +1,14 @@
+{
+  "name": "nestjs",
+  "version": "1.0.0",
+  "description": "NestJS architecture, DI patterns, and module organization",
+  "author": {
+    "name": "CThanh Nguyen"
+  },
+  "repository": "https://github.com/cthanhnguyencong/claude-engineer-toolkit",
+  "license": "MIT",
+  "keywords": ["nestjs", "backend", "nodejs", "dependency-injection"],
+  "skills": "./skills/",
+  "commands": "./commands/",
+  "agents": "./agents/"
+}

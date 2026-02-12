@@ -1,0 +1,14 @@
+{
+  "name": "typescript",
+  "version": "1.0.0",
+  "description": "TypeScript conventions, type safety, and refactoring patterns",
+  "author": {
+    "name": "CThanh Nguyen"
+  },
+  "repository": "https://github.com/cthanhnguyencong/claude-engineer-toolkit",
+  "license": "MIT",
+  "keywords": ["typescript", "type-safety", "refactoring"],
+  "skills": "./skills/",
+  "commands": "./commands/",
+  "agents": "./agents/"
+}

@@ -1,0 +1,33 @@
+{
+  "name": "claude-engineer-toolkit",
+  "description": "Personal Claude Code plugin marketplace for full-stack software engineering",
+  "owner": {
+    "name": "CThanh Nguyen"
+  },
+  "metadata": {
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "dev-workflow",
+      "source": "./plugins/dev-workflow",
+      "description": "Development workflow: brainstorming, planning, implementing, reviewing",
+      "category": "workflow",
+      "tags": ["workflow", "planning", "review", "brainstorming"]
+    },
+    {
+      "name": "typescript",
+      "source": "./plugins/typescript",
+      "description": "TypeScript conventions, type safety, and refactoring patterns",
+      "category": "language",
+      "tags": ["typescript", "type-safety", "refactoring"]
+    },
+    {
+      "name": "nestjs",
+      "source": "./plugins/nestjs",
+      "description": "NestJS architecture, DI patterns, and module organization",
+      "category": "framework",
+      "tags": ["nestjs", "backend", "nodejs"]
+    }
+  ]
+}
