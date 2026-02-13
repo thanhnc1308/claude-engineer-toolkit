@@ -104,9 +104,9 @@ After saving the plan, offer execution choice:
 
 **"Plan complete and saved to `docs/plans/<filename>.md`. Two execution options:**
 
-**1. Subagent-Driven (this session)** - I dispatch fresh subagent per task, review between tasks, fast iteration
+**1. Subagent-Driven (faster, continuous and automated flow, AI reviews)** - I dispatch fresh subagent per task, review between tasks, fast iteration
 
-**2. Parallel Session (separate)** - Open new session with executing-plans, batch execution with checkpoints
+**2. Separate Session (fresh context, large plan, human review)** - Open new session with executing-plans, batch execution with checkpoints
 
 **Which approach?"**
 
@@ -116,7 +116,7 @@ After saving the plan, offer execution choice:
 - Stay in this session
 - Fresh subagent per task + code review
 
-**If Parallel Session chosen:**
+**If Separate Session chosen:**
 
 - Guide them to open new session in worktree
 - **REQUIRED SUB-SKILL:** New session uses dev-workflow:executing-plans
