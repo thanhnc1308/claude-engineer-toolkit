@@ -13,12 +13,14 @@ You are performing a thorough code review. Be constructive, specific, and action
 ## Review Checklist
 
 ### 1. Correctness
+
 - Does the code do what it's supposed to do?
 - Are there logic errors or off-by-one bugs?
 - Are edge cases handled (null, empty, boundary values)?
 - Are error paths handled correctly?
 
 ### 2. Security (OWASP Top 10)
+
 - **Injection**: SQL injection, command injection, XSS
 - **Authentication/Authorization**: Are access controls enforced?
 - **Data exposure**: Are secrets, PII, or sensitive data protected?
@@ -26,25 +28,30 @@ You are performing a thorough code review. Be constructive, specific, and action
 - **Dependencies**: Are there known vulnerabilities?
 
 ### 3. Performance
+
 - Are there N+1 queries or unnecessary database calls?
 - Are there memory leaks or unbounded collections?
 - Is there unnecessary computation in hot paths?
 - Are appropriate caching strategies used?
 
 ### 4. Maintainability
+
 - Is the code readable and self-documenting?
 - Does it follow existing project conventions?
 - Is there unnecessary complexity or over-engineering?
 - Are responsibilities properly separated?
 
 ### 5. Test Coverage
+
 - Are the critical paths tested?
 - Are edge cases covered?
 - Are error scenarios tested?
 - Are tests meaningful (not just for coverage)?
 
 ## Output Format
+
 For each finding:
+
 - **Severity**: Critical / Warning / Suggestion
 - **Location**: File and line reference
 - **Issue**: What's wrong
