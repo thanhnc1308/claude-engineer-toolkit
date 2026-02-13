@@ -52,6 +52,21 @@ cd ../feature/my-feature
 # ... continue working ...
 ```
 
+3. Cleaning up
+
+```bash
+# When done with a feature branch
+cd <repo>.git
+git worktree remove ../feature/my-feature
+
+# If you already deleted the directory manually, clean up references
+git worktree prune
+
+# Or remove and delete the branch in one go
+git worktree remove ../feature/my-feature
+git branch -d feature/my-feature  # or -D to force delete
+```
+
 ## Best Practices
 
 1. **Use a bare clone for worktree-heavy workflows.** It avoids confusion about which directory is the "main" checkout and keeps the repo metadata separate from all working directories.
