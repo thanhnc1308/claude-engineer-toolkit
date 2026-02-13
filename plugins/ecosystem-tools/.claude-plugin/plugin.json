@@ -1,0 +1,16 @@
+{
+  "name": "ecosystem-tools",
+  "version": "1.0.0",
+  "description": "Tools for creating and managing skills, commands, and plugins",
+  "author": {
+    "name": "CThanh Nguyen"
+  },
+  "repository": "https://github.com/thanhnc1308/claude-engineer-toolkit",
+  "license": "MIT",
+  "keywords": ["skills", "commands", "plugins", "tdd", "documentation"],
+  "skills": "./skills/",
+  "commands": "./commands/",
+  "agents": "./agents/",
+  "rules": "./rules/",
+  "hooks": "./hooks/hooks.json"
+}

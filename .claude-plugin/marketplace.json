@@ -28,6 +28,13 @@
       "description": "NestJS architecture, DI patterns, and module organization",
       "category": "framework",
       "tags": ["nestjs", "backend", "nodejs"]
+    },
+    {
+      "name": "ecosystem-tools",
+      "source": "./plugins/ecosystem-tools",
+      "description": "Tools for creating and managing skills, commands, and plugins",
+      "category": "development",
+      "tags": ["skills", "commands", "plugins", "tdd"]
     }
   ]
 }
