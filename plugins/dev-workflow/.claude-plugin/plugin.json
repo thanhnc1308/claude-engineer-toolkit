@@ -5,7 +5,7 @@
   "author": {
     "name": "CThanh Nguyen"
   },
-  "repository": "https://github.com/cthanhnguyencong/claude-engineer-toolkit",
+  "repository": "https://github.com/thanhnc1308/claude-engineer-toolkit",
   "license": "MIT",
   "keywords": ["workflow", "planning", "review", "brainstorming"],
   "skills": "./skills/",

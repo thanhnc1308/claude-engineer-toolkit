@@ -18,17 +18,7 @@ Then install plugins per project:
 
 ## Plugins
 
-### dev-workflow
-
-Universal development workflow for any project type.
-
-**Commands:** `/brainstorm`, `/plan`, `/review`
-
-| Component | Description                                 |
-| --------- | ------------------------------------------- |
-| Skills    | `brainstorming`, `planning`, `reviewing`    |
-| Agent     | `code-reviewer` — deep code review analysis |
-| Rules     | Development lifecycle, commit conventions   |
+- [dev-workflow](docs/dev-workflow/README.md): Universal development workflow for any project type.
 
 ```bash
 /plugin install dev-workflow@claude-engineer-toolkit
@@ -36,17 +26,7 @@ Universal development workflow for any project type.
 
 ---
 
-### typescript
-
-TypeScript conventions and type safety patterns. Shared across any TypeScript project.
-
-**Commands:** `/ts-review`, `/ts-refactor`
-
-| Component | Description                                      |
-| --------- | ------------------------------------------------ |
-| Skills    | `reviewing-typescript`, `refactoring-typescript` |
-| Agent     | `typescript-reviewer` — type system analysis     |
-| Rules     | Type safety, naming conventions                  |
+- [typeScript](docs/typeScript/README.md)
 
 ```bash
 /plugin install typescript@claude-engineer-toolkit
@@ -54,17 +34,7 @@ TypeScript conventions and type safety patterns. Shared across any TypeScript pr
 
 ---
 
-### nestjs
-
-NestJS architecture, dependency injection, and module organization.
-
-**Commands:** `/nest-review`, `/nest-generate`
-
-| Component | Description                                    |
-| --------- | ---------------------------------------------- |
-| Skills    | `reviewing-nestjs`, `generating-nestjs`        |
-| Agents    | `nestjs-architect`, `nestjs-reviewer`          |
-| Rules     | Architecture, DI patterns, module organization |
+- [nestjs](docs/nestjs/README.md): NestJS architecture, dependency injection, and module organization.
 
 ```bash
 /plugin install nestjs@claude-engineer-toolkit
@@ -96,7 +66,3 @@ Then use the commands:
 4. Use **gerund naming** for skills (e.g., `reviewing-nextjs`, `generating-components`)
 5. Add a command file for each user-invocable skill
 6. Register the plugin in `.claude-plugin/marketplace.json`
-
-## License
-
-MIT
