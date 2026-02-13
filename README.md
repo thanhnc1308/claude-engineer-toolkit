@@ -101,6 +101,10 @@ Then use the commands:
 5. Add a command file for each user-invocable skill
 6. Register the plugin in `.claude-plugin/marketplace.json`
 
+## Use Git Worktree
+
+This project uses Git worktrees for parallel development. See [docs/git-worktree.md](docs/git-worktree.md) for setup instructions and best practices.
+
 ## License
 
 MIT

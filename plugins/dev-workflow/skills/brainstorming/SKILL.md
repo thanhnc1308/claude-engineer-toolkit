@@ -78,5 +78,5 @@ Start by understanding the current project context, then ask questions one at a 
 **Implementation (if continuing):**
 
 - Ask: "Ready to set up for implementation?"
-- Use dev-workflow:using-git-worktrees to create isolated workspace
-- Use dev-workflow:planning to create detailed implementation plan
+- Use dev-workflow:using-git-worktrees skill to create isolated workspace
+- Use dev-workflow:planning skill to create detailed implementation plan
