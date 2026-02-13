@@ -2,6 +2,10 @@
 
 A personal Claude Code plugin marketplace for full-stack software engineering. Install individual plugins per project to get context-aware skills, rules, agents, and commands.
 
+## Requirements
+
+- elements-of-style:writing-clearly-and-concisely skill
+
 ## Installation
 
 Add this marketplace to Claude Code:
