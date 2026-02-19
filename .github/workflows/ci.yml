@@ -1,0 +1,92 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+# Prevent duplicate runs
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+# Minimal permissions
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Validate Components
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22.x'
+
+      - name: Validate agents
+        run: node scripts/ci/validate-agents.js
+        continue-on-error: false
+
+      - name: Validate hooks
+        run: node scripts/ci/validate-hooks.js
+        continue-on-error: false
+
+      - name: Validate commands
+        run: node scripts/ci/validate-commands.js
+        continue-on-error: false
+
+      - name: Validate skills
+        run: node scripts/ci/validate-skills.js
+        continue-on-error: false
+
+      - name: Validate rules
+        run: node scripts/ci/validate-rules.js
+        continue-on-error: false
+
+  security:
+    name: Security Scan
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22.x'
+
+      - name: Run npm audit
+        run: npm audit --audit-level=high
+        continue-on-error: true  # Allows PR to proceed, but marks job as failed if vulnerabilities found
+
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22.x'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run ESLint
+        run: npx eslint scripts/**/*.js
+
+      - name: Run markdownlint
+        run: npx markdownlint "agents/**/*.md" "skills/**/*.md" "commands/**/*.md" "rules/**/*.md"

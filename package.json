@@ -1,0 +1,38 @@
+{
+  "name": "claude-engineer-toolkit",
+  "version": "1.0.0",
+  "description": "A comprehensive repository of resources, tools, and best practices for building with Claude. Everything you need to build, test, and deploy powerful agents and skills with the latest in AI technology.",
+  "keywords": [
+    "claude-code",
+    "ai",
+    "agents",
+    "skills",
+    "hooks",
+    "mcp",
+    "rules",
+    "claude",
+    "anthropic",
+    "tdd",
+    "code-review",
+    "security",
+    "automation",
+    "best-practices",
+    "cursor",
+    "cursor-ide",
+    "opencode"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "lint": "eslint . && markdownlint '**/*.md' --ignore node_modules",
+    "test": "node scripts/ci/validate-agents.js && node scripts/ci/validate-commands.js && node scripts/ci/validate-rules.js && node scripts/ci/validate-skills.js"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.2",
+    "eslint": "^9.39.2",
+    "globals": "^17.1.0",
+    "markdownlint-cli": "^0.47.0"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}
