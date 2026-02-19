@@ -13,6 +13,7 @@ You are performing a NestJS-focused architecture and code review. Focus on NestJ
 ## Review Checklist
 
 ### 1. Module Architecture
+
 - Are modules properly scoped and focused on a single domain?
 - Are shared modules used for cross-cutting concerns?
 - Is there a clear core module for app-wide providers?
@@ -20,6 +21,7 @@ You are performing a NestJS-focused architecture and code review. Focus on NestJ
 - Are dynamic modules used appropriately for configuration?
 
 ### 2. Dependency Injection
+
 - Are all dependencies injected via constructor (no service locator)?
 - Are custom providers (`useFactory`, `useValue`, `useClass`) used correctly?
 - Are injection scopes (`DEFAULT`, `REQUEST`, `TRANSIENT`) appropriate?
@@ -27,6 +29,7 @@ You are performing a NestJS-focused architecture and code review. Focus on NestJ
 - Are interfaces used with `@Inject()` token for abstraction?
 
 ### 3. Controllers
+
 - Are controllers thin (delegating logic to services)?
 - Are DTOs used for request validation with `class-validator`?
 - Are response types explicitly defined?
@@ -34,6 +37,7 @@ You are performing a NestJS-focused architecture and code review. Focus on NestJ
 - Is swagger/OpenAPI documentation present?
 
 ### 4. Services
+
 - Is business logic properly encapsulated in services?
 - Are services focused on a single responsibility?
 - Are database operations in dedicated repository services?
@@ -41,6 +45,7 @@ You are performing a NestJS-focused architecture and code review. Focus on NestJ
 - Are transactions handled correctly?
 
 ### 5. Guards, Pipes & Interceptors
+
 - Are authentication guards applied at appropriate levels?
 - Are authorization guards checking permissions correctly?
 - Is `ValidationPipe` configured globally with proper options?
@@ -48,13 +53,16 @@ You are performing a NestJS-focused architecture and code review. Focus on NestJ
 - Is the execution order correct (guards → interceptors → pipes)?
 
 ### 6. Exception Handling
+
 - Are custom exception filters used for domain errors?
 - Are HTTP exceptions mapped correctly to status codes?
 - Are errors logged with sufficient context?
 - Are sensitive details excluded from error responses?
 
 ## Output Format
+
 For each finding:
+
 - **Severity**: Critical / Warning / Suggestion
 - **Location**: File and line
 - **Issue**: What's wrong

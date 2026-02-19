@@ -21,6 +21,7 @@ You are generating NestJS boilerplate code. Follow the project's existing patter
 For a new module, generate these files following project conventions:
 
 ### Module Structure
+
 ```
 src/<module-name>/
 ├── <module-name>.module.ts        # Module definition
@@ -39,6 +40,7 @@ src/<module-name>/
 ```
 
 ### Code Standards
+
 - Use `class-validator` decorators on all DTO properties
 - Use `class-transformer` for serialization control
 - Apply `@ApiTags()` and `@ApiOperation()` for Swagger docs
@@ -47,6 +49,7 @@ src/<module-name>/
 - Include basic unit test scaffolding
 
 ## Process
+
 1. Read the request: $ARGUMENTS
 2. Explore existing modules for patterns
 3. Generate files one at a time, confirming structure with the user

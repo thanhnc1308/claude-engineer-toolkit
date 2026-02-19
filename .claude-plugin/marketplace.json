@@ -35,6 +35,20 @@
       "description": "Tools for creating and managing skills, commands, and plugins",
       "category": "development",
       "tags": ["skills", "commands", "plugins", "tdd"]
+    },
+    {
+      "name": "nextjs",
+      "source": "./plugins/nextjs",
+      "description": "Next.js best practices, file structure, and API routes",
+      "category": "framework",
+      "tags": ["nextjs", "frontend", "react"]
+    },
+    {
+      "name": "fundamentals",
+      "source": "./plugins/fundamentals",
+      "description": "Core programming concepts, security best practices, and algorithmic thinking",
+      "category": "general",
+      "tags": ["security", "best-practices"]
     }
   ]
 }

@@ -1,0 +1,16 @@
+{
+  "name": "fundamentals",
+  "version": "1.0.0",
+  "description": "Description of your plugin",
+  "author": {
+    "name": "Your Name"
+  },
+  "repository": "https://github.com/thanhnc1308/claude-engineer-toolkit",
+  "license": "MIT",
+  "keywords": ["keyword1", "keyword2"],
+  "skills": "./skills/",
+  "commands": "./commands/",
+  "agents": "./agents/",
+  "rules": "./rules/",
+  "hooks": "./hooks/hooks.json"
+}
