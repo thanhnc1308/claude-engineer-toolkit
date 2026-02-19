@@ -60,6 +60,15 @@ Then use the commands:
 
 ## Adding a New Plugin
 
+### Quick Start
+
+```bash
+chmod +x scripts/init-plugin.sh
+./scripts/init-plugin.sh ecosystem-tools
+```
+
+### Manual Steps
+
 1. Create a directory under `plugins/<plugin-name>/`
 2. Add `.claude-plugin/plugin.json` with name, version, description
 3. Add `skills/`, `commands/`, `agents/`, `rules/` directories as needed
