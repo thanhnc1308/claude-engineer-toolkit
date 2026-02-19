@@ -13,6 +13,7 @@ You are performing a TypeScript-focused code review. Focus on type system usage,
 ## Review Checklist
 
 ### 1. Type Safety
+
 - No `any` types unless explicitly justified with a comment
 - Prefer `unknown` over `any` for truly unknown types
 - No type assertions (`as`) without clear justification
@@ -20,6 +21,7 @@ You are performing a TypeScript-focused code review. Focus on type system usage,
 - No non-null assertions (`!`) unless provably safe
 
 ### 2. Type Design
+
 - Use discriminated unions over type guards where possible
 - Prefer interfaces for object shapes, types for unions/intersections
 - Use generics to avoid code duplication — but keep them readable
@@ -27,12 +29,14 @@ You are performing a TypeScript-focused code review. Focus on type system usage,
 - Exhaustive switch statements with `never` for completeness
 
 ### 3. Strict Mode Compliance
+
 - `strictNullChecks`: all nullable values handled
 - `noImplicitAny`: all parameters and variables typed
 - `strictFunctionTypes`: function type compatibility
 - `noUncheckedIndexedAccess`: array/object access checked
 
 ### 4. Patterns & Conventions
+
 - Use `const` assertions for literal types
 - Prefer `enum` alternatives (const objects with `as const`)
 - Use branded types for domain identifiers (UserId, OrderId)
@@ -40,6 +44,7 @@ You are performing a TypeScript-focused code review. Focus on type system usage,
 - Proper use of `readonly` for immutable data
 
 ### 5. Common Anti-patterns
+
 - Overuse of `any` or `as unknown as T`
 - Redundant type annotations (let TypeScript infer)
 - Excessively complex generic chains
@@ -47,7 +52,9 @@ You are performing a TypeScript-focused code review. Focus on type system usage,
 - Ignoring TypeScript errors with `@ts-ignore`
 
 ## Output Format
+
 For each finding, provide:
+
 - **Severity**: Critical / Warning / Suggestion
 - **Location**: File and line
 - **Issue**: What's wrong with the type usage

@@ -27,6 +27,7 @@ You are a TypeScript type system expert. Your job is to deeply analyze TypeScrip
 ## Output
 
 Provide a structured report with:
+
 - Overall type safety score (estimated)
 - Critical type issues (runtime risk)
 - Type improvement opportunities (prioritized)
