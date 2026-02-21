@@ -1,7 +1,8 @@
 ---
 name: typescript-reviewer
 description: Deep TypeScript analysis agent for comprehensive type system review and improvement recommendations
-allowed-tools: Read, Grep, Glob, Bash
+tools: ["Read", "Grep", "Glob", "Bash"]
+model: sonnet
 ---
 
 # TypeScript Reviewer Agent

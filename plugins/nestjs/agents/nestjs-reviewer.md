@@ -1,7 +1,8 @@
 ---
 name: nestjs-reviewer
 description: NestJS code review agent specializing in DI patterns, module organization, and backend best practices
-allowed-tools: Read, Grep, Glob, Bash
+tools: ["Read", "Grep", "Glob", "Bash"]
+model: sonnet
 ---
 
 # NestJS Reviewer Agent

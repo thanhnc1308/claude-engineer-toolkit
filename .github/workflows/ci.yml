@@ -28,7 +28,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '22.x'
+          node-version: "22.x"
 
       - name: Validate agents
         run: node scripts/ci/validate-agents.js
@@ -50,6 +50,10 @@ jobs:
         run: node scripts/ci/validate-rules.js
         continue-on-error: false
 
+      - name: Validate plugin.json manifests
+        run: node scripts/ci/validate-plugin-json.js
+        continue-on-error: false
+
   security:
     name: Security Scan
     runs-on: ubuntu-latest
@@ -62,11 +66,11 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '22.x'
+          node-version: "22.x"
 
       - name: Run npm audit
         run: npm audit --audit-level=high
-        continue-on-error: true  # Allows PR to proceed, but marks job as failed if vulnerabilities found
+        continue-on-error: true # Allows PR to proceed, but marks job as failed if vulnerabilities found
 
   lint:
     name: Lint
@@ -80,13 +84,13 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '22.x'
+          node-version: "22.x"
 
       - name: Install dependencies
         run: npm ci
 
       - name: Run ESLint
-        run: npx eslint scripts/**/*.js
+        run: npx eslint "scripts/**/*.js"
 
       - name: Run markdownlint
-        run: npx markdownlint "agents/**/*.md" "skills/**/*.md" "commands/**/*.md" "rules/**/*.md"
+        run: npx markdownlint "plugins/**/*.md" "docs/**/*.md"
