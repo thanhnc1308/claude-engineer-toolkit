@@ -49,6 +49,13 @@
       "description": "Core programming concepts, security best practices, and algorithmic thinking",
       "category": "general",
       "tags": ["security", "best-practices"]
+    },
+    {
+      "name": "sql-database",
+      "source": "./plugins/sql-database",
+      "description": "SQL database design, query optimization, and schema management",
+      "category": "database",
+      "tags": ["sql", "database", "optimization", "schema"]
     }
   ]
 }
