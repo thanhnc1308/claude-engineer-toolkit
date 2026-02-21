@@ -116,7 +116,7 @@ test("user can create a new market", async ({ page }) => {
 });
 ```
 
-# Mocking External Services
+## Mocking External Services
 
 ## Supabase Mock
 
