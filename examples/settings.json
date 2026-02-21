@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(find:*)",
+      "Bash(npm ls:*)",
+      "Bash(node:*)",
+      "Bash(npm install:*)",
+      "Bash(npm test:*)",
+      "Bash(npm run lint:*)",
+      "Bash(done)",
+      "Bash(ls:*)",
+      "Bash(cat:*)",
+      "Bash(echo:*)",
+      "Bash(pwd:*)",
+      "Bash(grep:*)",
+      "Bash(find:*)"
+    ]
+  }
+}

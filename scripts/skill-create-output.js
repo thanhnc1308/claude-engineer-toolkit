@@ -103,7 +103,7 @@ class SkillCreateOutput {
     console.log(
       chalk.bold(chalk.magenta("║")) +
         chalk.bold(
-          "  🔮 ECC Skill Creator                                          ",
+          "  🔮 Skill Creator                                               ",
         ) +
         chalk.bold(chalk.magenta("║")),
     );
@@ -200,9 +200,9 @@ ${chalk.bold("Files Tracked:")}    ${chalk.green(data.files)}
         "📋 Next Steps",
         `
 ${chalk.yellow("1.")} Review the generated SKILL.md
-${chalk.yellow("2.")} Import instincts: ${chalk.cyan("/instinct-import <path>")}
-${chalk.yellow("3.")} View learned patterns: ${chalk.cyan("/instinct-status")}
-${chalk.yellow("4.")} Evolve into skills: ${chalk.cyan("/evolve")}
+${chalk.yellow("2.")} Test the skill with a subagent
+${chalk.yellow("3.")} Add a command file for the skill
+${chalk.yellow("4.")} Register in plugin.json
 `,
       ),
     );
@@ -269,8 +269,8 @@ async function demo() {
   ]);
 
   output.output(
-    ".claude/skills/pmx-patterns/SKILL.md",
-    ".claude/homunculus/instincts/inherited/pmx-instincts.yaml",
+    "plugins/my-plugin/skills/pmx-patterns/SKILL.md",
+    "plugins/my-plugin/skills/pmx-patterns/instincts.yaml",
   );
 
   output.nextSteps();

@@ -18,26 +18,20 @@ Then install plugins per project:
 
 ## Plugins
 
-- [dev-workflow](docs/dev-workflow/README.md): Universal development workflow for any project type.
+| Plugin                                      | Category    | Description                                                            |
+| ------------------------------------------- | ----------- | ---------------------------------------------------------------------- |
+| [dev-workflow](plugins/dev-workflow/)       | workflow    | Brainstorming, planning, implementing, reviewing, and verification     |
+| [typescript](plugins/typescript/)           | language    | TypeScript conventions, type safety, and refactoring patterns          |
+| [nestjs](plugins/nestjs/)                   | framework   | NestJS architecture, DI patterns, and module organization              |
+| [fundamentals](plugins/fundamentals/)       | general     | Core coding standards, security best practices, and hooks              |
+| [ecosystem-tools](plugins/ecosystem-tools/) | development | Tools for creating and managing skills, commands, and plugins          |
+| [nextjs](plugins/nextjs/)                   | framework   | Next.js best practices, App Router patterns, and frontend architecture |
+| [sql-database](plugins/sql-database/)       | database    | SQL database design, query optimization, and schema management         |
+
+Install any plugin:
 
 ```bash
-/plugin install dev-workflow@claude-engineer-toolkit
-```
-
----
-
-- [typeScript](docs/typeScript/README.md)
-
-```bash
-/plugin install typescript@claude-engineer-toolkit
-```
-
----
-
-- [nestjs](docs/nestjs/README.md): NestJS architecture, dependency injection, and module organization.
-
-```bash
-/plugin install nestjs@claude-engineer-toolkit
+/plugin install <plugin-name>@claude-engineer-toolkit
 ```
 
 ## Example: Setting up a NestJS project

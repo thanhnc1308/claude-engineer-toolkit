@@ -1,7 +1,8 @@
 ---
 name: nestjs-architect
 description: NestJS architecture design agent for planning module structure, API design, and system integration
-allowed-tools: Read, Grep, Glob, WebSearch, WebFetch
+tools: ["Read", "Grep", "Glob", "WebSearch", "WebFetch"]
+model: sonnet
 ---
 
 # NestJS Architect Agent
@@ -27,6 +28,7 @@ You are a NestJS architecture expert. Your job is to design module structures, p
 ## Output
 
 Provide architectural recommendations with:
+
 - Module dependency diagram (text-based)
 - File structure proposal
 - Interface definitions for cross-module boundaries
