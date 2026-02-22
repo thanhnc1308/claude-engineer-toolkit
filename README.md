@@ -69,3 +69,9 @@ chmod +x scripts/init-plugin.sh
 4. Use **gerund naming** for skills (e.g., `reviewing-nextjs`, `generating-components`)
 5. Add a command file for each user-invocable skill
 6. Register the plugin in `.claude-plugin/marketplace.json`
+
+## References
+
+- [superpowers](https://github.com/obra/superpowers)
+- [everything-claude-code](https://github.com/affaan-m/everything-claude-code)
+- [claudekit-skills](https://github.com/mrgoonie/claudekit-skills)
