@@ -1,11 +1,11 @@
-# sql-database
+# database-tools
 
 Description of your plugin.
 
 ## Installation
 
 ```bash
-/plugin install sql-database@claude-engineer-toolkit
+/plugin install database-tools@claude-engineer-toolkit
 ```
 
 ## Features

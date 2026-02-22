@@ -1,0 +1,13 @@
+{
+  "name": "database-tools",
+  "version": "1.0.0",
+  "description": "Database management tools, query optimization, and schema design",
+  "author": {
+    "name": "CThanh Nguyen"
+  },
+  "repository": "https://github.com/thanhnc1308/claude-engineer-toolkit",
+  "license": "MIT",
+  "keywords": ["database", "sql", "postgresql", "mongodb"],
+  "skills": "./skills/",
+  "agents": "./agents/"
+}

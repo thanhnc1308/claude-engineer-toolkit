@@ -30,13 +30,6 @@
       "tags": ["nestjs", "backend", "nodejs"]
     },
     {
-      "name": "ecosystem-tools",
-      "source": "./plugins/ecosystem-tools",
-      "description": "Tools for creating and managing skills, commands, and plugins",
-      "category": "development",
-      "tags": ["skills", "commands", "plugins", "tdd"]
-    },
-    {
       "name": "nextjs",
       "source": "./plugins/nextjs",
       "description": "Next.js best practices, file structure, and API routes",
@@ -51,11 +44,95 @@
       "tags": ["security", "best-practices"]
     },
     {
-      "name": "sql-database",
-      "source": "./plugins/sql-database",
-      "description": "SQL database design, query optimization, and schema management",
-      "category": "database",
-      "tags": ["sql", "database", "optimization", "schema"]
+      "name": "ai-ml-tools",
+      "source": "./plugins/ai-ml-tools",
+      "description": "AI and machine learning tools, prompts, and patterns for building intelligent applications",
+      "category": "tools",
+      "tags": ["ai", "machine-learning", "prompts", "patterns"]
+    },
+    {
+      "name": "backend-tools",
+      "source": "./plugins/backend-tools",
+      "description": "Backend development tools, API patterns, and server-side utilities",
+      "category": "tools",
+      "tags": ["backend", "api", "server-side"]
+    },
+    {
+      "name": "debugging-tools",
+      "source": "./plugins/debugging-tools",
+      "description": "Debugging utilities, diagnostic patterns, and error analysis tools",
+      "category": "tools",
+      "tags": ["debugging", "diagnostics", "error-analysis"]
+    },
+    {
+      "name": "devops-tools",
+      "source": "./plugins/devops-tools",
+      "description": "DevOps automation, CI/CD pipelines, infrastructure, and deployment tools",
+      "category": "tools",
+      "tags": ["devops", "ci-cd", "infrastructure", "deployment"]
+    },
+    {
+      "name": "document-tools",
+      "source": "./plugins/document-tools",
+      "description": "Document processing, transformation, and content generation tools",
+      "category": "tools",
+      "tags": ["documents", "processing", "content-generation"]
+    },
+    {
+      "name": "media-tools",
+      "source": "./plugins/media-tools",
+      "description": "Media handling tools for images, audio, video, and rich content",
+      "category": "tools",
+      "tags": ["media", "images", "audio", "video"]
+    },
+    {
+      "name": "meta-tools",
+      "source": "./plugins/meta-tools",
+      "description": "Meta-level tools for managing skills, plugins, and Claude Code workflows",
+      "category": "tools",
+      "tags": ["meta", "skills", "plugins", "workflows"]
+    },
+    {
+      "name": "platform-tools",
+      "source": "./plugins/platform-tools",
+      "description": "Platform-specific tools, agents, and commands for cross-platform development",
+      "category": "tools",
+      "tags": ["platform", "cross-platform", "agents"]
+    },
+    {
+      "name": "problem-solving-tools",
+      "source": "./plugins/problem-solving-tools",
+      "description": "Structured problem-solving approaches, analytical frameworks, and decision tools",
+      "category": "tools",
+      "tags": ["problem-solving", "analytics", "decision-making"]
+    },
+    {
+      "name": "research-tools",
+      "source": "./plugins/research-tools",
+      "description": "Research tools for web search, information gathering, and knowledge synthesis",
+      "category": "tools",
+      "tags": ["research", "web-search", "knowledge"]
+    },
+    {
+      "name": "specialized-tools",
+      "source": "./plugins/specialized-tools",
+      "description": "Specialized domain tools for niche tasks and targeted workflows",
+      "category": "tools",
+      "tags": ["specialized", "domain-specific", "niche"]
+    },
+    {
+      "name": "web-dev-tools",
+      "source": "./plugins/web-dev-tools",
+      "description": "Web development tools, frontend utilities, and browser-related workflows",
+      "category": "tools",
+      "tags": ["web-development", "frontend", "browser"]
+    },
+    {
+      "name": "database-tools",
+      "source": "./plugins/database-tools",
+      "description": "Database management tools, query optimization, and schema design",
+      "category": "general",
+      "tags": ["database", "postgresql", "mongodb", "schema", "sql", "nosql"]
     }
   ]
 }

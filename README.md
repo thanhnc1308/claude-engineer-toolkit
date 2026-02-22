@@ -18,26 +18,21 @@ Then install plugins per project:
 
 ## Plugins
 
-| Plugin                                      | Category    | Description                                                            |
-| ------------------------------------------- | ----------- | ---------------------------------------------------------------------- |
-| [dev-workflow](plugins/dev-workflow/)       | workflow    | Brainstorming, planning, implementing, reviewing, and verification     |
-| [typescript](plugins/typescript/)           | language    | TypeScript conventions, type safety, and refactoring patterns          |
-| [nestjs](plugins/nestjs/)                   | framework   | NestJS architecture, DI patterns, and module organization              |
-| [fundamentals](plugins/fundamentals/)       | general     | Core coding standards, security best practices, and hooks              |
-| [ecosystem-tools](plugins/ecosystem-tools/) | development | Tools for creating and managing skills, commands, and plugins          |
-| [nextjs](plugins/nextjs/)                   | framework   | Next.js best practices, App Router patterns, and frontend architecture |
-| [sql-database](plugins/sql-database/)       | database    | SQL database design, query optimization, and schema management         |
-
 Install any plugin:
 
 ```bash
 /plugin install <plugin-name>@claude-engineer-toolkit
 ```
 
-## Example: Setting up a NestJS project
+## Example
+
+1. NestJS
 
 ```bash
+/plugin install fundamentals@claude-engineer-toolkit
 /plugin install dev-workflow@claude-engineer-toolkit
+/plugin install backend-tools@claude-engineer-toolkit
+/plugin install debugging-tools@claude-engineer-toolkit
 /plugin install typescript@claude-engineer-toolkit
 /plugin install nestjs@claude-engineer-toolkit
 ```
@@ -58,7 +53,7 @@ Then use the commands:
 
 ```bash
 chmod +x scripts/init-plugin.sh
-./scripts/init-plugin.sh ecosystem-tools
+./scripts/init-plugin.sh new-tools
 ```
 
 ### Manual Steps
@@ -69,6 +64,16 @@ chmod +x scripts/init-plugin.sh
 4. Use **gerund naming** for skills (e.g., `reviewing-nextjs`, `generating-components`)
 5. Add a command file for each user-invocable skill
 6. Register the plugin in `.claude-plugin/marketplace.json`
+
+## Create symlink
+
+```bash
+# Remove the broken symlink
+rm path/to/directory
+
+# Create a new symlink pointing to the correct skill
+ln -s ../../../.claude/skills/creating-skill plugins/document-tools/skills/creating-skill
+```
 
 ## References
 

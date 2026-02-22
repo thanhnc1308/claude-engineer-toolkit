@@ -1,5 +1,5 @@
 ---
-name: generate-claude-md
+name: generating-claude-md
 description: Use when setting up Claude Code for a project, onboarding Claude to a codebase, or when asked to create or update a CLAUDE.md file. Triggers on "generate CLAUDE.md", "create project config", "set up Claude for this project", or "onboard Claude".
 ---
 

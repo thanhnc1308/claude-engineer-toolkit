@@ -1,5 +1,5 @@
 ---
-name: skill-creator
+name: creating-skill
 description: Create or update Claude skills. Use for new skills, skill references, skill scripts, optimizing existing skills, extending Claude's capabilities.
 license: Complete terms in LICENSE.txt
 version: 2.0.0
@@ -164,7 +164,7 @@ Conclude this step when there is a clear sense of the functionality the skill sh
 
 An effective skill is a subset of real-life workflows from professional workflows and case studies, so it's important to research on the internet to understand the current state of the art and best practices.
 
-Activate `/docs-seeker` skill to search for documentation if needed.
+Activate `/seeking-docs` skill to search for documentation if needed.
 
 If you receive a lot of URLs or files, use multiple `WebFetch` tools and `Explore` subagents to explore them in parallel, then report back to main agent.
 

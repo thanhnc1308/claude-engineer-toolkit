@@ -118,7 +118,7 @@ Each skill teaches Claude _how to perform a specific development task_, not _wha
 
 #### 📚 Documentation & Research
 
-- **[docs-seeker](.claude/skills/docs-seeker)** - Intelligent documentation discovery using llms.txt standard, GitHub repository analysis via Repomix, and parallel exploration agents for comprehensive coverage.
+- **[seeking-docs](.claude/skills/seeking-docs)** - Intelligent documentation discovery using llms.txt standard, GitHub repository analysis via Repomix, and parallel exploration agents for comprehensive coverage.
 
 #### 🧪 Code Quality & Review
 
@@ -133,10 +133,10 @@ Each skill teaches Claude _how to perform a specific development task_, not _wha
 
 #### 📄 Document Processing
 
-- **[document-skills/docx](.claude/skills/document-skills/docx)** - Create, edit, and analyze Word documents with tracked changes, comments, formatting preservation, and redlining workflows for professional documents.
-- **[document-skills/pdf](.claude/skills/document-skills/pdf)** - Extract text/tables, create PDFs, merge/split documents, fill forms. Uses pypdf and command-line tools for programmatic PDF processing.
-- **[document-skills/pptx](.claude/skills/document-skills/pptx)** - Create and edit PowerPoint presentations with layouts, speaker notes, comments, animations, and design elements.
-- **[document-skills/xlsx](.claude/skills/document-skills/xlsx)** - Build spreadsheets with formulas, formatting, data analysis, and visualization. Includes financial modeling standards and zero-error formula requirements.
+- **[processing-document/docx](.claude/skills/processing-document/docx)** - Create, edit, and analyze Word documents with tracked changes, comments, formatting preservation, and redlining workflows for professional documents.
+- **[processing-document/pdf](.claude/skills/processing-document/pdf)** - Extract text/tables, create PDFs, merge/split documents, fill forms. Uses pypdf and command-line tools for programmatic PDF processing.
+- **[processing-document/pptx](.claude/skills/processing-document/pptx)** - Create and edit PowerPoint presentations with layouts, speaker notes, comments, animations, and design elements.
+- **[processing-document/xlsx](.claude/skills/processing-document/xlsx)** - Build spreadsheets with formulas, formatting, data analysis, and visualization. Includes financial modeling standards and zero-error formula requirements.
 
 #### 🛍️ E-commerce & Platforms
 
@@ -165,7 +165,7 @@ Each skill teaches Claude _how to perform a specific development task_, not _wha
 
 #### 🔧 Meta Skills (from Anthropic)
 
-- **[skill-creator](.claude/skills/skill-creator)** - Guide for creating effective skills with specialized workflows, tool integrations, domain expertise, and bundled resources.
+- **[creating-skill](.claude/skills/creating-skill)** - Guide for creating effective skills with specialized workflows, tool integrations, domain expertise, and bundled resources.
 
 ### Quick Start
 
