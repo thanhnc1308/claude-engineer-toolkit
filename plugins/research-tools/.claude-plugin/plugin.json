@@ -1,0 +1,12 @@
+{
+  "name": "research-tools",
+  "version": "1.0.0",
+  "description": "Research tools for web search, information gathering, and knowledge synthesis",
+  "author": {
+    "name": "CThanh Nguyen"
+  },
+  "repository": "https://github.com/thanhnc1308/claude-engineer-toolkit",
+  "license": "MIT",
+  "keywords": ["research", "search", "information", "synthesis"],
+  "skills": "./skills/"
+}
