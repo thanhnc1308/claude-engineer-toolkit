@@ -3,8 +3,17 @@ STAGED_FILES=$(git diff --cached --name-only --diff-filter=d)
 UNSTAGED_FILES=$(git diff --name-only --diff-filter=d)
 ALL_FILES=$(echo "$STAGED_FILES"$'\n'"$UNSTAGED_FILES" | sort -u | grep -E '\.(js|ts|jsx|tsx|json|css|scss|html|md|yaml|yml)$' || true)
 
+# Filter out symbolic links (Prettier does not support them)
 if [ -n "$ALL_FILES" ]; then
-  echo "$ALL_FILES" | xargs npx prettier --write
+  REAL_FILES=""
+  while IFS= read -r file; do
+    [ -n "$file" ] && [ ! -L "$file" ] && REAL_FILES="$REAL_FILES"$'\n'"$file"
+  done <<< "$ALL_FILES"
+  REAL_FILES=$(echo "$REAL_FILES" | sed '/^$/d')
+fi
+
+if [ -n "$REAL_FILES" ]; then
+  echo "$REAL_FILES" | xargs npx prettier --write
   # Re-stage files that were previously staged
   if [ -n "$STAGED_FILES" ]; then
     echo "$STAGED_FILES" | xargs git add

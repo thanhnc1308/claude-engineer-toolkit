@@ -23,7 +23,7 @@
   ],
   "license": "MIT",
   "scripts": {
-    "lint": "eslint . && markdownlint 'plugins/**/*.md' 'docs/**/*.md' --ignore node_modules",
+    "lint": "eslint . && markdownlint-cli2 'plugins/**/*.md' 'docs/**/*.md'",
     "test": "node scripts/ci/validate-agents.js && node scripts/ci/validate-commands.js && node scripts/ci/validate-rules.js && node scripts/ci/validate-skills.js && node scripts/ci/validate-hooks.js && node scripts/ci/validate-plugin-json.js",
     "prepare": "husky"
   },
@@ -34,7 +34,7 @@
     "eslint": "^9.39.2",
     "globals": "^17.1.0",
     "husky": "^9.1.7",
-    "markdownlint-cli": "^0.47.0",
+    "markdownlint-cli2": "^0.21.0",
     "prettier": "^3.8.1"
   },
   "engines": {
