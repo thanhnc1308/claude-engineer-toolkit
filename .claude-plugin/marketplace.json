@@ -133,6 +133,13 @@
       "description": "Database management tools, query optimization, and schema design",
       "category": "general",
       "tags": ["database", "postgresql", "mongodb", "schema", "sql", "nosql"]
+    },
+    {
+      "name": "php",
+      "source": "./plugins/php",
+      "description": "PHP code generation and debugging plugin for Claude Engineer Toolkit.",
+      "category": "general",
+      "tags": ["php", "symfony", "silex"]
     }
   ]
 }

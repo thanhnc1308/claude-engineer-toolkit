@@ -1,6 +1,6 @@
 ---
-name: creating-skills
-description: Use when creating new skills, editing existing skills, or verifying skills work before deployment
+name: skills-tdd
+description: Use when the user ask to create or edit skills with TDD
 ---
 
 # Creating Skills
