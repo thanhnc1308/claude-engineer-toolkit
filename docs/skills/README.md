@@ -2,6 +2,10 @@
 
 [**Agent Skills**](https://docs.claude.com/en/docs/agents-and-tools/agent-skills/overview) are specialized workflows including instructions, metadata, and optional resources (scripts, templates) that extend Claude's functionality.
 
+- Procedural workflow — essentially a recipe Claude reads on-demand and follows for a specific task. It's much more prescriptive and step-by-step, and often references other files or scripts to load progressively.
+
+- In a SKILL.md, the body answers: "What exact steps should Claude follow to complete this task?"
+
 ## Installation Guide
 
 This guide explains how to install dependencies for Claude Code skills.
@@ -35,6 +39,10 @@ Skills are capabilities that activate during specific workflow moments:
 - Building UI → activate `ui-styling` + `web-frameworks`
 
 Each skill teaches Claude _how to perform a specific development task_, not _what a tool does_.
+
+7. **The description field should provide just enough information for Claude to know when each skill should be used without loading all of it into context**
+
+Structure: [What it does] + [When to use it] + [Key capabilities]
 
 #### Disclosure Architecture
 
