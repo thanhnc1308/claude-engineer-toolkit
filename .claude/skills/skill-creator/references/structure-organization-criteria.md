@@ -23,7 +23,6 @@ Proper structure enables discovery and maintainability.
 ---
 name: skill-name
 description: Under 200 chars, specific triggers
-license: Optional
 version: Optional
 ---
 ```

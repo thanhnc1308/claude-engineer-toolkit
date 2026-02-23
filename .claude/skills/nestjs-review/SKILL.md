@@ -1,5 +1,5 @@
 ---
-name: nestjs-reviewing
+name: nestjs-review
 description: NestJS architecture review covering module boundaries, dependency injection, guards, pipes, interceptors, and exception handling. Use when reviewing NestJS code or checking architecture quality.
 user-invocable: true
 allowed-tools: Read, Grep, Glob, Bash

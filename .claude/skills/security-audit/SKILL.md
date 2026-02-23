@@ -138,7 +138,58 @@ await db.query('SELECT * FROM users WHERE email = $1', [userEmail]);
 - [ ] ORM/query builder used correctly
 - [ ] Supabase queries properly sanitized
 
-### 4. Authentication & Authorization
+### 4. Command Injection Prevention
+
+#### ❌ NEVER Pass Unsanitized Input to Shell Commands
+
+```typescript
+import { exec } from 'child_process';
+
+// DANGEROUS - Command injection vulnerability
+const filename = req.query.file;
+exec(`cat /uploads/${filename}`); // User sends: "; rm -rf /"
+```
+
+#### ✅ ALWAYS Use Safe Alternatives
+
+```typescript
+import { execFile } from 'child_process';
+
+// Safe - execFile does not spawn a shell
+const filename = req.query.file;
+execFile('cat', ['/uploads/' + filename]);
+
+// Even better - avoid shell commands entirely
+import { readFile } from 'fs/promises';
+import path from 'path';
+
+const safeName = path.basename(filename); // Strip path traversal
+const content = await readFile(path.join('/uploads', safeName), 'utf-8');
+```
+
+#### Allowlist Validation for Required Commands
+
+```typescript
+const ALLOWED_COMMANDS = ['convert', 'ffmpeg', 'pdftk'] as const;
+
+function runTool(command: string, args: string[]) {
+  if (!ALLOWED_COMMANDS.includes(command as any)) {
+    throw new Error('Command not allowed');
+  }
+  // execFile avoids shell interpretation of args
+  return execFile(command, args);
+}
+```
+
+#### Verification Steps
+
+- [ ] No user input passed to `exec()`, `execSync()`, or `spawn({ shell: true })`
+- [ ] `execFile()` used instead of `exec()` when shell commands are necessary
+- [ ] Arguments passed as arrays, never concatenated into command strings
+- [ ] Path traversal prevented with `path.basename()` or allowlist
+- [ ] Commands restricted to an allowlist when possible
+
+### 5. Authentication & Authorization
 
 #### JWT Token Handling
 
@@ -193,7 +244,7 @@ CREATE POLICY "Users update own data"
 - [ ] Role-based access control implemented
 - [ ] Session management secure
 
-### 5. XSS Prevention
+### 6. XSS Prevention
 
 #### Sanitize HTML
 
@@ -238,7 +289,7 @@ const securityHeaders = [
 - [ ] No unvalidated dynamic content rendering
 - [ ] React's built-in XSS protection used
 
-### 6. CSRF Protection
+### 7. CSRF Protection
 
 #### CSRF Tokens
 
@@ -268,7 +319,7 @@ res.setHeader('Set-Cookie', `session=${sessionId}; HttpOnly; Secure; SameSite=St
 - [ ] SameSite=Strict on all cookies
 - [ ] Double-submit cookie pattern implemented
 
-### 7. Rate Limiting
+### 8. Rate Limiting
 
 #### API Rate Limiting
 
@@ -305,7 +356,7 @@ app.use('/api/search', searchLimiter);
 - [ ] IP-based rate limiting
 - [ ] User-based rate limiting (authenticated)
 
-### 8. Sensitive Data Exposure
+### 9. Sensitive Data Exposure
 
 #### Logging
 
@@ -347,7 +398,7 @@ catch (error) {
 - [ ] Detailed errors only in server logs
 - [ ] No stack traces exposed to users
 
-### 9. Blockchain Security (Solana)
+### 10. Blockchain Security (Solana)
 
 #### Wallet Verification
 
@@ -399,7 +450,7 @@ async function verifyTransaction(transaction: Transaction) {
 - [ ] Balance checks before transactions
 - [ ] No blind transaction signing
 
-### 10. Dependency Security
+### 11. Dependency Security
 
 #### Regular Updates
 

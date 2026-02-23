@@ -4,6 +4,54 @@ Modern React component architecture for the application emphasizing type safety,
 
 ---
 
+## Composition Over Inheritance
+
+**Core Principle:** Build complex components by combining smaller, focused components rather than creating deep inheritance hierarchies.
+
+```typescript
+// ✅ GOOD: Composition - small, focused components combined together
+interface CardProps {
+    children: React.ReactNode;
+    variant?: 'default' | 'outlined';
+}
+
+export const Card: React.FC<CardProps> = ({ children, variant = 'default' }) => {
+    return (
+        <Paper variant={variant === 'outlined' ? 'outlined' : 'elevation'}>
+            {children}
+        </Paper>
+    );
+};
+
+export const CardHeader: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+    return <Box sx={{ p: 2, borderBottom: '1px solid', borderColor: 'divider' }}>{children}</Box>;
+};
+
+export const CardBody: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+    return <Box sx={{ p: 2 }}>{children}</Box>;
+};
+
+// Usage - compose as needed
+<Card>
+    <CardHeader>Title</CardHeader>
+    <CardBody>Content</CardBody>
+</Card>
+
+// ❌ AVOID: Inheritance-based approach
+class BaseCard extends React.Component { ... }
+class OutlinedCard extends BaseCard { ... }
+class HeaderCard extends OutlinedCard { ... }
+```
+
+**Why composition wins:**
+
+- Components are reusable independently
+- Easy to combine in new ways
+- No complex inheritance chains
+- Follows React's design philosophy
+
+---
+
 ## React.FC Pattern (PREFERRED)
 
 ### Why React.FC

@@ -394,6 +394,83 @@ const handleExportExcel = async () => {
 
 ---
 
+## Virtualization for Long Lists
+
+### When to Virtualize
+
+Use virtualization when rendering **large lists** (100+ items) to avoid DOM bloat and improve scroll performance.
+
+### Using @tanstack/react-virtual
+
+```typescript
+import { useRef } from 'react';
+import { useVirtualizer } from '@tanstack/react-virtual';
+
+interface VirtualListProps {
+    items: Item[];
+    onItemClick?: (item: Item) => void;
+}
+
+export const VirtualList: React.FC<VirtualListProps> = ({ items, onItemClick }) => {
+    const parentRef = useRef<HTMLDivElement>(null);
+
+    const virtualizer = useVirtualizer({
+        count: items.length,
+        getScrollElement: () => parentRef.current,
+        estimateSize: () => 100, // Estimated row height in px
+        overscan: 5, // Extra items to render outside viewport
+    });
+
+    return (
+        <Box
+            ref={parentRef}
+            sx={{ height: '600px', overflow: 'auto' }}
+        >
+            <Box
+                sx={{
+                    height: `${virtualizer.getTotalSize()}px`,
+                    position: 'relative',
+                }}
+            >
+                {virtualizer.getVirtualItems().map((virtualRow) => (
+                    <Box
+                        key={virtualRow.index}
+                        sx={{
+                            position: 'absolute',
+                            top: 0,
+                            left: 0,
+                            width: '100%',
+                            height: `${virtualRow.size}px`,
+                            transform: `translateY(${virtualRow.start}px)`,
+                        }}
+                    >
+                        <ListItem
+                            item={items[virtualRow.index]}
+                            onClick={() => onItemClick?.(items[virtualRow.index])}
+                        />
+                    </Box>
+                ))}
+            </Box>
+        </Box>
+    );
+};
+```
+
+**When to use virtualization:**
+
+- Lists with 100+ items
+- DataGrid with many rows (handled by MUI DataGrid internally)
+- Infinite scroll feeds
+- Large dropdown/select menus
+
+**When NOT to use virtualization:**
+
+- Lists with <50 items (DOM handles it fine)
+- Items with varying heights that are hard to estimate
+- When all items need to be in DOM for SEO
+
+---
+
 ## Summary
 
 **Performance Checklist:**
@@ -407,6 +484,7 @@ const handleExportExcel = async () => {
 - ✅ Stable keys in lists
 - ✅ Lazy load heavy libraries
 - ✅ Code splitting with React.lazy
+- ✅ Virtualize long lists (100+ items) with @tanstack/react-virtual
 
 **See Also:**
 

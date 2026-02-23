@@ -103,6 +103,7 @@ import type { Post } from '~types/post';
 
 **Modern React components use:**
 
+- Composition over inheritance
 - `React.FC<Props>` for type safety
 - `React.lazy()` for code splitting
 - `SuspenseLoader` for loading states
@@ -110,6 +111,7 @@ import type { Post } from '~types/post';
 
 **Key Concepts:**
 
+- Prefer composition: combine small, focused components
 - Lazy load heavy components (DataGrid, charts, editors)
 - Always wrap lazy components in Suspense
 - Use SuspenseLoader component (with fade animation)
@@ -250,6 +252,7 @@ if (isLoading) {
 - `React.memo`: Expensive components
 - Debounced search (300-500ms)
 - Memory leak prevention (cleanup in useEffect)
+- Virtualize long lists (100+ items) with `@tanstack/react-virtual`
 
 **[📖 Complete Guide: resources/performance.md](resources/performance.md)**
 
@@ -277,8 +280,38 @@ if (isLoading) {
 - Dialog component standards
 - `useAuth` hook for current user
 - Mutation patterns with cache invalidation
+- Context + Reducer for complex component state
+- Custom utility hooks (useToggle, useDebounce)
 
 **[📖 Complete Guide: resources/common-patterns.md](resources/common-patterns.md)**
+
+---
+
+### 🎬 Animation Patterns
+
+**Framer Motion Animations:**
+
+- List enter/exit animations with `AnimatePresence`
+- Modal/dialog transitions
+- Staggered children appearance
+- Hover/tap micro-interactions
+- Page transitions
+
+**[📖 Complete Guide: resources/animation-patterns.md](resources/animation-patterns.md)**
+
+---
+
+### ♿ Accessibility
+
+**Key Patterns:**
+
+- Keyboard navigation (Arrow keys, Enter, Escape, Tab)
+- ARIA attributes (roles, states, properties)
+- Focus management (trap in modals, restore on close)
+- Live regions for dynamic content
+- Accessible tabs, dropdowns, dialogs
+
+**[📖 Complete Guide: resources/accessibility-patterns.md](resources/accessibility-patterns.md)**
 
 ---
 
@@ -310,6 +343,8 @@ if (isLoading) {
 | Optimize performance   | [performance.md](resources/performance.md)                           |
 | TypeScript types       | [typescript-standards.md](resources/typescript-standards.md)         |
 | Forms/Auth/DataGrid    | [common-patterns.md](resources/common-patterns.md)                   |
+| Add animations         | [animation-patterns.md](resources/animation-patterns.md)             |
+| Accessibility (a11y)   | [accessibility-patterns.md](resources/accessibility-patterns.md)     |
 | See full examples      | [complete-examples.md](resources/complete-examples.md)               |
 
 ---

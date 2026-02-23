@@ -89,6 +89,186 @@ const posts = await Post.findAll({
 });
 ```
 
+## Memory Leaks & Unbounded Collections
+
+### Common Memory Leak Patterns
+
+**Impact:** Gradual memory growth → OOM crashes, degraded performance over time
+
+#### Unbounded In-Memory Collections
+
+```typescript
+// Bad: Cache grows forever
+const cache = new Map();
+
+app.get('/users/:id', async (req, res) => {
+  if (!cache.has(req.params.id)) {
+    cache.set(req.params.id, await db.users.findById(req.params.id));
+  }
+  res.json(cache.get(req.params.id));
+});
+
+// Good: Use LRU cache with size limit
+import { LRUCache } from 'lru-cache';
+
+const cache = new LRUCache<string, User>({
+  max: 1000, // Maximum 1000 entries
+  ttl: 1000 * 60 * 5, // 5 minute TTL
+});
+```
+
+#### Event Listener Leaks
+
+```typescript
+// Bad: Listeners accumulate on every request
+app.get('/stream', (req, res) => {
+  emitter.on('data', (data) => res.write(data));
+});
+
+// Good: Clean up on disconnect
+app.get('/stream', (req, res) => {
+  const handler = (data: string) => res.write(data);
+  emitter.on('data', handler);
+  req.on('close', () => emitter.off('data', handler));
+});
+```
+
+#### Unreleased Resources
+
+```typescript
+// Bad: Connection never released on error
+async function query(sql: string) {
+  const conn = await pool.getConnection();
+  const result = await conn.query(sql); // If this throws, connection leaks
+  conn.release();
+  return result;
+}
+
+// Good: Always release with try/finally
+async function query(sql: string) {
+  const conn = await pool.getConnection();
+  try {
+    return await conn.query(sql);
+  } finally {
+    conn.release();
+  }
+}
+```
+
+### Detection & Monitoring
+
+```typescript
+// Track memory usage in production
+setInterval(() => {
+  const usage = process.memoryUsage();
+  metrics.gauge('memory.heapUsed', usage.heapUsed);
+  metrics.gauge('memory.rss', usage.rss);
+  metrics.gauge('memory.external', usage.external);
+}, 30000);
+```
+
+**Tools:**
+
+- `node --inspect` + Chrome DevTools (heap snapshots)
+- `clinic.js` (flame graphs, memory profiling)
+- `--max-old-space-size` flag to set heap limits
+
+## Hot Path Optimization
+
+### Identifying Hot Paths
+
+**Impact:** 2-10x throughput improvement on critical endpoints
+
+Hot paths are code executed on every request or in tight loops. Small inefficiencies here multiply across millions of executions.
+
+**Profiling first, optimize second:**
+
+```bash
+# CPU profiling with clinic.js
+npx clinic flame -- node server.js
+# Load test the endpoint, then analyze the flame graph
+
+# Built-in Node.js profiler
+node --prof server.js
+node --prof-process isolate-*.log > profile.txt
+```
+
+### Common Hot Path Anti-Patterns
+
+#### Redundant Computation in Request Handlers
+
+```typescript
+// Bad: Parsing config on every request
+app.get('/api/data', (req, res) => {
+  const config = JSON.parse(fs.readFileSync('config.json', 'utf-8'));
+  // ... use config
+});
+
+// Good: Parse once at startup
+const config = JSON.parse(fs.readFileSync('config.json', 'utf-8'));
+app.get('/api/data', (req, res) => {
+  // ... use config
+});
+```
+
+#### Expensive Operations in Loops
+
+```typescript
+// Bad: Regex compiled on every iteration
+function findMatches(items: string[]) {
+  return items.filter((item) => new RegExp(pattern).test(item));
+}
+
+// Good: Compile regex once
+const compiled = new RegExp(pattern);
+function findMatches(items: string[]) {
+  return items.filter((item) => compiled.test(item));
+}
+```
+
+#### Synchronous Blocking in Async Code
+
+```typescript
+// Bad: Blocks event loop
+app.get('/hash', (req, res) => {
+  const hash = crypto.pbkdf2Sync(password, salt, 100000, 64, 'sha512');
+  res.json({ hash: hash.toString('hex') });
+});
+
+// Good: Non-blocking
+app.get('/hash', async (req, res) => {
+  const hash = await crypto.pbkdf2(password, salt, 100000, 64, 'sha512');
+  res.json({ hash: hash.toString('hex') });
+});
+```
+
+#### Unnecessary Serialization
+
+```typescript
+// Bad: Serialize/deserialize in middleware chain
+function middleware(req, res, next) {
+  req.body = JSON.parse(JSON.stringify(req.body)); // Deep clone on every request
+  next();
+}
+
+// Good: Clone only when mutation is needed
+function middleware(req, res, next) {
+  // Only clone if handler needs to mutate body
+  if (req.needsMutation) {
+    req.body = structuredClone(req.body);
+  }
+  next();
+}
+```
+
+### Optimization Techniques
+
+- **Memoize pure functions** — Cache results for repeated inputs
+- **Batch operations** — Combine multiple DB writes into single transaction
+- **Stream large payloads** — Avoid loading entire files into memory
+- **Use worker threads** — Offload CPU-intensive work from the event loop
+- **Precompute at startup** — Move invariant calculations out of request handlers
+
 ## Caching Strategies
 
 ### Redis Caching
@@ -412,6 +592,8 @@ const user = await db.users.findById(userId);
 5. **No connection pooling** - Creating new connections per request
 6. **Unbounded queries** - No LIMIT on large tables
 7. **No CDN** - Serving static assets from origin
+8. **Memory leaks** - Unbounded caches, leaked listeners, unreleased resources
+9. **Hot path waste** - Redundant computation, sync blocking, unnecessary serialization in request handlers
 
 ## Resources
 

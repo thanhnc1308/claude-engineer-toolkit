@@ -291,7 +291,7 @@ This skill works with:
 
 - skills/root-cause-tracing - How to trace back through call stack
 - skills/defense-in-depth - Add validation after finding root cause
-- skills/testing/condition-based-waiting - Replace timeouts identified in Phase 2
+- skills/condition-based-waiting - Replace timeouts identified in Phase 2
 - skills/verification-before-completion - Verify fix worked before claiming success
 
 ## Real-World Impact

@@ -96,6 +96,37 @@ Key directories:
 - {Observed pattern — max 7 items}
 ```
 
+## Less Is More
+
+CLAUDE.md is loaded into every Claude Code session. Every unnecessary line wastes context and dilutes the instructions that matter. Target **under 150 total instructions** (bullet points, commands, rules). If the file exceeds 150 instructions, cut ruthlessly:
+
+1. **Rank by impact** — keep instructions that prevent real mistakes or save real time. Drop "nice to know" items.
+2. **Prefer commands over prose** — `Test single: npm test -- path` is worth more than a paragraph explaining the test philosophy.
+3. **Audit on update** — every time you add an instruction, look for one to remove. The file should not grow monotonically.
+4. **80% usage rule** — every instruction in CLAUDE.md should be relevant to at least 80% of sessions. If an instruction only applies to specific tasks (deployments, migrations, rare workflows), move it to a separate file via Progressive Disclosure. CLAUDE.md is not a knowledge base — it is a hot path that Claude reads every single time.
+
+If in doubt, leave it out. A lean 100-instruction file that Claude follows reliably beats a 300-instruction file it partially ignores.
+
+## Progressive Disclosure
+
+CLAUDE.md should contain only universal project context. Move task-specific instructions into separate files that Claude reads on demand:
+
+```
+CLAUDE.md                        ← universal context (always loaded)
+docs/claude/deploying.md         ← deployment procedures
+docs/claude/database-migrations.md ← migration workflow
+docs/claude/api-conventions.md   ← API design rules
+```
+
+**Rules:**
+
+1. **CLAUDE.md = always relevant** — if an instruction only matters for one type of task, it does not belong in CLAUDE.md.
+2. **Reference, don't inline** — add a one-line pointer in CLAUDE.md: `For deployment: read docs/claude/deploying.md`. Claude will read it when needed.
+3. **One file per concern** — each separate file covers a single workflow or domain area. Keep them focused and under 100 lines each.
+4. **Let Claude discover** — well-named files in predictable locations (`docs/claude/`, `.claude/docs/`) are found naturally. Only add explicit pointers for non-obvious locations.
+
+This keeps CLAUDE.md lean while giving Claude access to deep context exactly when it needs it.
+
 ## Common Mistakes
 
 - **Including generic knowledge**: Do not explain what React or Express is. Only include project-specific context.
@@ -103,6 +134,7 @@ Key directories:
 - **Missing commands**: Always include exact build/test/lint commands. These save the most time.
 - **Over-length**: Keep under 150 lines. Claude loads this every session — bloat wastes context.
 - **Inventing conventions**: Only document patterns observed in actual code. Never guess.
+- **Growing without pruning**: Every addition should trigger a review for removals. CLAUDE.md must stay lean.
 
 ## Quick Reference
 

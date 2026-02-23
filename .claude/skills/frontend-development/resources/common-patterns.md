@@ -292,6 +292,92 @@ const [modalOpen, setModalOpen] = useState(false);
 const [selectedTab, setSelectedTab] = useState(0);
 ```
 
+### Context + Reducer for Complex Component State
+
+Use `useReducer` + `createContext` when a component tree has **complex state with multiple actions**:
+
+```typescript
+import React, { createContext, useContext, useReducer, type Dispatch } from 'react';
+
+// 1. Define state and actions with discriminated unions
+interface FeatureState {
+    items: Item[];
+    selectedItem: Item | null;
+    filter: string;
+    loading: boolean;
+}
+
+type FeatureAction =
+    | { type: 'SET_ITEMS'; payload: Item[] }
+    | { type: 'SELECT_ITEM'; payload: Item | null }
+    | { type: 'SET_FILTER'; payload: string }
+    | { type: 'SET_LOADING'; payload: boolean };
+
+// 2. Reducer function
+function featureReducer(state: FeatureState, action: FeatureAction): FeatureState {
+    switch (action.type) {
+        case 'SET_ITEMS':
+            return { ...state, items: action.payload };
+        case 'SELECT_ITEM':
+            return { ...state, selectedItem: action.payload };
+        case 'SET_FILTER':
+            return { ...state, filter: action.payload };
+        case 'SET_LOADING':
+            return { ...state, loading: action.payload };
+        default:
+            return state;
+    }
+}
+
+// 3. Context
+const FeatureContext = createContext<{
+    state: FeatureState;
+    dispatch: Dispatch<FeatureAction>;
+} | undefined>(undefined);
+
+// 4. Provider
+export const FeatureProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+    const [state, dispatch] = useReducer(featureReducer, {
+        items: [],
+        selectedItem: null,
+        filter: '',
+        loading: false,
+    });
+
+    return (
+        <FeatureContext.Provider value={{ state, dispatch }}>
+            {children}
+        </FeatureContext.Provider>
+    );
+};
+
+// 5. Custom hook
+export function useFeature() {
+    const context = useContext(FeatureContext);
+    if (!context) throw new Error('useFeature must be used within FeatureProvider');
+    return context;
+}
+
+// Usage
+const { state, dispatch } = useFeature();
+dispatch({ type: 'SET_FILTER', payload: 'active' });
+```
+
+**When to use Context + Reducer:**
+
+- Component tree with 3+ related state values
+- Multiple actions that modify state
+- State logic is complex enough to warrant a reducer
+- Avoids prop drilling across 3+ levels
+
+**When NOT to use (prefer simpler alternatives):**
+
+- Simple boolean toggles → `useState`
+- Server data → TanStack Query
+- Global UI state → Zustand
+
+---
+
 ### Zustand for Global Client State (Minimal)
 
 Use Zustand only for **global client state**:
@@ -318,6 +404,70 @@ export const useAppState = create<AppState>((set) => ({
 
 ---
 
+## Custom Utility Hooks
+
+### useToggle
+
+Simple boolean toggle hook for modals, dropdowns, etc.
+
+```typescript
+import { useState, useCallback } from 'react';
+
+export function useToggle(initialValue = false): [boolean, () => void] {
+  const [value, setValue] = useState(initialValue);
+
+  const toggle = useCallback(() => {
+    setValue((v) => !v);
+  }, []);
+
+  return [value, toggle];
+}
+
+// Usage
+const [isOpen, toggleOpen] = useToggle();
+// toggleOpen() flips between true/false
+```
+
+### useDebounce
+
+Custom debounce hook (alternative to `use-debounce` library):
+
+```typescript
+import { useState, useEffect } from 'react';
+
+export function useDebounce<T>(value: T, delay: number): T {
+  const [debouncedValue, setDebouncedValue] = useState<T>(value);
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedValue(value);
+    }, delay);
+
+    return () => clearTimeout(handler);
+  }, [value, delay]);
+
+  return debouncedValue;
+}
+
+// Usage
+const [searchQuery, setSearchQuery] = useState('');
+const debouncedQuery = useDebounce(searchQuery, 300);
+
+// Use debouncedQuery in useSuspenseQuery queryKey
+```
+
+**Note:** The project uses the `use-debounce` library. Use the library version for consistency, but this pattern is useful for understanding how debouncing works or for cases where a custom implementation is preferred.
+
+### Guidelines for Custom Hooks
+
+- **Prefix with `use`** (required by React rules of hooks)
+- **Single responsibility**: One hook does one thing
+- **Return stable references**: Use `useCallback` for returned functions
+- **Type the return value**: Explicit return types for clarity
+- **Document usage**: JSDoc comment explaining purpose and usage
+
+---
+
 ## Summary
 
 **Common Patterns:**
@@ -329,6 +479,7 @@ export const useAppState = create<AppState>((set) => ({
 - ✅ Mutations with cache invalidation
 - ✅ TanStack Query for server state
 - ✅ useState for UI state
+- ✅ Context + Reducer for complex component state
 - ✅ Zustand for global client state (minimal)
 
 **See Also:**
