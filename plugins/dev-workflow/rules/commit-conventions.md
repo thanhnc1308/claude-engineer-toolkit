@@ -21,6 +21,7 @@ Use Conventional Commits format:
 - `test`: Adding or updating tests
 - `chore`: Build, CI, tooling changes
 - `perf`: Performance improvements
+- `ci`: CI workflow changes
 
 ## Rules
 

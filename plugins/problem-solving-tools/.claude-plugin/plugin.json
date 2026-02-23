@@ -1,0 +1,12 @@
+{
+  "name": "problem-solving-tools",
+  "version": "1.0.0",
+  "description": "Structured problem-solving approaches, analytical frameworks, and decision tools",
+  "author": {
+    "name": "CThanh Nguyen"
+  },
+  "repository": "https://github.com/thanhnc1308/claude-engineer-toolkit",
+  "license": "MIT",
+  "keywords": ["problem-solving", "analysis", "frameworks", "decisions"],
+  "skills": "./skills/"
+}

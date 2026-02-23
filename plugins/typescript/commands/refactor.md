@@ -4,4 +4,4 @@ user-invocable: true
 argument-hint: [file path or what to refactor]
 ---
 
-Use the refactoring-typescript skill to improve TypeScript types and patterns in: $ARGUMENTS
+Use the typescript-refactor skill to improve TypeScript types and patterns in: $ARGUMENTS

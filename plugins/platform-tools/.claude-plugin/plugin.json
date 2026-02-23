@@ -1,0 +1,14 @@
+{
+  "name": "platform-tools",
+  "version": "1.0.0",
+  "description": "Platform-specific tools, agents, and commands for cross-platform development",
+  "author": {
+    "name": "CThanh Nguyen"
+  },
+  "repository": "https://github.com/thanhnc1308/claude-engineer-toolkit",
+  "license": "MIT",
+  "keywords": ["platform", "cross-platform", "agents", "commands"],
+  "skills": "./skills/",
+  "commands": "./commands/",
+  "agents": "./agents/"
+}

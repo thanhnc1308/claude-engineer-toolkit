@@ -1,0 +1,12 @@
+{
+  "name": "document-tools",
+  "version": "1.0.0",
+  "description": "Document processing, transformation, and content generation tools",
+  "author": {
+    "name": "CThanh Nguyen"
+  },
+  "repository": "https://github.com/thanhnc1308/claude-engineer-toolkit",
+  "license": "MIT",
+  "keywords": ["documents", "processing", "content", "transformation"],
+  "skills": "./skills/"
+}

@@ -1,0 +1,13 @@
+{
+  "name": "meta-tools",
+  "version": "1.0.0",
+  "description": "Meta-level tools for managing skills, plugins, and Claude Code workflows",
+  "author": {
+    "name": "CThanh Nguyen"
+  },
+  "repository": "https://github.com/thanhnc1308/claude-engineer-toolkit",
+  "license": "MIT",
+  "keywords": ["meta", "tooling", "plugins", "workflows"],
+  "skills": "./skills/",
+  "commands": "./commands/"
+}

@@ -15,5 +15,27 @@
       "Bash(grep:*)",
       "Bash(find:*)"
     ]
+  },
+  "hooks": {
+    "Notification": [
+      {
+        "matcher": "permission_prompt",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo 'Claude needs your permission' > /tmp/claude-notify && terminal-notifier -title \"Claude Code\" -message \"Claude needs your permission\" -sound Glass"
+          }
+        ]
+      },
+      {
+        "matcher": "elicitation_dialog",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo 'Claude has a question for you' > /tmp/claude-notify && terminal-notifier -title \"Claude Code\" -message \"Claude has a question for you\" -sound Glass"
+          }
+        ]
+      }
+    ]
   }
 }

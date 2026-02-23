@@ -1,0 +1,12 @@
+{
+  "name": "debugging-tools",
+  "version": "1.0.0",
+  "description": "Debugging utilities, diagnostic patterns, and error analysis tools",
+  "author": {
+    "name": "CThanh Nguyen"
+  },
+  "repository": "https://github.com/thanhnc1308/claude-engineer-toolkit",
+  "license": "MIT",
+  "keywords": ["debugging", "diagnostics", "errors", "troubleshooting"],
+  "skills": "./skills/"
+}

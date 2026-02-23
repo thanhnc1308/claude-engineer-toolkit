@@ -1,0 +1,12 @@
+{
+  "name": "media-tools",
+  "version": "1.0.0",
+  "description": "Media handling tools for images, audio, video, and rich content",
+  "author": {
+    "name": "CThanh Nguyen"
+  },
+  "repository": "https://github.com/thanhnc1308/claude-engineer-toolkit",
+  "license": "MIT",
+  "keywords": ["media", "images", "audio", "video"],
+  "skills": "./skills/"
+}

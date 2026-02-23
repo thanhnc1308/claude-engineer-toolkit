@@ -1,0 +1,12 @@
+{
+  "name": "ai-ml-tools",
+  "version": "1.0.0",
+  "description": "AI and machine learning tools, prompts, and patterns for building intelligent applications",
+  "author": {
+    "name": "CThanh Nguyen"
+  },
+  "repository": "https://github.com/thanhnc1308/claude-engineer-toolkit",
+  "license": "MIT",
+  "keywords": ["ai", "machine-learning", "prompts", "llm"],
+  "skills": "./skills/"
+}

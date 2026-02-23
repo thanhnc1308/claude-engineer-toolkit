@@ -1,0 +1,12 @@
+{
+  "name": "backend-tools",
+  "version": "1.0.0",
+  "description": "Backend development tools, API patterns, and server-side utilities",
+  "author": {
+    "name": "CThanh Nguyen"
+  },
+  "repository": "https://github.com/thanhnc1308/claude-engineer-toolkit",
+  "license": "MIT",
+  "keywords": ["backend", "api", "server", "tools"],
+  "skills": "./skills/"
+}

@@ -2,24 +2,39 @@ const js = require('@eslint/js');
 const globals = require('globals');
 
 module.exports = [
-    js.configs.recommended,
-    {
-        languageOptions: {
-            ecmaVersion: 2022,
-            sourceType: 'commonjs',
-            globals: {
-                ...globals.node,
-                ...globals.es2022
-            }
+  {
+    ignores: ['**/dist/**'],
+  },
+  js.configs.recommended,
+  {
+    languageOptions: {
+      ecmaVersion: 2022,
+      sourceType: 'commonjs',
+      globals: {
+        ...globals.node,
+        ...globals.es2022,
+      },
+    },
+    rules: {
+      'no-unused-vars': [
+        'error',
+        {
+          argsIgnorePattern: '^_',
+          varsIgnorePattern: '^_',
+          caughtErrorsIgnorePattern: '^_',
         },
-        rules: {
-            'no-unused-vars': ['error', {
-                argsIgnorePattern: '^_',
-                varsIgnorePattern: '^_',
-                caughtErrorsIgnorePattern: '^_'
-            }],
-            'no-undef': 'error',
-            'eqeqeq': 'warn'
-        }
-    }
+      ],
+      'no-undef': 'error',
+      eqeqeq: 'warn',
+    },
+  },
+  {
+    files: ['.claude/skills/chrome-devtools/scripts/**/*.js'],
+    languageOptions: {
+      sourceType: 'module',
+      globals: {
+        ...globals.browser,
+      },
+    },
+  },
 ];
