@@ -37,13 +37,6 @@
       "tags": ["nextjs", "frontend", "react"]
     },
     {
-      "name": "fundamentals",
-      "source": "./plugins/fundamentals",
-      "description": "Core programming concepts, security best practices, and algorithmic thinking",
-      "category": "general",
-      "tags": ["security", "best-practices"]
-    },
-    {
       "name": "ai-ml-tools",
       "source": "./plugins/ai-ml-tools",
       "description": "AI and machine learning tools, prompts, and patterns for building intelligent applications",
@@ -121,8 +114,8 @@
       "tags": ["specialized", "domain-specific", "niche"]
     },
     {
-      "name": "web-dev-tools",
-      "source": "./plugins/web-dev-tools",
+      "name": "frontend-tools",
+      "source": "./plugins/frontend-tools",
       "description": "Web development tools, frontend utilities, and browser-related workflows",
       "category": "tools",
       "tags": ["web-development", "frontend", "browser"]
@@ -140,6 +133,13 @@
       "description": "PHP code generation and debugging plugin for Claude Engineer Toolkit.",
       "category": "general",
       "tags": ["php", "symfony", "silex"]
+    },
+    {
+      "name": "frontend-tools",
+      "source": "./plugins/frontend-tools",
+      "description": "Frontend development tools, UI component generation, and client-side utilities",
+      "category": "general",
+      "tags": ["frontend", "ui", "client-side"]
     }
   ]
 }

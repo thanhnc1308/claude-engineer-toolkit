@@ -283,6 +283,10 @@ After presenting all improvements, provide:
 - Missing DTOs or using `any` for request bodies
 - Not using ValidationPipe for input validation
 - Improper exception handling (returning raw errors to client)
+- Catching and swallowing exceptions without logging
+- Using `@Res()` directly instead of NestJS response handling
+- Importing services directly instead of through modules
+- Missing `@Injectable()` decorator on providers
 - Circular dependencies between modules
 - Singleton services storing request-specific data
 - Not using proper provider scopes for request-scoped data
