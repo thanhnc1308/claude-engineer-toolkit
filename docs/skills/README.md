@@ -126,7 +126,7 @@ Structure: [What it does] + [When to use it] + [Key capabilities]
 
 #### 📚 Documentation & Research
 
-- **[seeking-docs](.claude/skills/seeking-docs)** - Intelligent documentation discovery using llms.txt standard, GitHub repository analysis via Repomix, and parallel exploration agents for comprehensive coverage.
+- **[docs-seeking](.claude/skills/docs-seeking)** - Intelligent documentation discovery using llms.txt standard, GitHub repository analysis via Repomix, and parallel exploration agents for comprehensive coverage.
 
 #### 🧪 Code Quality & Review
 
@@ -141,10 +141,10 @@ Structure: [What it does] + [When to use it] + [Key capabilities]
 
 #### 📄 Document Processing
 
-- **[processing-document/docx](.claude/skills/processing-document/docx)** - Create, edit, and analyze Word documents with tracked changes, comments, formatting preservation, and redlining workflows for professional documents.
-- **[processing-document/pdf](.claude/skills/processing-document/pdf)** - Extract text/tables, create PDFs, merge/split documents, fill forms. Uses pypdf and command-line tools for programmatic PDF processing.
-- **[processing-document/pptx](.claude/skills/processing-document/pptx)** - Create and edit PowerPoint presentations with layouts, speaker notes, comments, animations, and design elements.
-- **[processing-document/xlsx](.claude/skills/processing-document/xlsx)** - Build spreadsheets with formulas, formatting, data analysis, and visualization. Includes financial modeling standards and zero-error formula requirements.
+- **[document-processing/docx](.claude/skills/document-processing/docx)** - Create, edit, and analyze Word documents with tracked changes, comments, formatting preservation, and redlining workflows for professional documents.
+- **[document-processing/pdf](.claude/skills/document-processing/pdf)** - Extract text/tables, create PDFs, merge/split documents, fill forms. Uses pypdf and command-line tools for programmatic PDF processing.
+- **[document-processing/pptx](.claude/skills/document-processing/pptx)** - Create and edit PowerPoint presentations with layouts, speaker notes, comments, animations, and design elements.
+- **[document-processing/xlsx](.claude/skills/document-processing/xlsx)** - Build spreadsheets with formulas, formatting, data analysis, and visualization. Includes financial modeling standards and zero-error formula requirements.
 
 #### 🛍️ E-commerce & Platforms
 

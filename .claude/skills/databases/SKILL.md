@@ -242,5 +242,4 @@ python scripts/db_performance_check.py --db mongodb --threshold 100ms
 
 - MongoDB: https://www.mongodb.com/docs/
 - PostgreSQL: https://www.postgresql.org/docs/
-- MongoDB University: https://learn.mongodb.com/
 - PostgreSQL Tutorial: https://www.postgresqltutorial.com/

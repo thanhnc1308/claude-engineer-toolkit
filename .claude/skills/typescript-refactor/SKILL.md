@@ -1,5 +1,5 @@
 ---
-name: refactoring-typescript
+name: typescript-refactor
 description: TypeScript refactoring assistant for improving type quality, extracting types, tightening generics, and modernizing TypeScript patterns. Use when cleaning up types or improving type safety.
 user-invocable: true
 allowed-tools: Read, Grep, Glob, Edit, Write

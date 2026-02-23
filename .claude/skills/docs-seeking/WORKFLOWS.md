@@ -1,6 +1,6 @@
 # Detailed Workflows & Examples
 
-This document provides comprehensive workflow examples for the seeking-docs skill.
+This document provides comprehensive workflow examples for the docs-seeking skill.
 
 ## Parallel Exploration Strategy
 

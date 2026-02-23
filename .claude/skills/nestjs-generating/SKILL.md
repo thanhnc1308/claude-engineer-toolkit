@@ -1,5 +1,5 @@
 ---
-name: generating-nestjs
+name: nestjs-generating
 description: Generate NestJS boilerplate code following project conventions. Creates modules, services, controllers, DTOs, and related files. Use when scaffolding new NestJS features or modules.
 user-invocable: true
 allowed-tools: Read, Grep, Glob, Edit, Write, Bash

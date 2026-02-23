@@ -164,7 +164,7 @@ Conclude this step when there is a clear sense of the functionality the skill sh
 
 An effective skill is a subset of real-life workflows from professional workflows and case studies, so it's important to research on the internet to understand the current state of the art and best practices.
 
-Activate `/seeking-docs` skill to search for documentation if needed.
+Activate `/docs-seeking` skill to search for documentation if needed.
 
 If you receive a lot of URLs or files, use multiple `WebFetch` tools and `Explore` subagents to explore them in parallel, then report back to main agent.
 

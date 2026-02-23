@@ -13,49 +13,43 @@ Backend architecture patterns and best practices for scalable NestJS application
 
 ```typescript
 // ✅ Resource-based controllers with proper decorators
-@ApiTags("markets")
-@Controller("markets")
+@ApiTags('markets')
+@Controller('markets')
 export class MarketsController {
   constructor(private readonly marketsService: MarketsService) {}
 
   @Get()
-  @ApiOperation({ summary: "List markets" })
+  @ApiOperation({ summary: 'List markets' })
   findAll(@Query() query: FindMarketsDto): Promise<Market[]> {
     return this.marketsService.findAll(query);
   }
 
-  @Get(":id")
-  @ApiOperation({ summary: "Get a single market" })
-  findOne(@Param("id", ParseUUIDPipe) id: string): Promise<Market> {
+  @Get(':id')
+  @ApiOperation({ summary: 'Get a single market' })
+  findOne(@Param('id', ParseUUIDPipe) id: string): Promise<Market> {
     return this.marketsService.findOne(id);
   }
 
   @Post()
-  @ApiOperation({ summary: "Create a market" })
+  @ApiOperation({ summary: 'Create a market' })
   @HttpCode(HttpStatus.CREATED)
   create(@Body() dto: CreateMarketDto): Promise<Market> {
     return this.marketsService.create(dto);
   }
 
-  @Put(":id")
-  replace(
-    @Param("id", ParseUUIDPipe) id: string,
-    @Body() dto: CreateMarketDto,
-  ): Promise<Market> {
+  @Put(':id')
+  replace(@Param('id', ParseUUIDPipe) id: string, @Body() dto: CreateMarketDto): Promise<Market> {
     return this.marketsService.replace(id, dto);
   }
 
-  @Patch(":id")
-  update(
-    @Param("id", ParseUUIDPipe) id: string,
-    @Body() dto: UpdateMarketDto,
-  ): Promise<Market> {
+  @Patch(':id')
+  update(@Param('id', ParseUUIDPipe) id: string, @Body() dto: UpdateMarketDto): Promise<Market> {
     return this.marketsService.update(id, dto);
   }
 
-  @Delete(":id")
+  @Delete(':id')
   @HttpCode(HttpStatus.NO_CONTENT)
-  remove(@Param("id", ParseUUIDPipe) id: string): Promise<void> {
+  remove(@Param('id', ParseUUIDPipe) id: string): Promise<void> {
     return this.marketsService.remove(id);
   }
 }
@@ -103,14 +97,14 @@ export class MarketsRepository {
   ) {}
 
   async findAll(filters?: FindMarketsDto): Promise<Market[]> {
-    const qb = this.repo.createQueryBuilder("market");
+    const qb = this.repo.createQueryBuilder('market');
 
     if (filters?.status) {
-      qb.andWhere("market.status = :status", { status: filters.status });
+      qb.andWhere('market.status = :status', { status: filters.status });
     }
 
     if (filters?.sort) {
-      qb.orderBy(`market.${filters.sort}`, "DESC");
+      qb.orderBy(`market.${filters.sort}`, 'DESC');
     }
 
     if (filters?.limit) {
@@ -204,10 +198,8 @@ export class RequestLoggerMiddleware implements NestMiddleware {
   use(req: Request, res: Response, next: NextFunction) {
     const start = Date.now();
 
-    res.on("finish", () => {
-      this.logger.log(
-        `${req.method} ${req.originalUrl} ${res.statusCode} ${Date.now() - start}ms`,
-      );
+    res.on('finish', () => {
+      this.logger.log(`${req.method} ${req.originalUrl} ${res.statusCode} ${Date.now() - start}ms`);
     });
 
     next();
@@ -218,7 +210,7 @@ export class RequestLoggerMiddleware implements NestMiddleware {
 @Module({})
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
-    consumer.apply(RequestLoggerMiddleware).forRoutes("*");
+    consumer.apply(RequestLoggerMiddleware).forRoutes('*');
   }
 }
 ```
@@ -226,10 +218,7 @@ export class AppModule implements NestModule {
 ```typescript
 // Interceptor for response transformation
 @Injectable()
-export class TransformInterceptor<T> implements NestInterceptor<
-  T,
-  { success: boolean; data: T }
-> {
+export class TransformInterceptor<T> implements NestInterceptor<T, { success: boolean; data: T }> {
   intercept(context: ExecutionContext, next: CallHandler<T>) {
     return next.handle().pipe(
       map((data) => ({
@@ -242,7 +231,7 @@ export class TransformInterceptor<T> implements NestInterceptor<
 
 // Apply globally or per controller
 @UseInterceptors(TransformInterceptor)
-@Controller("markets")
+@Controller('markets')
 export class MarketsController {}
 ```
 
@@ -253,10 +242,10 @@ export class MarketsController {}
 ```typescript
 // ✅ GOOD: Select only needed columns
 const markets = await this.repo
-  .createQueryBuilder("market")
-  .select(["market.id", "market.name", "market.status", "market.volume"])
-  .where("market.status = :status", { status: "active" })
-  .orderBy("market.volume", "DESC")
+  .createQueryBuilder('market')
+  .select(['market.id', 'market.name', 'market.status', 'market.volume'])
+  .where('market.status = :status', { status: 'active' })
+  .orderBy('market.volume', 'DESC')
   .limit(10)
   .getMany();
 
@@ -275,13 +264,13 @@ for (const market of markets) {
 
 // ✅ GOOD: Eager loading with relations
 const markets = await this.marketRepo.find({
-  relations: ["creator"],
+  relations: ['creator'],
 });
 
 // ✅ GOOD: QueryBuilder with join
 const markets = await this.marketRepo
-  .createQueryBuilder("market")
-  .leftJoinAndSelect("market.creator", "creator")
+  .createQueryBuilder('market')
+  .leftJoinAndSelect('market.creator', 'creator')
   .getMany();
 
 // ✅ GOOD: Batch fetch when relations aren't applicable
@@ -345,8 +334,8 @@ export class MarketsService {
       inject: [ConfigService],
       useFactory: (config: ConfigService) => ({
         store: redisStore,
-        host: config.get("REDIS_HOST"),
-        port: config.get("REDIS_PORT"),
+        host: config.get('REDIS_HOST'),
+        port: config.get('REDIS_PORT'),
         ttl: 300, // 5 minutes default
       }),
     }),
@@ -395,12 +384,12 @@ export class MarketsService {
 
 ```typescript
 // Auto-cache GET responses at controller or method level
-@Controller("markets")
+@Controller('markets')
 export class MarketsController {
   @Get()
   @UseInterceptors(CacheInterceptor)
   @CacheTTL(60) // 60 seconds
-  @CacheKey("all-markets")
+  @CacheKey('all-markets')
   findAll(): Promise<Market[]> {
     return this.marketsService.findAll();
   }
@@ -445,7 +434,7 @@ export class AllExceptionsFilter implements ExceptionFilter {
         success: false,
         statusCode: status,
         message:
-          typeof exceptionResponse === "string"
+          typeof exceptionResponse === 'string'
             ? exceptionResponse
             : (exceptionResponse as any).message,
         path: request.url,
@@ -455,12 +444,12 @@ export class AllExceptionsFilter implements ExceptionFilter {
     }
 
     // Unexpected errors
-    this.logger.error("Unhandled exception", (exception as Error).stack);
+    this.logger.error('Unhandled exception', (exception as Error).stack);
 
     response.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
       success: false,
       statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
-      message: "Internal server error",
+      message: 'Internal server error',
       path: request.url,
       timestamp: new Date().toISOString(),
     });
@@ -525,9 +514,7 @@ export class ExternalApiService {
         return data;
       } catch (error) {
         lastError = error as Error;
-        this.logger.warn(
-          `Request to ${url} failed (attempt ${i + 1}/${maxRetries})`,
-        );
+        this.logger.warn(`Request to ${url} failed (attempt ${i + 1}/${maxRetries})`);
 
         if (i < maxRetries - 1) {
           const delay = Math.pow(2, i) * 1000;
@@ -553,7 +540,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
       ignoreExpiration: false,
-      secretOrKey: configService.get<string>("JWT_SECRET"),
+      secretOrKey: configService.get<string>('JWT_SECRET'),
     });
   }
 
@@ -570,8 +557,8 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
       imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: (config: ConfigService) => ({
-        secret: config.get("JWT_SECRET"),
-        signOptions: { expiresIn: "1h" },
+        secret: config.get('JWT_SECRET'),
+        signOptions: { expiresIn: '1h' },
       }),
     }),
   ],
@@ -584,11 +571,11 @@ export class AuthModule {}
 ```typescript
 // JWT auth guard
 @Injectable()
-export class JwtAuthGuard extends AuthGuard("jwt") {}
+export class JwtAuthGuard extends AuthGuard('jwt') {}
 
 // Usage — protect entire controller or individual routes
 @UseGuards(JwtAuthGuard)
-@Controller("markets")
+@Controller('markets')
 export class MarketsController {
   @Get()
   findAll(@CurrentUser() user: AuthUser): Promise<Market[]> {
@@ -601,7 +588,7 @@ export class MarketsController {
 
 ```typescript
 // Roles decorator
-export const ROLES_KEY = "roles";
+export const ROLES_KEY = 'roles';
 export const Roles = (...roles: Role[]) => SetMetadata(ROLES_KEY, roles);
 
 // Roles guard
@@ -624,12 +611,12 @@ export class RolesGuard implements CanActivate {
 
 // Usage — combine with JWT guard
 @UseGuards(JwtAuthGuard, RolesGuard)
-@Controller("markets")
+@Controller('markets')
 export class MarketsController {
-  @Delete(":id")
+  @Delete(':id')
   @Roles(Role.ADMIN, Role.MODERATOR)
   @HttpCode(HttpStatus.NO_CONTENT)
-  remove(@Param("id", ParseUUIDPipe) id: string): Promise<void> {
+  remove(@Param('id', ParseUUIDPipe) id: string): Promise<void> {
     return this.marketsService.remove(id);
   }
 }
@@ -647,9 +634,9 @@ export class MarketsController {
   imports: [
     ThrottlerModule.forRoot({
       throttlers: [
-        { name: "short", ttl: 1000, limit: 3 }, // 3 req/sec
-        { name: "medium", ttl: 10000, limit: 20 }, // 20 req/10sec
-        { name: "long", ttl: 60000, limit: 100 }, // 100 req/min
+        { name: 'short', ttl: 1000, limit: 3 }, // 3 req/sec
+        { name: 'medium', ttl: 10000, limit: 20 }, // 20 req/10sec
+        { name: 'long', ttl: 60000, limit: 100 }, // 100 req/min
       ],
     }),
   ],
@@ -662,7 +649,7 @@ export class AppModule {}
 
 ```typescript
 // Override per-route
-@Controller("markets")
+@Controller('markets')
 export class MarketsController {
   @Get()
   @Throttle({ short: { limit: 10, ttl: 1000 } }) // Override: 10 req/sec
@@ -676,10 +663,10 @@ export class MarketsController {
     return this.marketsService.create(dto);
   }
 
-  @Get("health")
+  @Get('health')
   @SkipThrottle() // No rate limiting
   healthCheck() {
-    return { status: "ok" };
+    return { status: 'ok' };
   }
 }
 ```
@@ -699,12 +686,12 @@ export class MarketsController {
       inject: [ConfigService],
       useFactory: (config: ConfigService) => ({
         redis: {
-          host: config.get("REDIS_HOST"),
-          port: config.get("REDIS_PORT"),
+          host: config.get('REDIS_HOST'),
+          port: config.get('REDIS_PORT'),
         },
       }),
     }),
-    BullModule.registerQueue({ name: "market-indexing" }),
+    BullModule.registerQueue({ name: 'market-indexing' }),
   ],
   providers: [MarketIndexingProcessor],
 })
@@ -713,11 +700,11 @@ export class MarketsModule {}
 
 ```typescript
 // Queue processor
-@Processor("market-indexing")
+@Processor('market-indexing')
 export class MarketIndexingProcessor {
   private readonly logger = new Logger(MarketIndexingProcessor.name);
 
-  @Process("index")
+  @Process('index')
   async handleIndex(job: Job<{ marketId: string }>) {
     this.logger.log(`Indexing market ${job.data.marketId}`);
 
@@ -742,20 +729,18 @@ export class MarketIndexingProcessor {
 // Add jobs from service
 @Injectable()
 export class MarketsService {
-  constructor(
-    @InjectQueue("market-indexing") private readonly indexQueue: Queue,
-  ) {}
+  constructor(@InjectQueue('market-indexing') private readonly indexQueue: Queue) {}
 
   async create(dto: CreateMarketDto): Promise<Market> {
     const market = await this.marketsRepo.create(dto);
 
     // Add to queue instead of blocking
     await this.indexQueue.add(
-      "index",
+      'index',
       { marketId: market.id },
       {
         attempts: 3,
-        backoff: { type: "exponential", delay: 1000 },
+        backoff: { type: 'exponential', delay: 1000 },
       },
     );
 
@@ -782,7 +767,7 @@ export class MarketsService {
       this.logger.log(`Found ${markets.length} markets`);
       return markets;
     } catch (error) {
-      this.logger.error("Failed to fetch markets", error.stack);
+      this.logger.error('Failed to fetch markets', error.stack);
       throw error;
     }
   }
@@ -796,27 +781,18 @@ export class MarketsService {
 @Injectable()
 export class StructuredLogger extends ConsoleLogger {
   log(message: string, context?: string) {
-    super.log(this.formatMessage("info", message, context), context);
+    super.log(this.formatMessage('info', message, context), context);
   }
 
   error(message: string, stack?: string, context?: string) {
-    super.error(
-      this.formatMessage("error", message, context, stack),
-      stack,
-      context,
-    );
+    super.error(this.formatMessage('error', message, context, stack), stack, context);
   }
 
   warn(message: string, context?: string) {
-    super.warn(this.formatMessage("warn", message, context), context);
+    super.warn(this.formatMessage('warn', message, context), context);
   }
 
-  private formatMessage(
-    level: string,
-    message: string,
-    context?: string,
-    stack?: string,
-  ): string {
+  private formatMessage(level: string, message: string, context?: string, stack?: string): string {
     return JSON.stringify({
       timestamp: new Date().toISOString(),
       level,

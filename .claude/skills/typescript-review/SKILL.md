@@ -1,5 +1,5 @@
 ---
-name: reviewing-typescript
+name: typescript-review
 description: TypeScript-specific code review focusing on type safety, strict mode compliance, generics usage, and TypeScript best practices. Use when reviewing TypeScript code or checking type quality.
 user-invocable: true
 allowed-tools: Read, Grep, Glob, Bash

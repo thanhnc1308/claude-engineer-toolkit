@@ -43,12 +43,12 @@ Universal coding standards applicable across all projects.
 
 ```typescript
 // ✅ GOOD: Descriptive names
-const marketSearchQuery = "election";
+const marketSearchQuery = 'election';
 const isUserAuthenticated = true;
 const totalRevenue = 1000;
 
 // ❌ BAD: Unclear names
-const q = "election";
+const q = 'election';
 const flag = true;
 const x = 1000;
 ```
@@ -73,13 +73,13 @@ function email(e) {}
 // ✅ ALWAYS use spread operator
 const updatedUser = {
   ...user,
-  name: "New Name",
+  name: 'New Name',
 };
 
 const updatedArray = [...items, newItem];
 
 // ❌ NEVER mutate directly
-user.name = "New Name"; // BAD
+user.name = 'New Name'; // BAD
 items.push(newItem); // BAD
 ```
 
@@ -97,8 +97,8 @@ async function fetchData(url: string) {
 
     return await response.json();
   } catch (error) {
-    console.error("Fetch failed:", error);
-    throw new Error("Failed to fetch data");
+    console.error('Fetch failed:', error);
+    throw new Error('Failed to fetch data');
   }
 }
 
@@ -113,11 +113,7 @@ async function fetchData(url) {
 
 ```typescript
 // ✅ GOOD: Parallel execution when possible
-const [users, markets, stats] = await Promise.all([
-  fetchUsers(),
-  fetchMarkets(),
-  fetchStats(),
-]);
+const [users, markets, stats] = await Promise.all([fetchUsers(), fetchMarkets(), fetchStats()]);
 
 // ❌ BAD: Sequential when unnecessary
 const users = await fetchUsers();
@@ -132,7 +128,7 @@ const stats = await fetchStats();
 interface Market {
   id: string;
   name: string;
-  status: "active" | "resolved" | "closed";
+  status: 'active' | 'resolved' | 'closed';
   created_at: Date;
 }
 
@@ -192,7 +188,7 @@ return NextResponse.json({
 return NextResponse.json(
   {
     success: false,
-    error: "Invalid request",
+    error: 'Invalid request',
   },
   { status: 400 },
 );
@@ -201,7 +197,7 @@ return NextResponse.json(
 ### Input Validation
 
 ```typescript
-import { z } from "zod";
+import { z } from 'zod';
 
 // ✅ GOOD: Schema validation
 const CreateMarketSchema = z.object({
@@ -222,7 +218,7 @@ export async function POST(request: Request) {
       return NextResponse.json(
         {
           success: false,
-          error: "Validation failed",
+          error: 'Validation failed',
           details: error.errors,
         },
         { status: 400 },
@@ -269,10 +265,7 @@ name = user.name;
  * console.log(results[0].name) // "Trump vs Biden"
  * ```
  */
-export async function searchMarkets(
-  query: string,
-  limit: number = 10,
-): Promise<Market[]> {
+export async function searchMarkets(query: string, limit: number = 10): Promise<Market[]> {
   // Implementation
 }
 ````
@@ -282,7 +275,7 @@ export async function searchMarkets(
 ### Test Structure (AAA Pattern)
 
 ```typescript
-test("calculates similarity correctly", () => {
+test('calculates similarity correctly', () => {
   // Arrange
   const vector1 = [1, 0, 0];
   const vector2 = [0, 1, 0];
@@ -299,13 +292,13 @@ test("calculates similarity correctly", () => {
 
 ```typescript
 // ✅ GOOD: Descriptive test names
-test("returns empty array when no markets match query", () => {});
-test("throws error when OpenAI API key is missing", () => {});
-test("falls back to substring search when Redis unavailable", () => {});
+test('returns empty array when no markets match query', () => {});
+test('throws error when OpenAI API key is missing', () => {});
+test('falls back to substring search when Redis unavailable', () => {});
 
 // ❌ BAD: Vague test names
-test("works", () => {});
-test("test search", () => {});
+test('works', () => {});
+test('test search', () => {});
 ```
 
 ## Code Smell Detection
