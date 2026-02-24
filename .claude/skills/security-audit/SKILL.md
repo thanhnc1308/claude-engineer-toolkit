@@ -1,13 +1,15 @@
 ---
 name: security-audit
-description: Use this skill when adding authentication, handling user input, working with secrets, creating API endpoints, or implementing payment/sensitive features. Provides comprehensive security checklist and patterns.
+description: Use when adding authentication, handling user input, working with secrets, creating API endpoints, implementing payment/sensitive features, or before any production deployment. Provides the full security review workflow, OWASP Top 10 checklist, vulnerability patterns, report templates, and pre-deployment checklist.
 ---
 
-# Security Review Skill
+# Security Audit
 
-This skill ensures all code follows security best practices and identifies potential vulnerabilities.
+Comprehensive security review workflow covering vulnerability detection, OWASP Top 10 analysis, and remediation for web applications and APIs.
 
 ## When to Activate
+
+### Always Review When
 
 - Implementing authentication or authorization
 - Handling user input or file uploads
@@ -16,19 +18,73 @@ This skill ensures all code follows security best practices and identifies poten
 - Implementing payment features
 - Storing or transmitting sensitive data
 - Integrating third-party APIs
+- Database queries modified
+- Dependencies updated
+
+### Immediately Review When
+
+- Production incident occurred
+- Dependency has known CVE
+- User reports security concern
+- Before major releases
+- After security tool alerts
+
+## Security Review Workflow
+
+### Phase 1: Automated Scanning
+
+Run automated tools to catch low-hanging vulnerabilities:
+
+```bash
+# Check for vulnerable dependencies
+npm audit
+npm audit --audit-level=high
+
+# Scan for hardcoded secrets in source
+grep -r "api[_-]?key\|password\|secret\|token" --include="*.js" --include="*.ts" --include="*.json" .
+
+# Check git history for accidentally committed secrets
+git log -p | grep -i "password\|api_key\|secret"
+
+# Static analysis for security issues (if configured)
+npx eslint . --plugin security
+
+# Deep secret scanning
+npx trufflehog filesystem . --json
+```
+
+### Phase 2: High-Risk Area Manual Review
+
+Target these areas in priority order:
+
+1. Authentication and authorization code
+2. All API endpoints that accept user input
+3. Database query construction
+4. File upload handlers
+5. Payment and financial transaction code
+6. Webhook handlers
+7. Any code calling external APIs with user-supplied data
+
+### Phase 3: OWASP Top 10 Systematic Check
+
+Walk through each OWASP category against the codebase (see checklist below).
+
+### Phase 4: Report and Remediation
+
+Generate a security review report using the templates at the bottom of this document.
 
 ## Security Checklist
 
 ### 1. Secrets Management
 
-#### ❌ NEVER Do This
+#### NEVER Do This
 
 ```typescript
 const apiKey = 'sk-proj-xxxxx'; // Hardcoded secret
 const dbPassword = 'password123'; // In source code
 ```
 
-#### ✅ ALWAYS Do This
+#### ALWAYS Do This
 
 ```typescript
 const apiKey = process.env.OPENAI_API_KEY;
@@ -113,7 +169,7 @@ function validateFileUpload(file: File) {
 
 ### 3. SQL Injection Prevention
 
-#### ❌ NEVER Concatenate SQL
+#### NEVER Concatenate SQL
 
 ```typescript
 // DANGEROUS - SQL Injection vulnerability
@@ -121,7 +177,7 @@ const query = `SELECT * FROM users WHERE email = '${userEmail}'`;
 await db.query(query);
 ```
 
-#### ✅ ALWAYS Use Parameterized Queries
+#### ALWAYS Use Parameterized Queries
 
 ```typescript
 // Safe - parameterized query
@@ -140,7 +196,7 @@ await db.query('SELECT * FROM users WHERE email = $1', [userEmail]);
 
 ### 4. Command Injection Prevention
 
-#### ❌ NEVER Pass Unsanitized Input to Shell Commands
+#### NEVER Pass Unsanitized Input to Shell Commands
 
 ```typescript
 import { exec } from 'child_process';
@@ -150,7 +206,7 @@ const filename = req.query.file;
 exec(`cat /uploads/${filename}`); // User sends: "; rm -rf /"
 ```
 
-#### ✅ ALWAYS Use Safe Alternatives
+#### ALWAYS Use Safe Alternatives
 
 ```typescript
 import { execFile } from 'child_process';
@@ -194,10 +250,10 @@ function runTool(command: string, args: string[]) {
 #### JWT Token Handling
 
 ```typescript
-// ❌ WRONG: localStorage (vulnerable to XSS)
+// WRONG: localStorage (vulnerable to XSS)
 localStorage.setItem('token', token);
 
-// ✅ CORRECT: httpOnly cookies
+// CORRECT: httpOnly cookies
 res.setHeader('Set-Cookie', `token=${token}; HttpOnly; Secure; SameSite=Strict; Max-Age=3600`);
 ```
 
@@ -361,11 +417,11 @@ app.use('/api/search', searchLimiter);
 #### Logging
 
 ```typescript
-// ❌ WRONG: Logging sensitive data
+// WRONG: Logging sensitive data
 console.log('User login:', { email, password });
 console.log('Payment:', { cardNumber, cvv });
 
-// ✅ CORRECT: Redact sensitive data
+// CORRECT: Redact sensitive data
 console.log('User login:', { email, userId });
 console.log('Payment:', { last4: card.last4, userId });
 ```
@@ -373,7 +429,7 @@ console.log('Payment:', { last4: card.last4, userId });
 #### Error Messages
 
 ```typescript
-// ❌ WRONG: Exposing internal details
+// WRONG: Exposing internal details
 catch (error) {
   return NextResponse.json(
     { error: error.message, stack: error.stack },
@@ -381,7 +437,7 @@ catch (error) {
   )
 }
 
-// ✅ CORRECT: Generic error messages
+// CORRECT: Generic error messages
 catch (error) {
   console.error('Internal error:', error)
   return NextResponse.json(
@@ -486,6 +542,58 @@ npm ci  # Instead of npm install
 - [ ] Dependabot enabled on GitHub
 - [ ] Regular security updates
 
+### 12. Race Conditions in Financial Operations
+
+#### NEVER Use Non-Atomic Balance Checks
+
+```typescript
+// DANGEROUS - Race condition vulnerability
+const balance = await getBalance(userId);
+if (balance >= amount) {
+  await withdraw(userId, amount); // Another request could withdraw in parallel!
+}
+```
+
+#### ALWAYS Use Atomic Transactions with Row Locking
+
+```typescript
+// Safe - atomic transaction with row-level lock
+await db.transaction(async (trx) => {
+  const balance = await trx('balances')
+    .where({ user_id: userId })
+    .forUpdate() // Lock row
+    .first();
+
+  if (balance.amount < amount) {
+    throw new Error('Insufficient balance');
+  }
+
+  await trx('balances').where({ user_id: userId }).decrement('amount', amount);
+});
+```
+
+#### Verification Steps
+
+- [ ] All financial operations use atomic transactions
+- [ ] Row-level locking on balance checks and modifications
+- [ ] No time-of-check to time-of-use (TOCTOU) gaps
+- [ ] Double-entry bookkeeping validation where applicable
+- [ ] No floating-point arithmetic for money (use integers/decimals)
+
+### 13. Financial Platform Security
+
+When the application handles real money, apply these additional checks:
+
+- [ ] All market trades are atomic transactions
+- [ ] Balance checks before any withdrawal or trade
+- [ ] Rate limiting on all financial endpoints
+- [ ] Audit logging for all money movements
+- [ ] Transaction signatures verified
+- [ ] Private keys never logged or stored in application code
+- [ ] RPC endpoints rate limited
+- [ ] Slippage protection on trades
+- [ ] Malicious instruction detection
+
 ## Security Testing
 
 ### Automated Security Tests
@@ -525,6 +633,147 @@ test('enforces rate limits', async () => {
 
   expect(tooManyRequests.length).toBeGreaterThan(0);
 });
+```
+
+## Security Review Report Template
+
+```markdown
+# Security Review Report
+
+**File/Component:** [path/to/file.ts]
+**Reviewed:** YYYY-MM-DD
+**Reviewer:** security-reviewer agent
+
+## Summary
+
+- **Critical Issues:** X
+- **High Issues:** Y
+- **Medium Issues:** Z
+- **Low Issues:** W
+- **Risk Level:** HIGH / MEDIUM / LOW
+
+## Critical Issues (Fix Immediately)
+
+### 1. [Issue Title]
+
+**Severity:** CRITICAL
+**Category:** SQL Injection / XSS / Authentication / etc.
+**Location:** `file.ts:123`
+
+**Issue:**
+[Description of the vulnerability]
+
+**Impact:**
+[What could happen if exploited]
+
+**Proof of Concept:**
+[Example of how this could be exploited]
+
+**Remediation:**
+[Secure implementation code example]
+
+**References:**
+
+- OWASP: [link]
+- CWE: [number]
+
+## High Issues (Fix Before Production)
+
+[Same format as Critical]
+
+## Medium Issues (Fix When Possible)
+
+[Same format as Critical]
+
+## Low Issues (Consider Fixing)
+
+[Same format as Critical]
+
+## Security Checklist
+
+- [ ] No hardcoded secrets
+- [ ] All inputs validated
+- [ ] SQL injection prevention
+- [ ] XSS prevention
+- [ ] CSRF protection
+- [ ] Authentication required
+- [ ] Authorization verified
+- [ ] Rate limiting enabled
+- [ ] HTTPS enforced
+- [ ] Security headers set
+- [ ] Dependencies up to date
+- [ ] No vulnerable packages
+- [ ] Logging sanitized
+- [ ] Error messages safe
+
+## Recommendations
+
+1. [General security improvements]
+2. [Security tooling to add]
+3. [Process improvements]
+```
+
+## PR Security Review Template
+
+```markdown
+## Security Review
+
+**Reviewer:** security-reviewer agent
+**Risk Level:** HIGH / MEDIUM / LOW
+
+### Blocking Issues
+
+- [ ] **CRITICAL**: [Description] @ `file:line`
+- [ ] **HIGH**: [Description] @ `file:line`
+
+### Non-Blocking Issues
+
+- [ ] **MEDIUM**: [Description] @ `file:line`
+- [ ] **LOW**: [Description] @ `file:line`
+
+### Security Checklist
+
+- [x] No secrets committed
+- [x] Input validation present
+- [ ] Rate limiting added
+- [ ] Tests include security scenarios
+
+**Recommendation:** BLOCK / APPROVE WITH CHANGES / APPROVE
+
+---
+
+> Security review performed by Claude Code security-reviewer agent
+```
+
+## Emergency Response Protocol
+
+If you find a CRITICAL vulnerability in production or an actively exploited issue:
+
+1. **Document** — Create a detailed report before touching anything
+2. **Notify** — Alert the project owner immediately
+3. **Recommend fix** — Provide secure code example
+4. **Test fix** — Verify remediation works in isolation first
+5. **Verify impact** — Determine if the vulnerability was exploited and what data/funds were affected
+6. **Rotate secrets** — If credentials were exposed, rotate all of them immediately
+7. **Update docs** — Add to security knowledge base to prevent recurrence
+
+## Tool Setup
+
+```bash
+# Install security linting
+npm install --save-dev eslint-plugin-security
+
+# Install dependency auditing
+npm install --save-dev audit-ci
+
+# Add to package.json scripts
+{
+  "scripts": {
+    "security:audit": "npm audit",
+    "security:lint": "eslint . --plugin security",
+    "security:check": "npm run security:audit && npm run security:lint"
+  }
+}
 ```
 
 ## Pre-Deployment Security Checklist

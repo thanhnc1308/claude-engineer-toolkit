@@ -12,9 +12,7 @@ fi
 mkdir -p "plugins/$PLUGIN_NAME/.claude-plugin" \
          "plugins/$PLUGIN_NAME/skills" \
          "plugins/$PLUGIN_NAME/commands" \
-         "plugins/$PLUGIN_NAME/agents" \
-         "plugins/$PLUGIN_NAME/rules" \
-         "plugins/$PLUGIN_NAME/hooks"
+         "plugins/$PLUGIN_NAME/agents"
 
 # Create plugin.json
 cat > "plugins/$PLUGIN_NAME/.claude-plugin/plugin.json" << EOF
@@ -30,9 +28,7 @@ cat > "plugins/$PLUGIN_NAME/.claude-plugin/plugin.json" << EOF
   "keywords": ["keyword1", "keyword2"],
   "skills": "./skills/",
   "commands": "./commands/",
-  "agents": "./agents/",
-  "rules": "./rules/",
-  "hooks": "./hooks/hooks.json"
+  "agents": "./agents/"
 }
 EOF
 

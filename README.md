@@ -73,6 +73,12 @@ rm path/to/directory
 
 # Create a new symlink pointing to the correct skill
 ln -s ../../../.claude/skills/creating-skill plugins/document-tools/skills/creating-skill
+
+# Find broken symlinks
+find . -type l ! -exec test -e {} \; -print
+
+# Delete broken symlinks
+find . -type l ! -exec test -e {} \; -delete
 ```
 
 ## References

@@ -1,0 +1,13 @@
+{
+  "name": "php",
+  "version": "1.0.0",
+  "description": "PHP code generation and debugging plugin for Claude Engineer Toolkit.",
+  "author": {
+    "name": "CThanh Nguyen"
+  },
+  "repository": "https://github.com/thanhnc1308/claude-engineer-toolkit",
+  "license": "MIT",
+  "keywords": ["php", "symfony", "silex"],
+  "skills": "./skills/",
+  "agents": "./agents/"
+}
