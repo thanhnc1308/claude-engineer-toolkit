@@ -8,7 +8,5 @@
   "repository": "https://github.com/thanhnc1308/claude-engineer-toolkit",
   "license": "MIT",
   "keywords": ["typescript", "type-safety", "refactoring"],
-  "skills": "./skills/",
-  "commands": "./commands/",
-  "agents": "./agents/"
+  "skills": "./skills/"
 }

@@ -1,16 +1,12 @@
 {
   "name": "nextjs",
   "version": "1.0.0",
-  "description": "Next.js best practices, App Router patterns, and frontend architecture",
+  "description": "Next.js App Router architecture, patterns, and best practices",
   "author": {
     "name": "CThanh Nguyen"
   },
   "repository": "https://github.com/thanhnc1308/claude-engineer-toolkit",
   "license": "MIT",
   "keywords": ["nextjs", "react", "frontend", "app-router"],
-  "skills": "./skills/",
-  "commands": "./commands/",
-  "agents": "./agents/",
-  "rules": "./rules/",
-  "hooks": "./hooks/hooks.json"
+  "skills": "./skills/"
 }
