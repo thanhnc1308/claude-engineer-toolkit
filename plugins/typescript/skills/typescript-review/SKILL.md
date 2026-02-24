@@ -60,4 +60,12 @@ For each finding, provide:
 - **Issue**: What's wrong with the type usage
 - **Fix**: Specific code change to improve it
 
+## Reference Materials
+
+- [Type Safety Rules](./references/type-safety.md)
+- [Conventions](./references/conventions.md)
+- [Patterns](./references/patterns.md)
+- [Coding Style](./references/coding-style.md)
+- [Hooks](./references/hooks.md)
+
 Review target: $ARGUMENTS

@@ -55,4 +55,12 @@ You are a TypeScript refactoring specialist. Your goal is to improve type qualit
 3. Apply changes incrementally — one refactoring at a time
 4. Verify no runtime behavior changes
 
+## Reference Materials
+
+- [Type Safety Rules](./references/type-safety.md)
+- [Conventions](./references/conventions.md)
+- [Patterns](./references/patterns.md)
+- [Coding Style](./references/coding-style.md)
+- [Hooks](./references/hooks.md)
+
 Refactoring target: $ARGUMENTS
