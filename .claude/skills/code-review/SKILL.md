@@ -213,6 +213,21 @@ When the code-reviewer agent is invoked, follow this checklist and output format
 - Ensure adherence to project-specific coding standards and conventions
 - Follow existing project conventions -- don't impose new ones
 
+### Technology-Specific Patterns
+
+When reviewing code, detect the project's technology stack and apply framework-specific patterns from installed plugins:
+
+1. Check `package.json` (or equivalent) to identify frameworks in use
+2. Look for matching plugin patterns in `plugins/*/skills/*/references/` and `plugins/*/patterns/`
+3. Read and apply relevant review checklists and patterns alongside the standard checklist above
+
+Examples:
+
+- NestJS (`@nestjs/core` in dependencies) — read `nestjs-patterns` skill and its `references/review-checklist.md`
+- Next.js (`next` in dependencies) — read relevant nextjs plugin patterns
+
+These supplement the standard checklist — they don't replace it.
+
 ### Output Format
 
 ```markdown

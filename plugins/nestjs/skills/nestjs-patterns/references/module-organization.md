@@ -64,6 +64,7 @@ export class SharedModule {}
 ## Global Module
 
 Use `@Global()` sparingly — only for truly app-wide services:
+
 - `ConfigModule`
 - `DatabaseModule`
 - `LoggerModule`

@@ -39,3 +39,11 @@ Entity (Domain model)
 - Create domain-specific exceptions (e.g., `UserNotFoundException extends NotFoundException`)
 - Never expose internal errors to clients
 - Log all errors with context (request ID, user ID, operation)
+
+## Design Principles
+
+- **Domain-Driven Design**: Organize modules around business domains, not technical layers
+- **Dependency Rule**: Dependencies point inward (controller → service → repository)
+- **Interface Segregation**: Define narrow interfaces for cross-module communication
+- **Single Responsibility**: Each module owns one bounded context
+- **Configuration**: Use `ConfigModule` with validation for all environment-specific values

@@ -1,11 +1,32 @@
 ---
 name: nestjs-patterns
-description: Backend architecture patterns, API design, database optimization, and server-side best practices for NestJS applications. Use when
+description: NestJS architecture patterns, code review checklist, refactoring catalog, dependency injection, module organization, and backend best practices. Use when working on NestJS projects, reviewing NestJS code, or applying NestJS-specific patterns.
 ---
 
-# Backend Development Patterns
+# NestJS Development Patterns
 
-Backend architecture patterns and best practices for scalable NestJS applications.
+Comprehensive NestJS knowledge base covering architecture, patterns, code review, and refactoring.
+
+## Reference Files
+
+Detailed guidance is organized into reference files:
+
+- **Architecture rules** — module organization, layer separation, API design, error handling, design principles
+  - **Reference:** `references/architecture.md`
+- **Dependency injection** — constructor injection, provider registration, scopes, custom providers, circular dependencies
+  - **Reference:** `references/dependency-injection.md`
+- **Module organization** — feature modules, DTO validation, shared/global modules, testing
+  - **Reference:** `references/module-organization.md`
+- **Code review checklist** — NestJS-specific review checklist (modules, DI, controllers, services, guards/pipes/interceptors, exceptions)
+  - **Reference:** `references/review-checklist.md`
+- **Refactoring catalog** — 7 common NestJS refactoring patterns with before/after TypeScript code
+  - **Reference:** `references/refactoring-catalog.md`
+- **Code generation** — module structure template, code standards, and scaffolding process
+  - **Reference:** `references/code-generation.md`
+
+## Inline Patterns
+
+The following sections contain detailed code examples for common NestJS patterns.
 
 ## API Design Patterns
 
