@@ -1,6 +1,6 @@
 ---
-name: backend-patterns
-description: Backend architecture patterns, API design, database optimization, and server-side best practices for NestJS applications.
+name: nestjs-patterns
+description: Backend architecture patterns, API design, database optimization, and server-side best practices for NestJS applications. Use when
 ---
 
 # Backend Development Patterns
