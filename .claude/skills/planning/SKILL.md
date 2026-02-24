@@ -14,6 +14,38 @@ Write comprehensive implementation plans assuming the engineer has zero context 
 
 **Save plans to:** `docs/plans/YYYY-MM-DD-<feature-name>.md`
 
+## Planning Process
+
+### 1. Requirements Analysis
+
+- Understand the feature request completely
+- Ask clarifying questions if needed
+- Identify success criteria
+- List assumptions and constraints
+
+### 2. Architecture Review
+
+- Analyze existing codebase structure
+- Identify affected components
+- Review similar implementations for reusable patterns
+- Consider integration points and dependencies
+
+### 3. Step Breakdown
+
+Create detailed steps with:
+
+- Clear, specific actions with exact file paths and locations
+- Dependencies between steps
+- Estimated complexity
+- Potential risks
+
+### 4. Implementation Order
+
+- Prioritize by dependencies
+- Group related changes
+- Minimize context switching
+- Enable incremental testing
+
 ## Bite-Sized Task Granularity
 
 **Each step is one action (2-5 minutes):**
@@ -42,6 +74,22 @@ Write comprehensive implementation plans assuming the engineer has zero context 
 ---
 ```
 
+## Plan Document Structure
+
+After the header, plans follow this structure:
+
+```markdown
+## Requirements
+
+- [Requirement 1]
+- [Requirement 2]
+
+## Architecture Changes
+
+- [Change 1: file path and description]
+- [Change 2: file path and description]
+```
+
 ## Task Structure
 
 ````markdown
@@ -56,8 +104,8 @@ Write comprehensive implementation plans assuming the engineer has zero context 
 **Step 1: Write the failing test**
 
 ```typescript
-describe("specificBehavior", () => {
-  it("should return expected result", () => {
+describe('specificBehavior', () => {
+  it('should return expected result', () => {
     const result = specificFunction(input);
     expect(result).toEqual(expected);
   });
@@ -90,6 +138,48 @@ git add tests/path/file.spec.ts src/path/file.ts
 git commit -m "feat: add specific feature"
 ```
 
+## Closing Sections
+
+Every plan ends with:
+
+```markdown
+## Testing Strategy
+
+- Unit tests: [files to test]
+- Integration tests: [flows to test]
+- E2E tests: [user journeys to test]
+
+## Risks & Mitigations
+
+- **Risk**: [Description]
+  - Mitigation: [How to address]
+
+## Success Criteria
+
+- [ ] Criterion 1
+- [ ] Criterion 2
+```
+
+## When Planning Refactors
+
+1. Identify code smells and technical debt
+2. List specific improvements needed
+3. Preserve existing functionality
+4. Create backwards-compatible changes when possible
+5. Plan for gradual migration if needed
+
+## Red Flags to Surface
+
+While planning, actively check for and flag:
+
+- Large functions (>50 lines)
+- Deep nesting (>4 levels)
+- Duplicated code
+- Missing error handling
+- Hardcoded values
+- Missing tests
+- Performance bottlenecks
+
 ## Remember
 
 - Exact file paths always
@@ -97,6 +187,20 @@ git commit -m "feat: add specific feature"
 - Exact commands with expected output
 - Reference relevant skills with @ syntax
 - DRY, YAGNI, TDD, frequent commits
+
+## Confirmation Gate
+
+**CRITICAL**: After presenting the plan, WAIT for explicit user confirmation before proceeding.
+
+Present the plan and ask: **"Proceed with this plan? (yes/no/modify)"**
+
+If the user wants changes, they may respond with:
+
+- "modify: [their changes]"
+- "different approach: [alternative]"
+- "skip phase 2 and do phase 3 first"
+
+Iterate on the plan until the user confirms.
 
 ## Execution Handoff
 

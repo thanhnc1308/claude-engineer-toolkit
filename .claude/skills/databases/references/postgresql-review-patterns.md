@@ -1,26 +1,10 @@
+# PostgreSQL Review Patterns & Best Practices
+
+Review-oriented patterns, anti-patterns, and checklists for PostgreSQL database code review. Incorporates patterns from [Supabase's postgres-best-practices](https://github.com/supabase/agent-skills).
+
 ---
-name: postgresql-reviewer
-description: PostgreSQL database specialist for query optimization, schema design, security, and performance. Use PROACTIVELY when writing SQL, creating migrations, designing schemas, or troubleshooting database performance. Incorporates Supabase best practices.
-tools: ['Read', 'Write', 'Edit', 'Bash', 'Grep', 'Glob']
-model: opus
----
 
-# Database Reviewer
-
-You are an expert PostgreSQL database specialist focused on query optimization, schema design, security, and performance. Your mission is to ensure database code follows best practices, prevents performance issues, and maintains data integrity. This agent incorporates patterns from [Supabase's postgres-best-practices](https://github.com/supabase/agent-skills).
-
-## Core Responsibilities
-
-1. **Query Performance** - Optimize queries, add proper indexes, prevent table scans
-2. **Schema Design** - Design efficient schemas with proper data types and constraints
-3. **Security & RLS** - Implement Row Level Security, least privilege access
-4. **Connection Management** - Configure pooling, timeouts, limits
-5. **Concurrency** - Prevent deadlocks, optimize locking strategies
-6. **Monitoring** - Set up query analysis and performance tracking
-
-## Tools at Your Disposal
-
-### Database Analysis Commands
+## Database Analysis Commands
 
 ```bash
 # Connect to database
@@ -42,7 +26,9 @@ psql -c "SELECT conrelid::regclass, a.attname FROM pg_constraint c JOIN pg_attri
 psql -c "SELECT relname, n_dead_tup, last_vacuum, last_autovacuum FROM pg_stat_user_tables WHERE n_dead_tup > 1000 ORDER BY n_dead_tup DESC;"
 ```
 
-## Database Review Workflow
+---
+
+## Review Workflow
 
 ### 1. Query Performance Review (CRITICAL)
 
@@ -608,7 +594,7 @@ ORDER BY rank DESC;
 
 ## Anti-Patterns to Flag
 
-### ❌ Query Anti-Patterns
+### Query Anti-Patterns
 
 - `SELECT *` in production code
 - Missing indexes on WHERE/JOIN columns
@@ -616,7 +602,7 @@ ORDER BY rank DESC;
 - N+1 query patterns
 - Unparameterized queries (SQL injection risk)
 
-### ❌ Schema Anti-Patterns
+### Schema Anti-Patterns
 
 - `int` for IDs (use `bigint`)
 - `varchar(255)` without reason (use `text`)
@@ -624,14 +610,14 @@ ORDER BY rank DESC;
 - Random UUIDs as primary keys (use UUIDv7 or IDENTITY)
 - Mixed-case identifiers requiring quotes
 
-### ❌ Security Anti-Patterns
+### Security Anti-Patterns
 
 - `GRANT ALL` to application users
 - Missing RLS on multi-tenant tables
 - RLS policies calling functions per-row (not wrapped in SELECT)
 - Unindexed RLS policy columns
 
-### ❌ Connection Anti-Patterns
+### Connection Anti-Patterns
 
 - No connection pooling
 - No idle timeouts
@@ -656,7 +642,5 @@ ORDER BY rank DESC;
 - [ ] Transactions kept short
 
 ---
-
-**Remember**: Database issues are often the root cause of application performance problems. Optimize queries and schema design early. Use EXPLAIN ANALYZE to verify assumptions. Always index foreign keys and RLS policy columns.
 
 _Patterns adapted from [Supabase Agent Skills](https://github.com/supabase/agent-skills) under MIT license._

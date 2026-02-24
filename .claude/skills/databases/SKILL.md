@@ -185,6 +185,7 @@ CREATE INDEX idx_users_status_created ON users(status, created_at DESC);
 - **[postgresql-psql-cli.md](references/postgresql-psql-cli.md)** - psql commands, meta-commands, scripting
 - **[postgresql-performance.md](references/postgresql-performance.md)** - EXPLAIN, query optimization, vacuum, indexes
 - **[postgresql-administration.md](references/postgresql-administration.md)** - User management, backups, replication, maintenance
+- **[postgresql-review-patterns.md](references/postgresql-review-patterns.md)** - Review patterns, anti-patterns, RLS/Supabase best practices, review checklist
 
 ## Python Utilities
 

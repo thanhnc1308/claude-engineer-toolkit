@@ -38,7 +38,7 @@ MCP servers configured in `.claude/.mcp.json`.
 **Gemini CLI Integration** (recommended): Create symlink to `.gemini/settings.json`:
 
 ```bash
-mkdir -p .gemini && ln -sf .claude/.mcp.json .gemini/settings.json
+[ ! -f .gemini/settings.json ] && mkdir -p .gemini && ln -sf .claude/.mcp.json .gemini/settings.json
 ```
 
 See [references/configuration.md](references/configuration.md) and [references/gemini-cli-integration.md](references/gemini-cli-integration.md).
@@ -55,53 +55,11 @@ Aggregates capabilities from multiple servers with server identification.
 
 ### 3. Intelligent Tool Analysis
 
-LLM analyzes `assets/tools.json` directly - better than keyword matching algorithms.
+LLM analyzes `assets/tools.json` directly -- better than keyword matching algorithms. Uses context understanding, synonyms, and intent recognition to select relevant tools across multiple servers.
 
 ### 4. Tool Execution
 
-**Primary: Gemini CLI** (if available)
-
-```bash
-gemini -y -m gemini-2.5-flash -p "Take a screenshot of https://example.com"
-```
-
-**Secondary: Direct Scripts**
-
-```bash
-npx tsx scripts/cli.ts call-tool memory create_entities '{"entities":[...]}'
-```
-
-**Fallback: mcp-manager Subagent**
-
-See [references/gemini-cli-integration.md](references/gemini-cli-integration.md) for complete examples.
-
-## Implementation Patterns
-
-### Pattern 1: Gemini CLI Auto-Execution (Primary)
-
-Use Gemini CLI for automatic tool discovery and execution. See [references/gemini-cli-integration.md](references/gemini-cli-integration.md) for complete guide.
-
-**Quick Example**:
-
-```bash
-gemini -y -m gemini-2.5-flash -p "Take a screenshot of https://example.com"
-```
-
-**Benefits**: Automatic tool discovery, natural language execution, faster than subagent orchestration.
-
-### Pattern 2: Subagent-Based Execution (Fallback)
-
-Use `mcp-manager` agent when Gemini CLI unavailable. Subagent discovers tools, selects relevant ones, executes tasks, reports back.
-
-**Benefit**: Main context stays clean, only relevant tool definitions loaded when needed.
-
-### Pattern 3: LLM-Driven Tool Selection
-
-LLM reads `assets/tools.json`, intelligently selects relevant tools using context understanding, synonyms, and intent recognition.
-
-### Pattern 4: Multi-Server Orchestration
-
-Coordinate tools across multiple servers. Each tool knows its source server for proper routing.
+See [Execution Priority](#execution-priority) for the canonical method order and commands.
 
 ## Scripts Reference
 
@@ -128,25 +86,20 @@ Command-line interface for MCP operations. Commands:
 
 ## Quick Start
 
-**Method 1: Gemini CLI** (recommended)
-
-```bash
-npm install -g gemini-cli
-mkdir -p .gemini && ln -sf .claude/.mcp.json .gemini/settings.json
-gemini -y -m gemini-2.5-flash -p "Take a screenshot of https://example.com"
-```
-
-**Method 2: Scripts**
+**Setup scripts** (one-time):
 
 ```bash
 cd .claude/skills/mcp-management/scripts && npm install
-npx tsx cli.ts list-tools  # Saves to assets/tools.json
-npx tsx cli.ts call-tool memory create_entities '{"entities":[...]}'
 ```
 
-**Method 3: mcp-manager Subagent**
+**Setup Gemini CLI** (recommended, one-time):
 
-See [references/gemini-cli-integration.md](references/gemini-cli-integration.md) for complete guide.
+```bash
+npm install -g gemini-cli
+[ ! -f .gemini/settings.json ] && mkdir -p .gemini && ln -sf .claude/.mcp.json .gemini/settings.json
+```
+
+See [Execution Priority](#execution-priority) for which method to use.
 
 ## Technical Details
 
@@ -158,9 +111,16 @@ See [references/mcp-protocol.md](references/mcp-protocol.md) for:
 - Transport mechanisms (stdio, HTTP+SSE)
 - Best practices
 
-## Integration Strategy
+## Execution Workflow
+
+1. **Receive Task**: Main agent delegates MCP task
+2. **Check Gemini**: Verify `gemini` CLI availability via `command -v gemini`
+3. **Execute**: Use the first available method from the priority order below
+4. **Report**: Send concise summary (status, output, artifacts, errors)
 
 ### Execution Priority
+
+The canonical method order for executing MCP tools:
 
 1. **Gemini CLI** (Primary): Fast, automatic, intelligent tool selection
    - Check: `command -v gemini`
@@ -168,21 +128,11 @@ See [references/mcp-protocol.md](references/mcp-protocol.md) for:
    - Best for: All tasks when available
 
 2. **Direct CLI Scripts** (Secondary): Manual tool specification
-   - Use when: Need specific tool/server control
+   - Use when: Need specific tool/server control, or Gemini unavailable
    - Execute: `npx tsx scripts/cli.ts call-tool <server> <tool> <args>`
 
 3. **mcp-manager Subagent** (Fallback): Context-efficient delegation
    - Use when: Gemini unavailable or failed
    - Keeps main context clean
 
-### Integration with Agents
-
-The `mcp-manager` agent uses this skill to:
-
-- Check Gemini CLI availability first
-- Execute via `gemini` command if available
-- Fallback to direct script execution
-- Discover MCP capabilities without loading into main context
-- Report results back to main agent
-
-This keeps main agent context clean and enables efficient MCP integration.
+See [references/gemini-cli-integration.md](references/gemini-cli-integration.md) for complete Gemini CLI guide.
