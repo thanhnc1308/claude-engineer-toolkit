@@ -10,5 +10,5 @@
   "keywords": ["platform", "cross-platform", "agents", "commands"],
   "skills": "./skills/",
   "commands": "./commands/",
-  "agents": "./agents/"
+  "agents": ["./agents/mcp-manager.md"]
 }
