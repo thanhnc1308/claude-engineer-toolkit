@@ -145,7 +145,6 @@ Knowledge plugins that provide architecture patterns, code review checklists, an
 /plugin install debugging-tools@claude-engineer-toolkit
 /plugin install devops-tools@claude-engineer-toolkit
 /plugin install typescript@claude-engineer-toolkit
-/plugin install platform-tools@claude-engineer-toolkit
 ```
 
 ## Adding a New Plugin
