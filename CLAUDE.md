@@ -21,7 +21,7 @@ Plugin marketplace structure. Each plugin lives under `plugins/<name>/` with a s
 
 Key directories:
 
-- `plugins/` — 7 plugins
+- `plugins/` — 18 plugins
 - `scripts/ci/` — Node.js validation scripts run in CI to enforce structure (frontmatter, required fields, SKILL.md presence, plugin.json integrity)
 - `scripts/lib/` — Shared utilities (package-manager, session-manager, utils)
 - `.claude-plugin/marketplace.json` — Plugin registry for the marketplace
