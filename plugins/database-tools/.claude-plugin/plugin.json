@@ -9,5 +9,5 @@
   "license": "MIT",
   "keywords": ["database", "sql", "postgresql", "mongodb"],
   "skills": "./skills/",
-  "agents": "./agents/"
+  "agents": ["./agents/database-reviewer.md"]
 }

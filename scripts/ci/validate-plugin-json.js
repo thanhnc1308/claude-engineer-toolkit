@@ -73,12 +73,13 @@ function validatePluginJson() {
     const pluginDir = path.join(PLUGINS_DIR, plugin);
     for (const field of PATH_FIELDS) {
       if (!data[field]) continue;
-      const resolved = path.resolve(pluginDir, data[field]);
-      if (!fs.existsSync(resolved)) {
-        console.error(
-          `ERROR: ${plugin}/plugin.json - "${field}" path does not exist: ${data[field]}`,
-        );
-        hasErrors = true;
+      const paths = Array.isArray(data[field]) ? data[field] : [data[field]];
+      for (const p of paths) {
+        const resolved = path.resolve(pluginDir, p);
+        if (!fs.existsSync(resolved)) {
+          console.error(`ERROR: ${plugin}/plugin.json - "${field}" path does not exist: ${p}`);
+          hasErrors = true;
+        }
       }
     }
 
