@@ -92,6 +92,17 @@ Knowledge plugins that provide architecture patterns, code review checklists, an
 
 ## Examples
 
+### Common
+
+```bash
+/plugin install ai-ml-tools@claude-engineer-toolkit
+/plugin install meta-tools@claude-engineer-toolkit
+/plugin install platform-tools@claude-engineer-toolkit
+/plugin install problem-solving-tools@claude-engineer-toolkit
+/plugin install research-tools@claude-engineer-toolkit
+/plugin install specialized-tools@claude-engineer-toolkit
+```
+
 ### NestJS Project
 
 ```bash

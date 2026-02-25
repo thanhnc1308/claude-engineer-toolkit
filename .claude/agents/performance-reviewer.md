@@ -2,6 +2,7 @@
 name: performance-reviewer
 description: Audit backend code for performance bottlenecks — N+1 queries, missing indexes, poor caching, synchronous blocking, unbounded queries. Use when reviewing API performance, optimizing database-heavy code, or before deploying at scale.
 tools: ['Read', 'Grep', 'Glob', 'Bash']
+model: sonnet
 ---
 
 # Performance Reviewer

@@ -4,21 +4,16 @@
  * Scans all plugins/<name>/.claude-plugin/plugin.json files.
  */
 
-const fs = require("fs");
-const path = require("path");
+const fs = require('fs');
+const path = require('path');
 
-const PLUGINS_DIR = path.join(__dirname, "../../plugins");
-const REQUIRED_FIELDS = ["name", "version", "description", "license"];
-const PLACEHOLDER_PATTERNS = [
-  "Description of your plugin",
-  "Your Name",
-  "keyword1",
-  "keyword2",
-];
+const PLUGINS_DIR = path.join(__dirname, '../../plugins');
+const REQUIRED_FIELDS = ['name', 'version', 'description', 'license'];
+const PLACEHOLDER_PATTERNS = ['Description of your plugin', 'Your Name', 'keyword1', 'keyword2'];
 
 function validatePluginJson() {
   if (!fs.existsSync(PLUGINS_DIR)) {
-    console.error("ERROR: plugins/ directory not found");
+    console.error('ERROR: plugins/ directory not found');
     process.exit(1);
   }
 
@@ -31,12 +26,7 @@ function validatePluginJson() {
   let validCount = 0;
 
   for (const plugin of plugins) {
-    const jsonPath = path.join(
-      PLUGINS_DIR,
-      plugin,
-      ".claude-plugin",
-      "plugin.json",
-    );
+    const jsonPath = path.join(PLUGINS_DIR, plugin, '.claude-plugin', 'plugin.json');
 
     if (!fs.existsSync(jsonPath)) {
       console.error(`ERROR: ${plugin}/ - Missing .claude-plugin/plugin.json`);
@@ -46,11 +36,9 @@ function validatePluginJson() {
 
     let data;
     try {
-      data = JSON.parse(fs.readFileSync(jsonPath, "utf-8"));
+      data = JSON.parse(fs.readFileSync(jsonPath, 'utf-8'));
     } catch (e) {
-      console.error(
-        `ERROR: ${plugin}/plugin.json - Invalid JSON: ${e.message}`,
-      );
+      console.error(`ERROR: ${plugin}/plugin.json - Invalid JSON: ${e.message}`);
       hasErrors = true;
       continue;
     }
@@ -58,9 +46,7 @@ function validatePluginJson() {
     // Check required fields
     for (const field of REQUIRED_FIELDS) {
       if (!data[field]) {
-        console.error(
-          `ERROR: ${plugin}/plugin.json - Missing required field: ${field}`,
-        );
+        console.error(`ERROR: ${plugin}/plugin.json - Missing required field: ${field}`);
         hasErrors = true;
       }
     }
@@ -69,9 +55,7 @@ function validatePluginJson() {
     const jsonStr = JSON.stringify(data);
     for (const placeholder of PLACEHOLDER_PATTERNS) {
       if (jsonStr.includes(placeholder)) {
-        console.error(
-          `ERROR: ${plugin}/plugin.json - Contains placeholder text: "${placeholder}"`,
-        );
+        console.error(`ERROR: ${plugin}/plugin.json - Contains placeholder text: "${placeholder}"`);
         hasErrors = true;
       }
     }
@@ -82,6 +66,20 @@ function validatePluginJson() {
         `ERROR: ${plugin}/plugin.json - Name "${data.name}" does not match directory "${plugin}"`,
       );
       hasErrors = true;
+    }
+
+    // Check that declared path fields resolve to existing files/directories
+    const PATH_FIELDS = ['agents', 'skills', 'commands', 'rules', 'hooks'];
+    const pluginDir = path.join(PLUGINS_DIR, plugin);
+    for (const field of PATH_FIELDS) {
+      if (!data[field]) continue;
+      const resolved = path.resolve(pluginDir, data[field]);
+      if (!fs.existsSync(resolved)) {
+        console.error(
+          `ERROR: ${plugin}/plugin.json - "${field}" path does not exist: ${data[field]}`,
+        );
+        hasErrors = true;
+      }
     }
 
     validCount++;
