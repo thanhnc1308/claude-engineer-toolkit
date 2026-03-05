@@ -1,5 +1,6 @@
 ---
 description: Create a pull request
+allowed-tools: Bash(git checkout --branch:*), Bash(git add:*), Bash(git status:*), Bash(git push:*), Bash(git commit:*), Bash(gh pr create:*)
 argument-hint: [to-branch] [from-branch]
 ---
 
@@ -20,3 +21,4 @@ FROM_BRANCH: $2 (defaults to current branch)
 
 - If `gh` command is not available, instruct the user to install and authorize GitHub CLI first.
 - Always create as draft — never create a ready-for-review PR.
+- You have the capability to call multiple tools in a single response. You MUST do all of the above in a single message. Do not use any other tools or do anything else. Do not send any other text or messages besides these tool calls.

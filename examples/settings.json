@@ -19,20 +19,33 @@
   "hooks": {
     "Notification": [
       {
-        "matcher": "permission_prompt",
+        "matcher": "",
         "hooks": [
           {
             "type": "command",
-            "command": "echo 'Claude needs your permission' > /tmp/claude-notify && terminal-notifier -title \"Claude Code\" -message \"Claude needs your permission\" -sound Glass"
+            "command": "say -v Trinoid \"Notification $(basename $PWD)\""
           }
         ]
-      },
+      }
+    ],
+    "PermissionRequest": [
       {
-        "matcher": "elicitation_dialog",
+        "matcher": "",
         "hooks": [
           {
             "type": "command",
-            "command": "echo 'Claude has a question for you' > /tmp/claude-notify && terminal-notifier -title \"Claude Code\" -message \"Claude has a question for you\" -sound Glass"
+            "command": "say -v Trinoid \"Permission Request $(basename $PWD)\""
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "say -v Trinoid \"Stop $(basename $PWD)\""
           }
         ]
       }

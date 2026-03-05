@@ -1,0 +1,1 @@
+../../../.claude/agents/type-design-analyzer.md
