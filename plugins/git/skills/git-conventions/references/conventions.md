@@ -33,6 +33,16 @@
 - Make atomic commits — one logical change per commit
 - If there are new files and file changes at the same time, split them into separate commits
 
+## JIRA ticket as scope
+
+When a JIRA ticket is provided, use it as the scope:
+
+```
+feat(PROJ-1234): add SSO login support
+```
+
+When no JIRA ticket is provided, use a semantic scope (e.g., `auth`, `api`, `ui`).
+
 ## AI attribution
 
 **NEVER** automatically add AI attribution signatures like:
