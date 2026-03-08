@@ -39,21 +39,21 @@ Knowledge plugins that provide architecture patterns, code review checklists, an
 
 ### Tools
 
-| Plugin                  | Description                                                          |
-| ----------------------- | -------------------------------------------------------------------- |
-| `backend-tools`         | Backend development, API patterns, authentication                    |
-| `frontend-tools`        | React, UI styling, 3D visualization, web testing, browser automation |
-| `database-tools`        | Database management, query optimization, schema design               |
-| `debugging-tools`       | Debugging utilities, diagnostics, error analysis                     |
-| `devops-tools`          | CI/CD, Docker, Kubernetes, Cloudflare, GCP                           |
-| `ai-ml-tools`           | AI/ML tools, Gemini API, context engineering                         |
-| `media-tools`           | FFmpeg, ImageMagick, media processing                                |
-| `document-tools`        | Document processing and content generation                           |
-| `research-tools`        | Documentation search, repository analysis                            |
-| `problem-solving-tools` | Analytical frameworks, decision tools                                |
-| `specialized-tools`     | Mermaid diagrams, sequential thinking                                |
-| `meta-tools`            | Skill creation, code review practices                                |
-| `platform-tools`        | Claude Code integration, MCP, session management, Shopify            |
+| Plugin            | Description                                                          |
+| ----------------- | -------------------------------------------------------------------- |
+| `backend`         | Backend development, API patterns, authentication                    |
+| `frontend`        | React, UI styling, 3D visualization, web testing, browser automation |
+| `database`        | Database management, query optimization, schema design               |
+| `debugging`       | Debugging utilities, diagnostics, error analysis                     |
+| `devops`          | CI/CD, Docker, Kubernetes, Cloudflare, GCP                           |
+| `ai-ml`           | AI/ML tools, Gemini API, context engineering                         |
+| `media`           | FFmpeg, ImageMagick, media processing                                |
+| `document`        | Document processing and content generation                           |
+| `research`        | Documentation search, repository analysis                            |
+| `problem-solving` | Analytical frameworks, decision tools                                |
+| `specialized`     | Mermaid diagrams, sequential thinking                                |
+| `meta`            | Skill creation, code review practices                                |
+| `platform`        | Claude Code integration, MCP, session management, Shopify            |
 
 ## Commands
 
@@ -74,7 +74,7 @@ Knowledge plugins that provide architecture patterns, code review checklists, an
 | `/update-docs`           | Update documentation                     |
 | `/update-codemaps`       | Update code maps                         |
 
-### platform-tools
+### platform
 
 | Command               | Description                                    |
 | --------------------- | ---------------------------------------------- |
@@ -83,7 +83,7 @@ Knowledge plugins that provide architecture patterns, code review checklists, an
 | `/sessions`           | Manage session history and aliases             |
 | `/use-mcp`            | Utilize MCP server tools                       |
 
-### meta-tools
+### meta
 
 | Command  | Description              |
 | -------- | ------------------------ |
@@ -95,20 +95,20 @@ Knowledge plugins that provide architecture patterns, code review checklists, an
 ### Common
 
 ```bash
-/plugin install ai-ml-tools@claude-engineer-toolkit
-/plugin install meta-tools@claude-engineer-toolkit
-/plugin install platform-tools@claude-engineer-toolkit
-/plugin install problem-solving-tools@claude-engineer-toolkit
-/plugin install research-tools@claude-engineer-toolkit
-/plugin install specialized-tools@claude-engineer-toolkit
+/plugin install ai-ml@claude-engineer-toolkit
+/plugin install meta@claude-engineer-toolkit
+/plugin install platform@claude-engineer-toolkit
+/plugin install problem-solving@claude-engineer-toolkit
+/plugin install research@claude-engineer-toolkit
+/plugin install specialized@claude-engineer-toolkit
 ```
 
 ### NestJS Project
 
 ```bash
 /plugin install dev-workflow@claude-engineer-toolkit
-/plugin install backend-tools@claude-engineer-toolkit
-/plugin install debugging-tools@claude-engineer-toolkit
+/plugin install backend@claude-engineer-toolkit
+/plugin install debugging@claude-engineer-toolkit
 /plugin install typescript@claude-engineer-toolkit
 /plugin install nestjs@claude-engineer-toolkit
 ```
@@ -124,7 +124,7 @@ Knowledge plugins that provide architecture patterns, code review checklists, an
 
 ```bash
 /plugin install dev-workflow@claude-engineer-toolkit
-/plugin install frontend-tools@claude-engineer-toolkit
+/plugin install frontend@claude-engineer-toolkit
 /plugin install typescript@claude-engineer-toolkit
 /plugin install nextjs@claude-engineer-toolkit
 ```
@@ -139,11 +139,11 @@ Knowledge plugins that provide architecture patterns, code review checklists, an
 
 ```bash
 /plugin install dev-workflow@claude-engineer-toolkit
-/plugin install backend-tools@claude-engineer-toolkit
-/plugin install frontend-tools@claude-engineer-toolkit
-/plugin install database-tools@claude-engineer-toolkit
-/plugin install debugging-tools@claude-engineer-toolkit
-/plugin install devops-tools@claude-engineer-toolkit
+/plugin install backend@claude-engineer-toolkit
+/plugin install frontend@claude-engineer-toolkit
+/plugin install database@claude-engineer-toolkit
+/plugin install debugging@claude-engineer-toolkit
+/plugin install devops@claude-engineer-toolkit
 /plugin install typescript@claude-engineer-toolkit
 ```
 

@@ -27,7 +27,7 @@ Create `.mcp.json` at plugin root:
 
 ```json
 {
-  "database-tools": {
+  "database": {
     "command": "${CLAUDE_PLUGIN_ROOT}/servers/db-server",
     "args": ["--config", "${CLAUDE_PLUGIN_ROOT}/config.json"],
     "env": {
