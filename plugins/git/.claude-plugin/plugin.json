@@ -1,0 +1,13 @@
+{
+  "name": "git",
+  "version": "1.0.0",
+  "description": "Git workflow commands (commit, PR) with shared Conventional Commits conventions",
+  "author": {
+    "name": "CThanh Nguyen"
+  },
+  "repository": "https://github.com/thanhnc1308/claude-engineer-toolkit",
+  "license": "MIT",
+  "keywords": ["git", "commit", "pull-request", "conventional-commits"],
+  "skills": "./skills/",
+  "commands": "./commands/"
+}
