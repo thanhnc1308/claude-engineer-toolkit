@@ -79,13 +79,6 @@
       "tags": ["media", "images", "audio", "video"]
     },
     {
-      "name": "meta",
-      "source": "./plugins/meta",
-      "description": "Meta-level tools for managing skills, plugins, and Claude Code workflows",
-      "category": "tools",
-      "tags": ["meta", "skills", "plugins", "workflows"]
-    },
-    {
       "name": "platform",
       "source": "./plugins/platform",
       "description": "Platform-specific tools, agents, and commands for cross-platform development",

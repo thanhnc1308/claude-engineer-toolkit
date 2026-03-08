@@ -1,6 +1,6 @@
 ---
-name: skill-creator
-description: Create or update Claude skills. Use for new skills, skill references, skill scripts, optimizing existing skills, extending Claude's capabilities.
+name: skill-development
+description: This skill should be used when the user wants to "create a skill", "add a new skill", "update a skill", "write skill references", "write skill scripts", "optimize a skill", or extend Claude's capabilities with new skills.
 version: 2.0.0
 ---
 
@@ -138,6 +138,25 @@ Skills use a three-level loading system to manage context efficiently:
 
 ## Skill Creation Process
 
+Ultrathink.
+
+**Prerequisites (MUST READ before starting):**
+
+- Read the official skill documentation: https://docs.claude.com/en/docs/claude-code/skills.md
+- Read the Agent Skills Spec: `.claude/skills/agent_skills_spec.md`
+
+**Skills location (two scopes):**
+
+- **User-scope** (default): `./.claude/skills/<skill-name>/SKILL.md`
+- **Plugin-scope**: `plugins/<plugin-name>/skills/<skill-name>/SKILL.md`
+
+For plugin-scope skills, skip init_skill.py and packaging steps. See `references/plugin-skills.md` for full details.
+
+**URL/file exploration:**
+
+- If given a URL, use `Explorer` subagent to explore every internal link and report back, don't skip any link.
+- If given many URLs or files, use multiple `Explorer` subagents to explore them in parallel.
+
 To create a skill, follow the "Skill Creation Process" in order, skipping steps only if there is a clear reason why they are not applicable.
 
 ### Step 1: Understanding the Skill with Concrete Examples
@@ -206,7 +225,7 @@ To establish the skill's contents, analyze each concrete example to create a lis
 - Make sure scripts respect `.env` file follow this order: `process.env` > `$HOME/.claude/skills/${SKILL}/.env` (global) > `$HOME/.claude/skills/.env` (global) > `$HOME/.claude/.env` (global) > `./.claude/skills/${SKILL}/.env` (cwd) > `./.claude/skills/.env` (cwd) > `./.claude/.env` (cwd)
 - Make sure scripts have tests, run all tests and ensure they pass. DO NOT SKIP THIS STEP.
 
-### Step 4: Initializing the Skill
+### Step 4: Initializing the Skill (User-Scope Only)
 
 At this point, it is time to actually create the skill.
 
@@ -249,7 +268,7 @@ To complete SKILL.md, answer the following questions:
 2. When should the skill be used?
 3. In practice, how should Claude use the skill? All reusable skill contents developed above should be referenced so that Claude knows how to use them.
 
-### Step 5: Packaging a Skill
+### Step 6: Packaging a Skill (User-Scope Only)
 
 Once the skill is ready, it should be packaged into a distributable zip file that gets shared with the user. The packaging process automatically validates the skill first to ensure it meets all requirements:
 
@@ -275,7 +294,7 @@ The packaging script will:
 
 If validation fails, the script will report the errors and exit without creating a package. Fix any validation errors and run the packaging command again.
 
-### Step 6: Iterate
+### Step 7: Iterate
 
 After testing the skill, users may request improvements. Often this happens right after using the skill, with fresh context of how the skill performed.
 
@@ -296,6 +315,12 @@ Detailed validation criteria for evaluating skills:
 - **Token efficiency**: `references/token-efficiency-criteria.md`
 - **Script quality**: `references/script-quality-criteria.md`
 - **Structure & organization**: `references/structure-organization-criteria.md`
+
+## Plugin-Scope Skills
+
+For creating skills within a Claude Code plugin (as opposed to user-scope `.claude/skills/`):
+
+- **Plugin skills guide**: `references/plugin-skills.md`
 
 ## Plugin Marketplaces
 
