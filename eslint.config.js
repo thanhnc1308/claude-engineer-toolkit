@@ -3,7 +3,7 @@ const globals = require('globals');
 
 module.exports = [
   {
-    ignores: ['**/dist/**'],
+    ignores: ['**/dist/**', '.workspace/**'],
   },
   js.configs.recommended,
   {
@@ -26,15 +26,6 @@ module.exports = [
       ],
       'no-undef': 'error',
       eqeqeq: 'warn',
-    },
-  },
-  {
-    files: ['.claude/skills/chrome-devtools/scripts/**/*.js'],
-    languageOptions: {
-      sourceType: 'module',
-      globals: {
-        ...globals.browser,
-      },
     },
   },
 ];

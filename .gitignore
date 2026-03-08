@@ -18,3 +18,6 @@ npm-debug.log*
 .env.local
 
 tmp/
+
+# Local dev symlink (contributors: ln -sf .workspace .claude)
+.claude

@@ -8,6 +8,16 @@ A personal Claude Code plugin marketplace for full-stack software engineering. I
 - ESLint 9 (flat config), markdownlint, commitlint (conventional commits)
 - No runtime framework — this is a content/tooling repo (markdown plugins + validation scripts)
 
+## Contributor Setup
+
+When working on this repo locally, symlink `.workspace/` as `.claude/` so Claude Code loads the dev environment:
+
+```sh
+ln -sf .workspace .claude
+```
+
+> `.workspace/` is the canonical dev environment (skills, agents, commands). It is intentionally NOT named `.claude/` in the repo to prevent the marketplace clone from leaking all skills to users who install only a single plugin.
+
 ## Commands
 
 Lint: `npm run lint`
@@ -22,6 +32,7 @@ Plugin marketplace structure. Each plugin lives under `plugins/<name>/` with a s
 Key directories:
 
 - `plugins/` — 18 plugins
+- `.workspace/` — Dev environment (skills, agents, commands); symlink to `.claude/` locally for contributor use
 - `scripts/ci/` — Node.js validation scripts run in CI to enforce structure (frontmatter, required fields, SKILL.md presence, plugin.json integrity)
 - `scripts/lib/` — Shared utilities (package-manager, session-manager, utils)
 - `.claude-plugin/marketplace.json` — Plugin registry for the marketplace

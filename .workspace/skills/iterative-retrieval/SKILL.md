@@ -48,9 +48,9 @@ Initial broad query to gather candidate files:
 ```javascript
 // Start with high-level intent
 const initialQuery = {
-  patterns: ["src/**/*.ts", "lib/**/*.ts"],
-  keywords: ["authentication", "user", "session"],
-  excludes: ["*.test.ts", "*.spec.ts"],
+  patterns: ['src/**/*.ts', 'lib/**/*.ts'],
+  keywords: ['authentication', 'user', 'session'],
+  excludes: ['*.test.ts', '*.spec.ts'],
 };
 
 // Dispatch to retrieval agent
