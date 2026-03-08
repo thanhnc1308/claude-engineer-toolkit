@@ -199,12 +199,12 @@ Use this workflow for structured, high-quality plugin development from concept t
 - Writing style (imperative/infinitive form, third person)
 - Bundled resources organization (references/, examples/, scripts/)
 - Skill creation workflow
-- Based on skill-creator methodology adapted for Claude Code plugins
+- Based on skill-development methodology adapted for Claude Code plugins
 
 **Resources:**
 
 - Core SKILL.md (1,232 words)
-- References: skill-creator methodology, plugin-dev patterns
+- References: skill-development methodology, plugin-dev patterns
 - Examples: Study plugin-dev's own skills as templates
 
 **Use when:** Creating new skills for plugins or improving existing skill quality.

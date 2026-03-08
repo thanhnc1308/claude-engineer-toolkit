@@ -4,8 +4,21 @@ Proper structure enables discovery and maintainability.
 
 ## Required Directory Layout
 
+**User-scope skills:**
+
 ```
 .claude/skills/
+└── skill-name/
+    ├── SKILL.md          # Required, uppercase
+    ├── scripts/          # Optional: executable code
+    ├── references/       # Optional: documentation
+    └── assets/           # Optional: output resources
+```
+
+**Plugin-scope skills:**
+
+```
+plugins/<plugin-name>/skills/
 └── skill-name/
     ├── SKILL.md          # Required, uppercase
     ├── scripts/          # Optional: executable code
