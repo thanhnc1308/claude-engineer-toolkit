@@ -140,6 +140,13 @@
       "description": "Frontend development tools, UI component generation, and client-side utilities",
       "category": "general",
       "tags": ["frontend", "ui", "client-side"]
+    },
+    {
+      "name": "git",
+      "source": "./plugins/git",
+      "description": "Git workflow commands (commit, PR) with shared Conventional Commits conventions",
+      "category": "workflow",
+      "tags": ["git", "commit", "pull-request", "conventional-commits"]
     }
   ]
 }
