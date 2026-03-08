@@ -1,1 +1,1 @@
-../../../.claude/commands/use-mcp.md
+../../../.workspace/commands/use-mcp.md

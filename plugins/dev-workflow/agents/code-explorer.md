@@ -1,1 +1,1 @@
-../../../.claude/agents/code-explorer.md
+../../../.workspace/agents/code-explorer.md

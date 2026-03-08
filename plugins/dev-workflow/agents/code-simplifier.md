@@ -1,1 +1,1 @@
-../../../.claude/agents/code-simplifier.md
+../../../.workspace/agents/code-simplifier.md

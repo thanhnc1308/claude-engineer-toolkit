@@ -1,1 +1,1 @@
-../../../.claude/agents/database-reviewer.md
+../../../.workspace/agents/database-reviewer.md

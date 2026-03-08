@@ -1,1 +1,1 @@
-../../../.claude/agents/silent-failure-hunter.md
+../../../.workspace/agents/silent-failure-hunter.md

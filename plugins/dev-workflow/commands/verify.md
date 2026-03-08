@@ -1,1 +1,1 @@
-../../../.claude/commands/workflow/verify.md
+../../../.workspace/commands/workflow/verify.md

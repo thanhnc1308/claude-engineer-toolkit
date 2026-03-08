@@ -1,1 +1,1 @@
-../../../.claude/commands/workflow/brainstorm.md
+../../../.workspace/commands/workflow/brainstorm.md

@@ -1,1 +1,1 @@
-../../../.claude/agents/refactor-cleaner.md
+../../../.workspace/agents/refactor-cleaner.md

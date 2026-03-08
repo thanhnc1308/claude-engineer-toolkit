@@ -1,1 +1,1 @@
-../../../.claude/commands/workflow/tdd.md
+../../../.workspace/commands/workflow/tdd.md

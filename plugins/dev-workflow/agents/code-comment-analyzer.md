@@ -1,1 +1,1 @@
-../../../.claude/agents/code-comment-analyzer.md
+../../../.workspace/agents/code-comment-analyzer.md
