@@ -1,1 +1,0 @@
-../../../.workspace/commands/workflow/verify.md

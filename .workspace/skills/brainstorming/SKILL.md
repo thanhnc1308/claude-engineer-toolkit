@@ -1,7 +1,6 @@
 ---
 name: brainstorming
 description: Interactive brainstorming session for exploring ideas, approaches, and trade-offs before implementation. Use when starting a new feature, solving a complex problem, or evaluating architectural decisions.
-user-invocable: true
 allowed-tools: Read, Grep, Glob, WebSearch, WebFetch
 argument-hint: [topic or problem to brainstorm]
 ---

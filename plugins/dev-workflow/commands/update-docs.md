@@ -1,1 +1,0 @@
-../../../.workspace/commands/workflow/update-docs.md

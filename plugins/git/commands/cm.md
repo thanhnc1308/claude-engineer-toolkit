@@ -1,6 +1,6 @@
 ---
 description: Stage all files and create a commit.
-allowed-tools: Bash(git *), Bash(cat *conventions.md)
+allowed-tools: Bash(git *)
 arguments:
   - name: ticket
     description: JIRA ticket number (e.g., PROJ-1234). If provided, added as "Refs: <ticket>" in the commit footer.
@@ -14,17 +14,13 @@ arguments:
 - Current branch: !`git branch --show-current`
 - Recent commits: !`git log --oneline -10`
 
-## Commit conventions
-
-!`cat ${CLAUDE_PLUGIN_ROOT}/skills/git-conventions/references/conventions.md`
-
 ## Your task
 
 Based on the above changes
 
 1. Review for commit secrets, credentials, or environment files (dotenv, API keys, database credentials, etc.). **NEVER** commit without asking the user.
 
-2. Generate a commit message following the conventions above.
+2. Generate a commit message following the git conventions rule.
 
    **JIRA ticket:**
    - If `$ARGUMENTS.ticket` is provided, add `Refs: $ARGUMENTS.ticket` as the commit footer

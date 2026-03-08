@@ -1,5 +1,5 @@
 {
-  "name": "dev-workflow",
+  "name": "feature-dev",
   "version": "1.1.0",
   "description": "Full-stack development workflow with 16 specialized agents: planning, brainstorming, TDD, code review, security audit, performance check, refactoring, orchestration, and verification",
   "author": {
