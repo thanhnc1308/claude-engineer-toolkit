@@ -1,1 +1,1 @@
-../../../.claude/commands/workflow/review.md
+../../../.workspace/commands/workflow/review.md

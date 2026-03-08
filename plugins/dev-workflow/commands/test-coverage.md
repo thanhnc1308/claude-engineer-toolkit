@@ -1,1 +1,1 @@
-../../../.claude/commands/workflow/test-coverage.md
+../../../.workspace/commands/workflow/test-coverage.md

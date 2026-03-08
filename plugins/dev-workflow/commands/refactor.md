@@ -1,1 +1,1 @@
-../../../.claude/commands/workflow/refactor.md
+../../../.workspace/commands/workflow/refactor.md

@@ -1,1 +1,1 @@
-../../../.claude/agents/researcher.md
+../../../.workspace/agents/researcher.md

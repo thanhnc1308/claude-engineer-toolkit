@@ -1,1 +1,1 @@
-../../../.claude/commands/workflow/orchestrate.md
+../../../.workspace/commands/workflow/orchestrate.md

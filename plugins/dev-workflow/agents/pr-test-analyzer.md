@@ -1,1 +1,1 @@
-../../../.claude/agents/pr-test-analyzer.md
+../../../.workspace/agents/pr-test-analyzer.md

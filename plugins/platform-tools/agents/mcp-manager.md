@@ -1,1 +1,1 @@
-../../../.claude/agents/mcp-manager.md
+../../../.workspace/agents/mcp-manager.md

@@ -1,1 +1,1 @@
-../../../.claude/commands/workflow/plan.md
+../../../.workspace/commands/workflow/plan.md

@@ -1,1 +1,1 @@
-../../../.claude/agents/security-reviewer.md
+../../../.workspace/agents/security-reviewer.md

@@ -1,1 +1,1 @@
-../../../.claude/agents/architect.md
+../../../.workspace/agents/architect.md

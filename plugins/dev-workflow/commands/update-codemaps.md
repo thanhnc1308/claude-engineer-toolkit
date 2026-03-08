@@ -1,1 +1,1 @@
-../../../.claude/commands/workflow/update-codemaps.md
+../../../.workspace/commands/workflow/update-codemaps.md

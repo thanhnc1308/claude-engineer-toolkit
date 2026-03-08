@@ -1,1 +1,1 @@
-../../../.claude/agents/brainstormer.md
+../../../.workspace/agents/brainstormer.md

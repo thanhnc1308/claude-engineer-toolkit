@@ -1,1 +1,1 @@
-../../../.claude/agents/code-reviewer.md
+../../../.workspace/agents/code-reviewer.md

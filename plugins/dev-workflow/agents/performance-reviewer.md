@@ -1,1 +1,1 @@
-../../../.claude/agents/performance-reviewer.md
+../../../.workspace/agents/performance-reviewer.md

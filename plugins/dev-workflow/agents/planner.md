@@ -1,1 +1,1 @@
-../../../.claude/agents/planner.md
+../../../.workspace/agents/planner.md

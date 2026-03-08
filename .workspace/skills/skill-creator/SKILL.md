@@ -1,5 +1,5 @@
 ---
-name: creating-skill
+name: skill-creator
 description: Create or update Claude skills. Use for new skills, skill references, skill scripts, optimizing existing skills, extending Claude's capabilities.
 version: 2.0.0
 ---

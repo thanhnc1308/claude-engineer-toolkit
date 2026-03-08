@@ -1,1 +1,1 @@
-../../../.claude/commands/workflow/update-docs.md
+../../../.workspace/commands/workflow/update-docs.md

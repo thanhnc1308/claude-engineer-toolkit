@@ -223,7 +223,6 @@ Use words Claude would search for:
 
 **Use active voice, verb-first:**
 
-- ✅ `creating-skills` not `skill-creation`
 - ✅ `condition-based-waiting` not `async-test-helpers`
 
 ### 4. Token Efficiency (Critical)
@@ -297,11 +296,6 @@ wc -w skills/path/SKILL.md
 - ✅ `using-skills` not `skill-usage`
 - ✅ `flatten-with-flags` > `data-structure-refactoring`
 - ✅ `root-cause-tracing` > `debugging-techniques`
-
-**Gerunds (-ing) work well for processes:**
-
-- `creating-skills`, `testing-skills`, `debugging-with-logs`
-- Active, describes the action you're taking
 
 ### 4. Cross-Referencing Other Skills
 
