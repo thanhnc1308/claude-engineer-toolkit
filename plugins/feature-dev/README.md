@@ -1,4 +1,4 @@
-# dev-workflow
+# feature-dev
 
 Full-stack development workflow with 16 specialized agents, 17 skills, and 11 commands for planning, implementing, reviewing, and shipping code.
 

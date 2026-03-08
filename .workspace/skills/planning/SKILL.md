@@ -62,7 +62,7 @@ Create detailed steps with:
 ```markdown
 # [Feature Name] Implementation Plan
 
-> **For Claude:** REQUIRED SUB-SKILL: Use dev-workflow:executing-plans to implement this plan task-by-task.
+> **For Claude:** REQUIRED SUB-SKILL: Use feature-dev:executing-plans to implement this plan task-by-task.
 
 **Goal:** [One sentence describing what this builds]
 
@@ -215,11 +215,11 @@ After saving the plan, offer execution choice:
 
 **If Subagent-Driven chosen:**
 
-- **REQUIRED SUB-SKILL:** Use dev-workflow:subagent-driven-development
+- **REQUIRED SUB-SKILL:** Use feature-dev:subagent-driven-development
 - Stay in this session
 - Fresh subagent per task + code review
 
 **If Separate Session chosen:**
 
 - Guide them to open new session in worktree
-- **REQUIRED SUB-SKILL:** New session uses dev-workflow:executing-plans
+- **REQUIRED SUB-SKILL:** New session uses feature-dev:executing-plans

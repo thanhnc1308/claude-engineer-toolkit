@@ -109,5 +109,5 @@ Structured workflow for gathering, validating, and synthesizing technology intel
 **Implementation (if continuing):**
 
 - Ask: "Ready to move to implementation planning?"
-- Use dev-workflow:planning skill to create a detailed implementation plan
-- Use dev-workflow:brainstorming skill if trade-off evaluation is still needed
+- Use feature-dev:planning skill to create a detailed implementation plan
+- Use feature-dev:brainstorming skill if trade-off evaluation is still needed

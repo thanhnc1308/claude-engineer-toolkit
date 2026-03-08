@@ -9,6 +9,5 @@
   "license": "MIT",
   "keywords": ["git", "commit", "pull-request", "conventional-commits"],
   "skills": "./skills/",
-  "commands": "./commands/",
-  "rules": "./rules/"
+  "commands": "./commands/"
 }
