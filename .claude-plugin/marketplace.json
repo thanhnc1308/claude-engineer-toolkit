@@ -37,92 +37,92 @@
       "tags": ["nextjs", "frontend", "react"]
     },
     {
-      "name": "ai-ml-tools",
-      "source": "./plugins/ai-ml-tools",
+      "name": "ai-ml",
+      "source": "./plugins/ai-ml",
       "description": "AI and machine learning tools, prompts, and patterns for building intelligent applications",
       "category": "tools",
       "tags": ["ai", "machine-learning", "prompts", "patterns"]
     },
     {
-      "name": "backend-tools",
-      "source": "./plugins/backend-tools",
+      "name": "backend",
+      "source": "./plugins/backend",
       "description": "Backend development tools, API patterns, and server-side utilities",
       "category": "tools",
       "tags": ["backend", "api", "server-side"]
     },
     {
-      "name": "debugging-tools",
-      "source": "./plugins/debugging-tools",
+      "name": "debugging",
+      "source": "./plugins/debugging",
       "description": "Debugging utilities, diagnostic patterns, and error analysis tools",
       "category": "tools",
       "tags": ["debugging", "diagnostics", "error-analysis"]
     },
     {
-      "name": "devops-tools",
-      "source": "./plugins/devops-tools",
+      "name": "devops",
+      "source": "./plugins/devops",
       "description": "DevOps automation, CI/CD pipelines, infrastructure, and deployment tools",
       "category": "tools",
       "tags": ["devops", "ci-cd", "infrastructure", "deployment"]
     },
     {
-      "name": "document-tools",
-      "source": "./plugins/document-tools",
+      "name": "document",
+      "source": "./plugins/document",
       "description": "Document processing, transformation, and content generation tools",
       "category": "tools",
       "tags": ["documents", "processing", "content-generation"]
     },
     {
-      "name": "media-tools",
-      "source": "./plugins/media-tools",
+      "name": "media",
+      "source": "./plugins/media",
       "description": "Media handling tools for images, audio, video, and rich content",
       "category": "tools",
       "tags": ["media", "images", "audio", "video"]
     },
     {
-      "name": "meta-tools",
-      "source": "./plugins/meta-tools",
+      "name": "meta",
+      "source": "./plugins/meta",
       "description": "Meta-level tools for managing skills, plugins, and Claude Code workflows",
       "category": "tools",
       "tags": ["meta", "skills", "plugins", "workflows"]
     },
     {
-      "name": "platform-tools",
-      "source": "./plugins/platform-tools",
+      "name": "platform",
+      "source": "./plugins/platform",
       "description": "Platform-specific tools, agents, and commands for cross-platform development",
       "category": "tools",
       "tags": ["platform", "cross-platform", "agents"]
     },
     {
-      "name": "problem-solving-tools",
-      "source": "./plugins/problem-solving-tools",
+      "name": "problem-solving",
+      "source": "./plugins/problem-solving",
       "description": "Structured problem-solving approaches, analytical frameworks, and decision tools",
       "category": "tools",
       "tags": ["problem-solving", "analytics", "decision-making"]
     },
     {
-      "name": "research-tools",
-      "source": "./plugins/research-tools",
+      "name": "research",
+      "source": "./plugins/research",
       "description": "Research tools for web search, information gathering, and knowledge synthesis",
       "category": "tools",
       "tags": ["research", "web-search", "knowledge"]
     },
     {
-      "name": "specialized-tools",
-      "source": "./plugins/specialized-tools",
+      "name": "specialized",
+      "source": "./plugins/specialized",
       "description": "Specialized domain tools for niche tasks and targeted workflows",
       "category": "tools",
       "tags": ["specialized", "domain-specific", "niche"]
     },
     {
-      "name": "frontend-tools",
-      "source": "./plugins/frontend-tools",
+      "name": "frontend",
+      "source": "./plugins/frontend",
       "description": "Web development tools, frontend utilities, and browser-related workflows",
       "category": "tools",
       "tags": ["web-development", "frontend", "browser"]
     },
     {
-      "name": "database-tools",
-      "source": "./plugins/database-tools",
+      "name": "database",
+      "source": "./plugins/database",
       "description": "Database management tools, query optimization, and schema design",
       "category": "general",
       "tags": ["database", "postgresql", "mongodb", "schema", "sql", "nosql"]
@@ -133,13 +133,6 @@
       "description": "PHP code generation and debugging plugin for Claude Engineer Toolkit.",
       "category": "general",
       "tags": ["php", "symfony", "silex"]
-    },
-    {
-      "name": "frontend-tools",
-      "source": "./plugins/frontend-tools",
-      "description": "Frontend development tools, UI component generation, and client-side utilities",
-      "category": "general",
-      "tags": ["frontend", "ui", "client-side"]
     },
     {
       "name": "git",
