@@ -1,6 +1,6 @@
 ---
 description: Create a pull request
-allowed-tools: Bash(git checkout --branch:*), Bash(git add:*), Bash(git status:*), Bash(git push:*), Bash(git commit:*), Bash(gh pr create:*)
+allowed-tools: Bash(git checkout --branch:*), Bash(git add:*), Bash(git status:*), Bash(git push:*), Bash(git commit:*), Bash(gh pr create:*), Bash(cat *conventions.md)
 argument-hint: [to-branch] [from-branch]
 ---
 

@@ -21,7 +21,7 @@ planner -> tdd-guide -> code-reviewer -> security-reviewer
 Bug investigation and fix workflow:
 
 ```
-explorer -> tdd-guide -> code-reviewer
+code-explorer -> tdd-guide -> code-reviewer
 ```
 
 ### refactor

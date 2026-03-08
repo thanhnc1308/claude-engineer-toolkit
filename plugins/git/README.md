@@ -10,8 +10,8 @@ Git workflow commands with shared Conventional Commits conventions.
 
 ## Commands
 
-- `/git/cm [ticket]`: Stage all changes and create a commit following Conventional Commits. Optionally add a JIRA ticket reference as footer.
-- `/git/pr [to-branch] [from-branch]`: Create a draft pull request with a conventional title and summary.
+- `/cm [ticket]`: Stage all changes and create a commit following Conventional Commits. Optionally add a JIRA ticket reference as footer.
+- `/pr [to-branch] [from-branch]`: Create a draft pull request with a conventional title and summary.
 
 ## Skills
 

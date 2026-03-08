@@ -13,7 +13,7 @@
       "source": "./plugins/dev-workflow",
       "description": "Development workflow: brainstorming, planning, implementing, reviewing",
       "category": "workflow",
-      "tags": ["workflow", "planning", "review", "brainstorming"]
+      "tags": ["workflow", "brainstorming", "planning"]
     },
     {
       "name": "typescript",
@@ -47,7 +47,7 @@
       "name": "backend",
       "source": "./plugins/backend",
       "description": "Backend development tools, API patterns, and server-side utilities",
-      "category": "tools",
+      "category": "backend",
       "tags": ["backend", "api", "server-side"]
     },
     {
@@ -61,7 +61,7 @@
       "name": "devops",
       "source": "./plugins/devops",
       "description": "DevOps automation, CI/CD pipelines, infrastructure, and deployment tools",
-      "category": "tools",
+      "category": "devops",
       "tags": ["devops", "ci-cd", "infrastructure", "deployment"]
     },
     {
@@ -110,28 +110,28 @@
       "name": "frontend",
       "source": "./plugins/frontend",
       "description": "Web development tools, frontend utilities, and browser-related workflows",
-      "category": "tools",
+      "category": "frontend",
       "tags": ["web-development", "frontend", "browser"]
     },
     {
       "name": "database",
       "source": "./plugins/database",
       "description": "Database management tools, query optimization, and schema design",
-      "category": "general",
+      "category": "database",
       "tags": ["database", "postgresql", "mongodb", "schema", "sql", "nosql"]
     },
     {
       "name": "php",
       "source": "./plugins/php",
       "description": "PHP code generation and debugging plugin for Claude Engineer Toolkit.",
-      "category": "general",
+      "category": "language",
       "tags": ["php", "symfony", "silex"]
     },
     {
       "name": "git",
       "source": "./plugins/git",
       "description": "Git workflow commands (commit, PR) with shared Conventional Commits conventions",
-      "category": "workflow",
+      "category": "tools",
       "tags": ["git", "commit", "pull-request", "conventional-commits"]
     }
   ]

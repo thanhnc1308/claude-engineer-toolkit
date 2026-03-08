@@ -1,6 +1,6 @@
 ---
 description: Stage all files and create a commit.
-allowed-tools: Bash(git *)
+allowed-tools: Bash(git *), Bash(cat *conventions.md)
 arguments:
   - name: ticket
     description: JIRA ticket number (e.g., PROJ-1234). If provided, added as "Refs: <ticket>" in the commit footer.
