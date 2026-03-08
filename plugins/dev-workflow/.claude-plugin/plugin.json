@@ -1,18 +1,32 @@
 {
   "name": "dev-workflow",
   "version": "1.1.0",
-  "description": "Development workflow: brainstorming, planning, implementing, reviewing",
+  "description": "Full-stack development workflow with 16 specialized agents: planning, brainstorming, TDD, code review, security audit, performance check, refactoring, orchestration, and verification",
   "author": {
     "name": "CThanh Nguyen"
   },
   "repository": "https://github.com/thanhnc1308/claude-engineer-toolkit",
   "license": "MIT",
-  "keywords": ["workflow", "planning", "review", "brainstorming"],
+  "keywords": [
+    "workflow",
+    "planning",
+    "review",
+    "brainstorming",
+    "tdd",
+    "security",
+    "performance",
+    "refactoring",
+    "orchestration",
+    "agents",
+    "code-review",
+    "verification"
+  ],
   "skills": "./skills/",
   "commands": "./commands/",
   "agents": [
     "./agents/architect.md",
     "./agents/brainstormer.md",
+    "./agents/code-explorer.md",
     "./agents/code-reviewer.md",
     "./agents/e2e-runner.md",
     "./agents/performance-reviewer.md",

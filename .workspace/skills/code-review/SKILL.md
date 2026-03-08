@@ -80,65 +80,33 @@ SITUATION?
 
 ## Receiving Feedback Protocol
 
-### Response Pattern
+For the full protocol on receiving code review feedback (response pattern, source handling, YAGNI checks, pushback guidelines), use the **receiving-code-review** skill or see `references/code-review-reception.md`.
 
-READ → UNDERSTAND → VERIFY → EVALUATE → RESPOND → IMPLEMENT
+**Key rules (summary):**
 
-### Key Rules
-
-- ❌ No performative agreement: "You're absolutely right!", "Great point!", "Thanks for [anything]"
-- ❌ No implementation before verification
-- ✅ Restate requirement, ask questions, push back with technical reasoning, or just start working
-- ✅ If unclear: STOP and ask for clarification on ALL unclear items first
-- ✅ YAGNI check: grep for usage before implementing suggested "proper" features
-
-### Source Handling
-
-- **Human partner:** Trusted - implement after understanding, no performative agreement
-- **External reviewers:** Verify technically correct, check for breakage, push back if wrong
-
-**Full protocol:** `references/code-review-reception.md`
+- No performative agreement — restate requirement, ask questions, or just start working
+- No implementation before verification
+- If unclear: STOP and ask for clarification on ALL unclear items first
 
 ## Requesting Review Protocol
 
-### When to Request
+For the full protocol on requesting code reviews (when to request, dispatch template, acting on feedback), use the **requesting-code-review** skill or see `references/requesting-code-review.md`.
 
-- After each task in subagent-driven development
-- After major feature completion
-- Before merge to main
+**Key rules (summary):**
 
-### Process
-
-1. Get git SHAs: `BASE_SHA=$(git rev-parse HEAD~1)` and `HEAD_SHA=$(git rev-parse HEAD)`
-2. Dispatch code-reviewer subagent via Task tool with: WHAT_WAS_IMPLEMENTED, PLAN_OR_REQUIREMENTS, BASE_SHA, HEAD_SHA, DESCRIPTION
-3. Act on feedback: Fix Critical immediately, Important before proceeding, note Minor for later
-
-**Full protocol:** `references/requesting-code-review.md`
+- Mandatory after each task in subagent-driven development, after major features, before merge
+- Dispatch code-reviewer subagent with git SHAs and context
+- Fix Critical immediately, Important before proceeding, note Minor for later
 
 ## Verification Gates Protocol
 
-### The Iron Law
+For the full protocol on verification gates (the Iron Law, gate function, red flags, rationalization prevention), use the **verification-before-completion** skill or see `references/verification-before-completion.md`.
 
-**NO COMPLETION CLAIMS WITHOUT FRESH VERIFICATION EVIDENCE**
+**Key rules (summary):**
 
-### Gate Function
-
-IDENTIFY command → RUN full command → READ output → VERIFY confirms claim → THEN claim
-
-Skip any step = lying, not verifying
-
-### Requirements
-
-- Tests pass: Test output shows 0 failures
-- Build succeeds: Build command exit 0
-- Bug fixed: Test original symptom passes
-- Requirements met: Line-by-line checklist verified
-
-### Red Flags - STOP
-
-Using "should"/"probably"/"seems to", expressing satisfaction before verification, committing without verification, trusting agent reports, ANY wording implying success without running verification
-
-**Full protocol:** `references/verification-before-completion.md`
+- NO COMPLETION CLAIMS WITHOUT FRESH VERIFICATION EVIDENCE
+- IDENTIFY command → RUN → READ output → VERIFY → THEN claim
+- Skip any step = lying, not verifying
 
 ## Performing a Review
 
