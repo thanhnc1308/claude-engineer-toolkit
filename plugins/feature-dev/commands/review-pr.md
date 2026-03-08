@@ -1,132 +1,93 @@
 ---
-description: 'Comprehensive PR review using specialized agents'
-argument-hint: '[review-aspects]'
-allowed-tools: ['Bash', 'Glob', 'Grep', 'Read', 'Task']
+description: 'Review a GitHub PR with parallel specialized agents, then post comments or approve'
+argument-hint: '<pr-url>'
+allowed-tools: ['Bash', 'Glob', 'Grep', 'Read', 'Agent']
 ---
 
-# Comprehensive PR Review
+# PR Review Command
 
-Run a comprehensive pull request review using multiple specialized agents, each focusing on a different aspect of code quality.
+Review a GitHub pull request using multiple specialized agents in parallel, present findings for user approval, then post comments or approve.
 
-**Review Aspects (optional):** "$ARGUMENTS"
+**PR URL:** "$ARGUMENTS"
 
-## Review Workflow:
+## Workflow
 
-1. **Determine Review Scope**
-   - Check git status to identify changed files
-   - Parse arguments to see if user requested specific review aspects
-   - Default: Run all applicable reviews
+### Step 1: Parse PR URL and Fetch PR Data
 
-2. **Available Review Aspects:**
-   - **comments** - Analyze code comment accuracy and maintainability
-   - **tests** - Review test coverage quality and completeness
-   - **errors** - Check error handling for silent failures
-   - **types** - Analyze type design and invariants (if new types added)
-   - **code** - General code review for project guidelines
-   - **simplify** - Simplify code for clarity and maintainability
-   - **all** - Run all applicable reviews (default)
+Extract the owner, repo, and PR number from the provided URL argument.
 
-3. **Identify Changed Files**
-   - Run `git diff --name-only` to see modified files
-   - Check if PR already exists: `gh pr view`
-   - Identify file types and what reviews apply
+- The URL format is: `https://github.com/{owner}/{repo}/pull/{number}`
+- If no URL is provided, try `gh pr view --json url` to get the current branch's PR
+- If still no PR found, ask the user to provide a PR URL
 
-4. **Determine Applicable Reviews**
+Fetch PR data using the `gh` CLI:
 
-   Based on changes:
-   - **Always applicable**: code-reviewer (general quality)
-   - **If test files changed**: pr-test-analyzer
-   - **If comments/docs added**: code-comment-analyzer
-   - **If error handling changed**: silent-failure-hunter
-   - **If types added/modified**: type-design-analyzer
-   - **After passing review**: code-simplifier (polish and refine)
+- `gh pr diff <number> --repo <owner>/<repo>` — full diff
+- `gh pr view <number> --repo <owner>/<repo> --json title,body,additions,deletions,changedFiles` — PR metadata
 
-5. **Launch Review Agents**
+### Step 2: Identify Changed Files and Determine Applicable Reviews
 
-   **Sequential approach** (one at a time):
-   - Easier to understand and act on
-   - Each report is complete before next
-   - Good for interactive review
+Run `gh pr diff <number> --repo <owner>/<repo> --name-only` to get the list of changed files, then determine which reviews apply:
 
-   **Parallel approach** (user can request):
-   - Launch all agents simultaneously
-   - Faster for comprehensive review
-   - Results come back together
+- **Always run**: **code-reviewer** (general code quality, CLAUDE.md compliance, bugs)
+- **Always run**: **security-reviewer** (injection vulnerabilities, hardcoded secrets, auth bypass, OWASP Top 10, unsafe crypto — uses `security-audit` skill)
+- **Always run**: **performance-reviewer** (N+1 queries, missing indexes, poor caching, synchronous blocking, unbounded queries — uses `performance-check` skill)
+- **If test files changed**: **pr-test-analyzer** (behavioral coverage, critical gaps, test quality)
+- **If comments/docs added**: **code-comment-analyzer** (comment accuracy, comment rot, documentation completeness)
+- **If error handling changed**: **silent-failure-hunter** (silent failures, empty catch blocks, missing error logging)
+- **If types added/modified**: **type-design-analyzer** (type encapsulation, invariant expression, type design quality)
 
-6. **Aggregate Results**
+### Step 3: Dispatch Applicable Agents in Parallel
 
-   After agents complete, summarize:
-   - **Critical Issues** (must fix before merge)
-   - **Important Issues** (should fix)
-   - **Suggestions** (nice to have)
-   - **Positive Observations** (what's good)
+Launch all applicable review agents **in parallel** using the Agent tool. Pass each agent the full PR diff and changed file list as context. Each agent must return findings as a structured list with severity (critical/important/suggestion) and file:line references.
 
-7. **Provide Action Plan**
+### Step 4: Run Code Simplifier (Post-Review Polish)
 
-   Organize findings:
+After all review agents complete and if no critical issues are found, launch **code-simplifier** to:
 
-   ```markdown
-   # PR Review Summary
+- Simplify complex code for clarity and readability
+- Apply project standards and conventions
+- Suggest polish improvements while preserving functionality
 
-   ## Critical Issues (X found)
+### Step 5: Aggregate and Present Results
 
-   - [agent-name]: Issue description [file:line]
+Collect results from all agents and organize into a single summary:
 
-   ## Important Issues (X found)
+```markdown
+# PR Review Summary: <PR title>
 
-   - [agent-name]: Issue description [file:line]
+## Critical Issues (must fix)
 
-   ## Suggestions (X found)
+- [Security] Description — `file:line`
+- [Code Quality] Description — `file:line`
 
-   - [agent-name]: Suggestion [file:line]
+## Important Issues (should fix)
 
-   ## Strengths
+- [Performance] Description — `file:line`
+- [Tests] Description — `file:line`
 
-   - What's well-done in this PR
+## Suggestions (nice to have)
 
-   ## Recommended Action
+- [Architecture] Description — `file:line`
 
-   1. Fix critical issues first
-   2. Address important issues
-   3. Consider suggestions
-   4. Re-run review after fixes
-   ```
+## Strengths
 
-## Agent Descriptions:
+- What's well-done in this PR
+```
 
-**code-comment-analyzer**:
+Present this summary to the user and wait for their decision.
 
-- Verifies comment accuracy vs code
-- Identifies comment rot
-- Checks documentation completeness
+### Step 6: Act on User Decision
 
-**pr-test-analyzer**:
+**If there are review comments:**
 
-- Reviews behavioral test coverage
-- Identifies critical gaps
-- Evaluates test quality
+- Ask the user: "Would you like me to post these comments on the PR?"
+- If user accepts: Use `gh pr review <number> --repo <owner>/<repo> --comment --body "<summary>"` to post the review summary. For inline comments on specific files/lines, use `gh api repos/{owner}/{repo}/pulls/{number}/reviews` with the appropriate payload.
+- If user declines: Do nothing further.
 
-**silent-failure-hunter**:
+**If there are NO review comments (PR looks good):**
 
-- Finds silent failures
-- Reviews catch blocks
-- Checks error logging
-
-**type-design-analyzer**:
-
-- Analyzes type encapsulation
-- Reviews invariant expression
-- Rates type design quality
-
-**code-reviewer**:
-
-- Checks CLAUDE.md compliance
-- Detects bugs and issues
-- Reviews general code quality
-
-**code-simplifier**:
-
-- Simplifies complex code
-- Improves clarity and readability
-- Applies project standards
-- Preserves functionality
+- Tell the user: "No issues found. This PR looks good!"
+- Ask: "Would you like me to approve this PR?"
+- If user accepts: Run `gh pr review <number> --repo <owner>/<repo> --approve`
+- If user declines: Do nothing further.

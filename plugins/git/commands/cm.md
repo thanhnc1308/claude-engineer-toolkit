@@ -16,6 +16,8 @@ arguments:
 
 ## Your task
 
+**FIRST**, invoke the `git-conventions` skill using the Skill tool before doing anything else. Then proceed:
+
 Based on the above changes
 
 1. Review for commit secrets, credentials, or environment files (dotenv, API keys, database credentials, etc.). **NEVER** commit without asking the user.

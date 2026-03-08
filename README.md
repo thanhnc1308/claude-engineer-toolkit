@@ -2,8 +2,6 @@
 
 A personal Claude Code plugin marketplace for full-stack software engineering. Install individual plugins per project to get context-aware skills, rules, agents, and commands.
 
-18 plugins | 75+ skills | 16 commands | 5 agents
-
 ## Installation
 
 Add this marketplace to Claude Code:
@@ -33,62 +31,83 @@ Knowledge plugins that provide architecture patterns, code review checklists, an
 
 ### Development Workflow
 
-| Plugin        | Description                                                             |
-| ------------- | ----------------------------------------------------------------------- |
-| `feature-dev` | Planning, brainstorming, TDD, code review, refactoring, security audits |
+| Plugin        | Description                                                                                              |
+| ------------- | -------------------------------------------------------------------------------------------------------- |
+| `feature-dev` | Full-stack development workflow with planning, brainstorming, TDD, code review, security audit, and more |
+| `git`         | Git workflow commands (commit, PR) with Conventional Commits conventions                                 |
 
 ### Tools
 
-| Plugin            | Description                                                          |
-| ----------------- | -------------------------------------------------------------------- |
-| `backend`         | Backend development, API patterns, authentication                    |
-| `frontend`        | React, UI styling, 3D visualization, web testing, browser automation |
-| `database`        | Database management, query optimization, schema design               |
-| `debugging`       | Debugging utilities, diagnostics, error analysis                     |
-| `devops`          | CI/CD, Docker, Kubernetes, Cloudflare, GCP                           |
-| `ai-ml`           | AI/ML tools, Gemini API, context engineering                         |
-| `media`           | FFmpeg, ImageMagick, media processing                                |
-| `document`        | Document processing and content generation                           |
-| `research`        | Documentation search, repository analysis                            |
-| `problem-solving` | Analytical frameworks, decision tools                                |
-| `specialized`     | Mermaid diagrams, sequential thinking                                |
-| `meta`            | Skill creation, code review practices                                |
-| `platform`        | Claude Code integration, MCP, session management, Shopify            |
+| Plugin            | Description                                                           |
+| ----------------- | --------------------------------------------------------------------- |
+| `backend`         | Backend development, API patterns, authentication                     |
+| `frontend`        | React, UI styling, 3D visualization, web testing, browser automation  |
+| `database`        | Database management, query optimization, schema design                |
+| `debugging`       | Debugging utilities, diagnostics, error analysis                      |
+| `devops`          | CI/CD, Docker, Kubernetes, Cloudflare, GCP                            |
+| `ai-ml`           | AI/ML tools, Gemini API, context engineering                          |
+| `media`           | FFmpeg, ImageMagick, media processing                                 |
+| `document`        | Document processing and content generation                            |
+| `research`        | Documentation search, repository analysis                             |
+| `problem-solving` | Analytical frameworks, decision tools                                 |
+| `specialized`     | Mermaid diagrams, sequential thinking                                 |
+| `platform`        | Claude Code integration, MCP, session management, Shopify             |
+| `hookify`         | Create hooks to prevent unwanted behaviors from conversation analysis |
+| `plugin-dev`      | Tools and skills for developing Claude Code plugins                   |
 
 ## Commands
 
 ### feature-dev
 
-| Command                  | Description                              |
-| ------------------------ | ---------------------------------------- |
-| `/brainstorm [topic]`    | Start a brainstorming session            |
-| `/plan [feature]`        | Create a structured implementation plan  |
-| `/review`                | Comprehensive code review                |
-| `/code-review`           | Review code using code-reviewer agent    |
-| `/tdd`                   | Enforce test-driven development          |
-| `/refactor`              | Safely identify and remove dead code     |
-| `/research [technology]` | Conduct structured multi-source research |
-| `/test-coverage`         | Analyze test coverage                    |
-| `/verify`                | Verify work before claiming completion   |
-| `/orchestrate`           | Orchestrate multi-agent workflow         |
-| `/update-docs`           | Update documentation                     |
-| `/update-codemaps`       | Update code maps                         |
+| Command                  | Description                                                 |
+| ------------------------ | ----------------------------------------------------------- |
+| `/brainstorm [topic]`    | Start a brainstorming session                               |
+| `/plan [feature]`        | Create a structured implementation plan                     |
+| `/dev [feature]`         | Run the full feature development workflow                   |
+| `/review`                | Comprehensive code review                                   |
+| `/review-pr`             | Comprehensive PR review using specialized agents            |
+| `/tdd`                   | Enforce test-driven development                             |
+| `/refactor`              | Safely identify and remove dead code                        |
+| `/debug`                 | Systematic debugging with four-phase framework              |
+| `/research [technology]` | Conduct structured multi-source research                    |
+| `/system-design`         | Design scalable system architecture with trade-off analysis |
+| `/test-coverage`         | Analyze test coverage                                       |
+| `/verify`                | Verify work before claiming completion                      |
+| `/orchestrate`           | Orchestrate multi-agent workflow                            |
+| `/update-docs`           | Update documentation                                        |
+| `/update-codemaps`       | Update code maps                                            |
+
+### git
+
+| Command | Description                         |
+| ------- | ----------------------------------- |
+| `/cm`   | Stage all files and create a commit |
+| `/pr`   | Create a pull request               |
 
 ### platform
 
-| Command               | Description                                    |
-| --------------------- | ---------------------------------------------- |
-| `/generate-claude-md` | Generate CLAUDE.md for current project         |
-| `/learn`              | Extract reusable patterns from current session |
-| `/sessions`           | Manage session history and aliases             |
-| `/use-mcp`            | Utilize MCP server tools                       |
+| Command                         | Description                                    |
+| ------------------------------- | ---------------------------------------------- |
+| `/generate-claude-md`           | Generate CLAUDE.md for current project         |
+| `/generate-default-permissions` | Generate default permissions for Claude Code   |
+| `/learn`                        | Extract reusable patterns from current session |
+| `/sessions`                     | Manage session history and aliases             |
+| `/use-mcp`                      | Utilize MCP server tools                       |
 
-### meta
+### hookify
 
-| Command  | Description              |
-| -------- | ------------------------ |
-| `/skill` | Create and manage skills |
-| `/git`   | Git command integration  |
+| Command      | Description                                             |
+| ------------ | ------------------------------------------------------- |
+| `/hookify`   | Create hooks from conversation analysis or instructions |
+| `/configure` | Enable or disable hookify rules                         |
+| `/list`      | List all configured hookify rules                       |
+| `/help`      | Get help with the hookify plugin                        |
+
+### plugin-dev
+
+| Command          | Description                                |
+| ---------------- | ------------------------------------------ |
+| `/create-plugin` | Guided end-to-end plugin creation workflow |
 
 ## Examples
 
@@ -96,7 +115,6 @@ Knowledge plugins that provide architecture patterns, code review checklists, an
 
 ```bash
 /plugin install ai-ml@claude-engineer-toolkit
-/plugin install meta@claude-engineer-toolkit
 /plugin install platform@claude-engineer-toolkit
 /plugin install problem-solving@claude-engineer-toolkit
 /plugin install research@claude-engineer-toolkit
@@ -145,6 +163,7 @@ Knowledge plugins that provide architecture patterns, code review checklists, an
 /plugin install debugging@claude-engineer-toolkit
 /plugin install devops@claude-engineer-toolkit
 /plugin install typescript@claude-engineer-toolkit
+/plugin install git@claude-engineer-toolkit
 ```
 
 ## Adding a New Plugin
