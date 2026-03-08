@@ -303,8 +303,8 @@ wc -w skills/path/SKILL.md
 
 Use skill name only, with explicit requirement markers:
 
-- ✅ Good: `**REQUIRED SUB-SKILL:** Use dev-workflow:test-driven-development`
-- ✅ Good: `**REQUIRED BACKGROUND:** You MUST understand dev-workflow:systematic-debugging`
+- ✅ Good: `**REQUIRED SUB-SKILL:** Use feature-dev:test-driven-development`
+- ✅ Good: `**REQUIRED BACKGROUND:** You MUST understand feature-dev:systematic-debugging`
 - ❌ Bad: `See skills/testing/test-driven-development` (unclear if required)
 - ❌ Bad: `@skills/testing/test-driven-development/SKILL.md` (force-loads, burns context)
 

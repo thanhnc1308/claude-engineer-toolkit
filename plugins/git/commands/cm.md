@@ -20,7 +20,7 @@ Based on the above changes
 
 1. Review for commit secrets, credentials, or environment files (dotenv, API keys, database credentials, etc.). **NEVER** commit without asking the user.
 
-2. Generate a commit message following the git conventions rule.
+2. Generate a commit message following the `git-conventions` skill.
 
    **JIRA ticket:**
    - If `$ARGUMENTS.ticket` is provided, add `Refs: $ARGUMENTS.ticket` as the commit footer

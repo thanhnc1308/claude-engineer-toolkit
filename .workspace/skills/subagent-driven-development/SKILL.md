@@ -60,7 +60,7 @@ digraph process {
     "Read plan, extract all tasks with full text, note context, create TodoWrite" [shape=box];
     "More tasks remain?" [shape=diamond];
     "Dispatch final code reviewer subagent for entire implementation" [shape=box];
-    "Use dev-workflow:finishing-a-development-branch" [shape=box style=filled fillcolor=lightgreen];
+    "Use feature-dev:finishing-a-development-branch" [shape=box style=filled fillcolor=lightgreen];
 
     "Read plan, extract all tasks with full text, note context, create TodoWrite" -> "Dispatch implementer subagent (./implementer-prompt.md)";
     "Dispatch implementer subagent (./implementer-prompt.md)" -> "Implementer subagent asks questions?";
@@ -79,7 +79,7 @@ digraph process {
     "Mark task complete in TodoWrite" -> "More tasks remain?";
     "More tasks remain?" -> "Dispatch implementer subagent (./implementer-prompt.md)" [label="yes"];
     "More tasks remain?" -> "Dispatch final code reviewer subagent for entire implementation" [label="no"];
-    "Dispatch final code reviewer subagent for entire implementation" -> "Use dev-workflow:finishing-a-development-branch";
+    "Dispatch final code reviewer subagent for entire implementation" -> "Use feature-dev:finishing-a-development-branch";
 }
 ```
 
@@ -241,15 +241,15 @@ Done!
 
 **Required workflow skills:**
 
-- **dev-workflow:using-git-worktrees** - REQUIRED: Set up isolated workspace before starting
-- **dev-workflow:planning** - Creates the plan this skill executes
-- **dev-workflow:requesting-code-review** - Code review template for reviewer subagents
-- **dev-workflow:finishing-a-development-branch** - Complete development after all tasks
+- **feature-dev:using-git-worktrees** - REQUIRED: Set up isolated workspace before starting
+- **feature-dev:planning** - Creates the plan this skill executes
+- **feature-dev:requesting-code-review** - Code review template for reviewer subagents
+- **feature-dev:finishing-a-development-branch** - Complete development after all tasks
 
 **Subagents should use:**
 
-- **dev-workflow:test-driven-development** - Subagents follow TDD for each task
+- **feature-dev:test-driven-development** - Subagents follow TDD for each task
 
 **Alternative workflow:**
 
-- **dev-workflow:executing-plans** - Use for separate session instead of same-session execution
+- **feature-dev:executing-plans** - Use for separate session instead of same-session execution

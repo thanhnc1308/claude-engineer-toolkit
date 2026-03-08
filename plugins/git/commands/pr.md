@@ -14,7 +14,7 @@ FROM_BRANCH: $2 (defaults to current branch)
 1. Run `git log` and `git diff {TO_BRANCH}...{FROM_BRANCH}` to understand all changes since the branch diverged.
 2. Generate a concise summary of the changes (what was added, changed, or fixed).
 3. Use `gh pr create --draft --assignee @me` to create a **draft** pull request assigned to yourself from {FROM_BRANCH} to {TO_BRANCH} with:
-   - A short, descriptive title following the git conventions rule (under 70 characters)
+   - A short, descriptive title following the `git-conventions` skill (under 70 characters)
    - A description body that includes a `## Summary` section with the generated summary
 
 ## Notes

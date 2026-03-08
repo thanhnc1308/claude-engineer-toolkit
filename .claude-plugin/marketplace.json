@@ -9,11 +9,24 @@
   },
   "plugins": [
     {
-      "name": "dev-workflow",
-      "source": "./plugins/dev-workflow",
-      "description": "Development workflow: brainstorming, planning, implementing, reviewing",
+      "name": "feature-dev",
+      "source": "./plugins/feature-dev",
+      "description": "Full-stack development workflow with 16 specialized agents: planning, brainstorming, TDD, code review, security audit, performance check, refactoring, orchestration, and verification",
       "category": "workflow",
-      "tags": ["workflow", "brainstorming", "planning"]
+      "tags": [
+        "workflow",
+        "planning",
+        "review",
+        "brainstorming",
+        "tdd",
+        "security",
+        "performance",
+        "refactoring",
+        "orchestration",
+        "agents",
+        "code-review",
+        "verification"
+      ]
     },
     {
       "name": "typescript",

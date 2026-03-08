@@ -33,9 +33,9 @@ Knowledge plugins that provide architecture patterns, code review checklists, an
 
 ### Development Workflow
 
-| Plugin         | Description                                                             |
-| -------------- | ----------------------------------------------------------------------- |
-| `dev-workflow` | Planning, brainstorming, TDD, code review, refactoring, security audits |
+| Plugin        | Description                                                             |
+| ------------- | ----------------------------------------------------------------------- |
+| `feature-dev` | Planning, brainstorming, TDD, code review, refactoring, security audits |
 
 ### Tools
 
@@ -57,7 +57,7 @@ Knowledge plugins that provide architecture patterns, code review checklists, an
 
 ## Commands
 
-### dev-workflow
+### feature-dev
 
 | Command                  | Description                              |
 | ------------------------ | ---------------------------------------- |
@@ -106,7 +106,7 @@ Knowledge plugins that provide architecture patterns, code review checklists, an
 ### NestJS Project
 
 ```bash
-/plugin install dev-workflow@claude-engineer-toolkit
+/plugin install feature-dev@claude-engineer-toolkit
 /plugin install backend@claude-engineer-toolkit
 /plugin install debugging@claude-engineer-toolkit
 /plugin install typescript@claude-engineer-toolkit
@@ -123,7 +123,7 @@ Knowledge plugins that provide architecture patterns, code review checklists, an
 ### Next.js Project
 
 ```bash
-/plugin install dev-workflow@claude-engineer-toolkit
+/plugin install feature-dev@claude-engineer-toolkit
 /plugin install frontend@claude-engineer-toolkit
 /plugin install typescript@claude-engineer-toolkit
 /plugin install nextjs@claude-engineer-toolkit
@@ -138,7 +138,7 @@ Knowledge plugins that provide architecture patterns, code review checklists, an
 ### Full-Stack Project
 
 ```bash
-/plugin install dev-workflow@claude-engineer-toolkit
+/plugin install feature-dev@claude-engineer-toolkit
 /plugin install backend@claude-engineer-toolkit
 /plugin install frontend@claude-engineer-toolkit
 /plugin install database@claude-engineer-toolkit

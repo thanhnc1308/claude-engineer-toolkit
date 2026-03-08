@@ -151,5 +151,5 @@ Structured workflow for turning ideas into fully formed designs through collabor
 **Implementation (if continuing):**
 
 - Ask: "Ready to set up for implementation?"
-- Use dev-workflow:using-git-worktrees skill to create isolated workspace
-- Use dev-workflow:planning skill to create detailed implementation plan
+- Use feature-dev:using-git-worktrees skill to create isolated workspace
+- Use feature-dev:planning skill to create detailed implementation plan
