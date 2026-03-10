@@ -51,9 +51,8 @@ Knowledge plugins that provide architecture patterns, code review checklists, an
 | `research`        | Documentation search, repository analysis                             |
 | `problem-solving` | Analytical frameworks, decision tools                                 |
 | `specialized`     | Mermaid diagrams, sequential thinking                                 |
-| `platform`        | Claude Code integration, MCP, session management, Shopify             |
+| `claude-helpers`  | Claude Code integration, MCP, session management, plugin development  |
 | `hookify`         | Create hooks to prevent unwanted behaviors from conversation analysis |
-| `plugin-dev`      | Tools and skills for developing Claude Code plugins                   |
 
 ## Commands
 
@@ -84,7 +83,7 @@ Knowledge plugins that provide architecture patterns, code review checklists, an
 | `/cm`   | Stage all files and create a commit |
 | `/pr`   | Create a pull request               |
 
-### platform
+### claude-helpers
 
 | Command                         | Description                                    |
 | ------------------------------- | ---------------------------------------------- |
@@ -93,6 +92,7 @@ Knowledge plugins that provide architecture patterns, code review checklists, an
 | `/learn`                        | Extract reusable patterns from current session |
 | `/sessions`                     | Manage session history and aliases             |
 | `/use-mcp`                      | Utilize MCP server tools                       |
+| `/create-plugin`                | Guided end-to-end plugin creation workflow     |
 
 ### hookify
 
@@ -103,19 +103,13 @@ Knowledge plugins that provide architecture patterns, code review checklists, an
 | `/list`      | List all configured hookify rules                       |
 | `/help`      | Get help with the hookify plugin                        |
 
-### plugin-dev
-
-| Command          | Description                                |
-| ---------------- | ------------------------------------------ |
-| `/create-plugin` | Guided end-to-end plugin creation workflow |
-
 ## Examples
 
 ### Common
 
 ```bash
 /plugin install ai-ml@claude-engineer-toolkit
-/plugin install platform@claude-engineer-toolkit
+/plugin install claude-helpers@claude-engineer-toolkit
 /plugin install problem-solving@claude-engineer-toolkit
 /plugin install research@claude-engineer-toolkit
 /plugin install specialized@claude-engineer-toolkit

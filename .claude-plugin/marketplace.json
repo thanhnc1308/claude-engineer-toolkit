@@ -92,8 +92,8 @@
       "tags": ["media", "images", "audio", "video"]
     },
     {
-      "name": "platform",
-      "source": "./plugins/platform",
+      "name": "claude-helpers",
+      "source": "./plugins/claude-helpers",
       "description": "Platform-specific tools, agents, and commands for cross-platform development",
       "category": "tools",
       "tags": ["platform", "cross-platform", "agents"]
@@ -146,6 +146,13 @@
       "description": "Git workflow commands (commit, PR) with shared Conventional Commits conventions",
       "category": "tools",
       "tags": ["git", "commit", "pull-request", "conventional-commits"]
+    },
+    {
+      "name": "platform",
+      "source": "./plugins/platform",
+      "description": "Platform-specific development tools for Shopify and other commerce platforms",
+      "category": "framework",
+      "tags": ["platform", "shopify", "commerce"]
     }
   ]
 }
