@@ -1,14 +1,12 @@
 {
   "name": "platform",
   "version": "1.0.0",
-  "description": "Platform-specific tools, agents, and commands for cross-platform development",
+  "description": "Platform-specific development tools for Shopify and other commerce platforms",
   "author": {
     "name": "CThanh Nguyen"
   },
   "repository": "https://github.com/thanhnc1308/claude-engineer-toolkit",
   "license": "MIT",
-  "keywords": ["platform", "cross-platform", "agents", "commands"],
-  "skills": "./skills/",
-  "commands": "./commands/",
-  "agents": ["./agents/mcp-manager.md"]
+  "keywords": ["platform", "shopify", "commerce"],
+  "skills": "./skills/"
 }

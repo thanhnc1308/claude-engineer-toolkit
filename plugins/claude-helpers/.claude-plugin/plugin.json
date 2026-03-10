@@ -1,0 +1,19 @@
+{
+  "name": "claude-helpers",
+  "version": "1.0.0",
+  "description": "Platform-specific tools, agents, and commands for cross-platform development",
+  "author": {
+    "name": "CThanh Nguyen"
+  },
+  "repository": "https://github.com/thanhnc1308/claude-engineer-toolkit",
+  "license": "MIT",
+  "keywords": ["platform", "cross-platform", "agents", "commands", "plugin-dev", "mcp"],
+  "skills": "./skills/",
+  "commands": "./commands/",
+  "agents": [
+    "./agents/mcp-manager.md",
+    "./agents/agent-creator.md",
+    "./agents/plugin-validator.md",
+    "./agents/skill-reviewer.md"
+  ]
+}

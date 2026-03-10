@@ -32,7 +32,7 @@ Ask the user:
 Run the init script:
 
 ```bash
-python3 ~/.claude/skills/skill-creator/scripts/init_skill.py <skill-name> --path .claude/skills
+python3 scripts/init_skill.py <skill-name> --path .claude/skills
 ```
 
 ### 4. Write Reference Files
@@ -81,7 +81,7 @@ Reference documentation for working with <project/domain>.
 Delete unused example files, then validate:
 
 ```bash
-python3 ~/.claude/skills/skill-creator/scripts/package_skill.py .claude/skills/<skill-name>
+python3 scripts/quick_validate.py .claude/skills/<skill-name>
 ```
 
 ## What to Capture
