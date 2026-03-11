@@ -3,6 +3,7 @@ name: researching
 description: Multi-source technology research across docs, GitHub, articles, and videos. Evaluate frameworks, conduct pre-implementation research, or compare technical approaches.
 allowed-tools: Read, Grep, Glob, Bash, WebFetch, WebSearch
 argument-hint: [technology, framework, or research question]
+user-invocable: false
 ---
 
 # Research Session

@@ -1,6 +1,7 @@
 ---
 name: system-designing
 description: Design scalable, maintainable system architecture for new features, refactoring, or technical decision-making. Use PROACTIVELY when planning new features, designing system components, evaluating technical trade-offs, creating Architecture Decision Records (ADRs), or identifying scalability bottlenecks.
+user-invocable: false
 ---
 
 # System Designing
