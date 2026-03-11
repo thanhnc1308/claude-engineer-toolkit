@@ -3,6 +3,7 @@ name: planning
 description: Creates a structured implementation plan from requirements. Breaks work into phases, identifies risks, and defines acceptance criteria. Use before implementing any non-trivial feature or change.
 allowed-tools: Read, Grep, Glob, WebSearch, WebFetch
 argument-hint: [feature or task to plan]
+user-invocable: false
 ---
 
 # Implementation Planning

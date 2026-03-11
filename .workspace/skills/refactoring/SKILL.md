@@ -7,6 +7,7 @@ description: >-
   verification. Covers: (1) Dead code detection with knip/depcheck/ts-prune,
   (2) Risk-categorized removal workflow, (3) Duplicate consolidation,
   (4) Deletion logging and PR templates, (5) Error recovery and rollback.
+user-invocable: false
 ---
 
 # Refactoring
