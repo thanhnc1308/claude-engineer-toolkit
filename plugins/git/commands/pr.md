@@ -1,20 +1,27 @@
 ---
 description: Create a pull request
-allowed-tools: Bash(git checkout --branch:*), Bash(git add:*), Bash(git status:*), Bash(git push:*), Bash(git commit:*), Bash(gh pr create:*)
+allowed-tools: Bash(git push:*), Bash(gh pr create:*)
 argument-hint: [to-branch] [from-branch]
 ---
+
+## Context
+
+- Current branch: !`git branch --show-current`
+- Commit log: !`git log --oneline main..HEAD`
+- Diff: !`git diff main...HEAD`
 
 ## Variables
 
 TO_BRANCH: $1 (defaults to `main`)
-FROM_BRANCH: $2 (defaults to current branch)
+FROM_BRANCH: $2 (defaults to current branch from Context above)
 
 ## Workflow
 
-1. Run `git log` and `git diff {TO_BRANCH}...{FROM_BRANCH}` to understand all changes since the branch diverged.
-2. Generate a concise summary of the changes (what was added, changed, or fixed).
-3. Use `gh pr create --draft --assignee @me` to create a **draft** pull request assigned to yourself from {FROM_BRANCH} to {TO_BRANCH} with:
-   - A short, descriptive title following the conventions below (under 70 characters)
+1. Review the commit log and diff from Context above to understand all changes since the branch diverged.
+2. Extract the JIRA ticket from the current branch name in Context above (e.g., `feature/PROJ-123-add-login` → `PROJ-123`) or from user input if provided.
+3. Generate a concise summary of the changes (what was added, changed, or fixed).
+4. Use `gh pr create --draft --assignee @me` to create a **draft** pull request assigned to yourself from {FROM_BRANCH} to {TO_BRANCH} with:
+   - A short, descriptive title following the **Ticket-first commit format** below (under 70 characters)
    - A description body that includes a `## Summary` section with the generated summary
 
 ## Notes
@@ -23,14 +30,26 @@ FROM_BRANCH: $2 (defaults to current branch)
 - Always create as draft — never create a ready-for-review PR.
 - You have the capability to call multiple tools in a single response. You MUST do all of the above in a single message. Do not use any other tools or do anything else. Do not send any other text or messages besides these tool calls.
 
-## Conventional Commits Format
+## Ticket-first Commit Format
+
+When a JIRA ticket is found (from branch name or user input):
+
+```
+[TICKET-ID] <type>(<scope>): <description>
+```
+
+When no JIRA ticket is available:
 
 ```
 <type>(<scope>): <description>
+```
 
-[optional body]
+Examples:
 
-[optional footer]
+```
+[PROJ-123] fix(auth): resolve token expiry not refreshing
+[DATA-456] feat(api): add bulk export endpoint
+refactor(utils): simplify date parsing logic
 ```
 
 ### Types
@@ -44,11 +63,6 @@ FROM_BRANCH: $2 (defaults to current branch)
 - `perf`: Performance improvements
 - `ci`: CI workflow changes
 
-### Special rules for `.claude/` directory
-
-- Changes to existing Markdown files in `.claude/` should use `perf:` (instead of `docs:`)
-- New files in `.claude/` directory should use `feat:` (instead of `docs:` or `perf:`)
-
 ### Writing rules
 
 - Write in imperative mood: "add feature" not "added feature"
@@ -58,15 +72,12 @@ FROM_BRANCH: $2 (defaults to current branch)
 - Make atomic commits — one logical change per commit
 - If there are new files and file changes at the same time, split them into separate commits
 
-### JIRA ticket as scope
+### JIRA ticket extraction
 
-When a JIRA ticket is provided, use it as the scope:
-
-```
-feat(PROJ-1234): add SSO login support
-```
-
-When no JIRA ticket is provided, use a semantic scope (e.g., `auth`, `api`, `ui`).
+1. Check the branch name for a JIRA ticket pattern (e.g., `feature/PROJ-123-description`, `PROJ-123/fix-bug`, `bugfix/PROJ-123`)
+2. If not found in the branch name, check if the user provided one
+3. If a ticket is found, prefix the title with `[TICKET-ID]` and use a semantic scope (e.g., `auth`, `api`, `ui`)
+4. If no ticket is found, omit the prefix and use a semantic scope
 
 ### AI attribution
 
