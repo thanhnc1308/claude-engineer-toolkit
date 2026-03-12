@@ -1,26 +1,27 @@
 ---
 description: Create a pull request
-allowed-tools: Bash(git push:*), Bash(gh pr create:*)
-argument-hint: [to-branch] [from-branch]
+allowed-tools: Bash(git log:*), Bash(git diff:*), Bash(git push:*), Bash(gh pr create:*)
+arguments:
+  - name: base
+    description: Target branch for the PR (e.g., main, master, develop)
+    required: false
+  - name: head
+    description: Source branch for the PR. Defaults to the current branch.
+    required: false
 ---
 
 ## Context
 
 - Current branch: !`git branch --show-current`
-- Commit log: !`git log --oneline ${1:-main}..HEAD`
-- Diff: !`git diff ${1:-main}...HEAD`
-
-## Variables
-
-TO_BRANCH: $1 (defaults to `main`)
-FROM_BRANCH: $2 (defaults to current branch from Context above)
 
 ## Workflow
 
-1. Review the commit log and diff from Context above to understand all changes since the branch diverged.
-2. Extract the JIRA ticket from the current branch name in Context above (e.g., `feature/PROJ-123-add-login` → `PROJ-123`) or from user input if provided.
-3. Generate a concise summary of the changes (what was added, changed, or fixed).
-4. Use `gh pr create --draft --assignee @me` to create a **draft** pull request assigned to yourself from {FROM_BRANCH} to {TO_BRANCH} with:
+1. Determine the base branch: use `$ARGUMENTS.base` if provided, otherwise default to `main`.
+2. Determine the head (source) branch: use `$ARGUMENTS.head` if provided, otherwise use the current branch from Context above.
+3. Run `git log --oneline <base>..<head>` and `git diff <base>...<head>` to review the changes since the branch diverged.
+4. Extract the JIRA ticket from the current branch name in Context above (e.g., `feature/PROJ-123-add-login` → `PROJ-123`) or from user input if provided.
+5. Generate a concise summary of the changes (what was added, changed, or fixed).
+6. Use `gh pr create --draft --assignee @me` to create a **draft** pull request assigned to yourself from the head branch to the base branch with:
    - A short, descriptive title following the **Ticket-first commit format** below (under 70 characters)
    - A description body that includes a `## Summary` section with the generated summary
 

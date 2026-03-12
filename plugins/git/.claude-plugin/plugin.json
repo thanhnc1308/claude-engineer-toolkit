@@ -1,6 +1,6 @@
 {
   "name": "git",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Git workflow commands (commit, PR) with shared Conventional Commits conventions",
   "author": {
     "name": "CThanh Nguyen"
