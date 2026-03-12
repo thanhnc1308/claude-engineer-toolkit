@@ -7,8 +7,8 @@ argument-hint: [to-branch] [from-branch]
 ## Context
 
 - Current branch: !`git branch --show-current`
-- Commit log: !`git log --oneline main..HEAD`
-- Diff: !`git diff main...HEAD`
+- Commit log: !`git log --oneline ${1:-main}..HEAD`
+- Diff: !`git diff ${1:-main}...HEAD`
 
 ## Variables
 
