@@ -128,7 +128,7 @@ Structured workflow for turning ideas into fully formed designs through collabor
 ## Next Steps
 
 1. Resolve open questions
-2. Use `/plan` to create a detailed implementation plan for the chosen approach
+2. Plan first (`/plan`) or implement now?
 ```
 
 ## Key Principles
@@ -149,8 +149,44 @@ Structured workflow for turning ideas into fully formed designs through collabor
 - Use elements-of-style:writing-clearly-and-concisely skill if available
 - Commit the design document to git
 
-**Implementation (if continuing):**
+**Next: Ask the user how they want to proceed.**
 
-- Ask: "Ready to set up for implementation?"
+Present these options:
+
+> **What would you like to do next?**
+>
+> **A. Plan first** — Use `/plan` to create a detailed implementation plan before coding
+>
+> **B. Implement now** — Start building right away
+>
+> Which do you prefer?
+
+**If Plan first (A):**
+
 - Use feature-dev:using-git-worktrees skill to create isolated workspace
-- Use feature-dev:planning skill to create detailed implementation plan
+- Use feature-dev:planning skill to create the implementation plan
+- After the plan is written, re-ask option B below
+
+**If Implement now (B):**
+
+Ask which execution approach they prefer:
+
+> **Two execution options:**
+>
+> **1. Subagent-Driven** (faster, continuous and automated flow, AI reviews) — I dispatch a fresh subagent per task, review between tasks, fast iteration. Best for small-to-medium plans.
+>
+> **2. Separate Session** (fresh context, large plan, human review) — Open a new session with a worktree for batch execution with checkpoints. Best for large plans or when you want manual review gates.
+>
+> Which approach?
+
+**If Subagent-Driven (1):**
+
+- Stay in this session
+- **REQUIRED:** Use feature-dev:subagent-driven-development skill
+- Fresh subagent per task + code review between tasks
+
+**If Separate Session (2):**
+
+- Guide the user to create an isolated workspace with feature-dev:using-git-worktrees skill
+- Guide them to open a new session in that worktree
+- **REQUIRED:** New session uses feature-dev:executing-plans skill
