@@ -10,7 +10,12 @@ Generate `.claude/settings.local.json` in the target project (or current directo
 
 ### 1. Scan the Project
 
-Use Glob to check which of these sensitive files/directories exist in the project:
+Use Glob to detect the project's language stack:
+
+- Check for `package.json` (JS/TS project)
+- Check for `composer.json` (PHP project)
+
+Also use Glob to check which of these sensitive files/directories exist in the project:
 
 - `.env`, `.env.*`
 - `secrets/`, `.secrets/`
@@ -26,7 +31,7 @@ Do NOT read the contents of any sensitive files — only check for existence.
 
 Create the settings object with two sections:
 
-**Allow rules** — permit source reading tools on the whole project:
+**Allow rules** — permit source reading tools on the whole project, plus language-specific tooling commands:
 
 ```json
 "allow": [
@@ -35,6 +40,13 @@ Create the settings object with two sections:
   "Glob"
 ]
 ```
+
+Then detect the project's language stack and add Bash allow rules accordingly:
+
+- **JS/TS project** (has `package.json`): add `"Bash(npm run lint)"`, `"Bash(npm run test)"`, `"Bash(pnpm run lint)"`, `"Bash(pnpm run test)"`
+- **PHP project** (has `composer.json`): add `"Bash(./vendor/bin/phpunit)"`, `"Bash(vendor/bin/phpunit)"`, `"Bash(php-cs-fixer fix)"`
+
+If the project matches multiple stacks, include rules for all of them.
 
 **Deny rules** — always include these baseline rules plus any project-specific ones found in step 1:
 

@@ -18,10 +18,11 @@ arguments:
 
 1. Determine the base branch: use `$ARGUMENTS.base` if provided, otherwise default to `main`.
 2. Determine the head (source) branch: use `$ARGUMENTS.head` if provided, otherwise use the current branch from Context above.
-3. Run `git log --oneline <base>..<head>` and `git diff <base>...<head>` to review the changes since the branch diverged.
-4. Extract the JIRA ticket from the current branch name in Context above (e.g., `feature/PROJ-123-add-login` → `PROJ-123`) or from user input if provided.
-5. Generate a concise summary of the changes (what was added, changed, or fixed).
-6. Use `gh pr create --draft --assignee @me` to create a **draft** pull request assigned to yourself from the head branch to the base branch with:
+3. Push the head branch to the remote: run `git push -u origin <head>` to ensure the remote branch exists and is up to date.
+4. Run `git log --oneline <base>..<head>` and `git diff <base>...<head>` to review the changes since the branch diverged.
+5. Extract the JIRA ticket from the current branch name in Context above (e.g., `feature/PROJ-123-add-login` → `PROJ-123`) or from user input if provided.
+6. Generate a concise summary of the changes (what was added, changed, or fixed).
+7. Use `gh pr create --draft --assignee @me` to create a **draft** pull request assigned to yourself from the head branch to the base branch with:
    - A short, descriptive title following the **Ticket-first commit format** below (under 70 characters)
    - A description body that includes a `## Summary` section with the generated summary
 
