@@ -71,11 +71,6 @@ refactor(utils): simplify date parsing logic
 - `perf`: Performance improvements
 - `ci`: CI workflow changes
 
-### Special rules for `.claude/` directory
-
-- Changes to existing Markdown files in `.claude/` should use `perf:` (instead of `docs:`)
-- New files in `.claude/` directory should use `feat:` (instead of `docs:` or `perf:`)
-
 ### Writing rules
 
 - Write in imperative mood: "add feature" not "added feature"
