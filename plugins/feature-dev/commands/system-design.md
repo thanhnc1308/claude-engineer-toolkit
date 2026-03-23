@@ -6,8 +6,6 @@ argument-hint: [feature, system component, or technical decision]
 
 # System Design Command
 
-**REQUIRED AGENT:** Use the `architect` agent for system design, scalability analysis, and technical decision-making.
-
 **REQUIRED SKILL:** Use the `system-designing` skill for the architecture review process, design principles, common patterns, ADR templates, and system design checklist.
 
 ## Usage
@@ -33,10 +31,3 @@ If an argument is provided, begin a system design session for that topic. If no 
 2. **Requirements Gathering** — Functional requirements (user stories, APIs, data models) and non-functional requirements (performance, security, scalability, availability)
 3. **Design Proposal** — Architecture diagram, component responsibilities, data models, API contracts, error handling strategy
 4. **Trade-Off Analysis** — For each decision: pros, cons, alternatives considered, final choice with rationale
-
-## Integration with Other Commands
-
-- Use `/system-design` to plan the architecture
-- Use `/plan` to break the design into implementation phases
-- Use `/tdd` to implement components with tests
-- Use `/review` to review the completed implementation

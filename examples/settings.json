@@ -17,24 +17,13 @@
     ]
   },
   "hooks": {
-    "Notification": [
-      {
-        "matcher": "",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "say -v Trinoid \"Notification $(basename $PWD)\""
-          }
-        ]
-      }
-    ],
     "PermissionRequest": [
       {
         "matcher": "",
         "hooks": [
           {
             "type": "command",
-            "command": "say -v Trinoid \"Permission Request $(basename $PWD)\""
+            "command": "say -v Samantha \"Permission Request $(basename $PWD)\""
           }
         ]
       }
@@ -45,7 +34,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "say -v Trinoid \"Stop $(basename $PWD)\""
+            "command": "say -v Samantha \"Stop $(basename $PWD)\""
           }
         ]
       }

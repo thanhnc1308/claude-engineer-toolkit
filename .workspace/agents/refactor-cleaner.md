@@ -2,6 +2,8 @@
 name: refactor-cleaner
 description: Dead code cleanup and consolidation specialist. Use PROACTIVELY for removing unused code, duplicates, and refactoring. Runs analysis tools (knip, depcheck, ts-prune) to identify dead code and safely removes it.
 tools: ['Read', 'Write', 'Edit', 'Bash', 'Grep', 'Glob']
+skills:
+  - refactoring
 model: opus
 ---
 
@@ -35,7 +37,3 @@ You are an expert refactoring specialist focused on keeping codebases lean and m
 - Ask for confirmation before removing anything categorized as CAREFUL or RISKY
 - After each batch, report: what was removed, tests status, build status
 - If a removal breaks something, report immediately and rollback
-
-## Skill
-
-Use the `refactoring` skill for the full workflow, detection tools, safety checklists, deletion log format, PR templates, and error recovery.

@@ -8,8 +8,6 @@ argument-hint: [feature or task]
 
 **REQUIRED SKILL:** Use the `planning` skill to create the implementation plan.
 
-**REQUIRED AGENT:** Use the `planner` agent for planning judgment and behavioral guidelines.
-
 ## Usage
 
 ```
@@ -33,5 +31,3 @@ Use `/plan` when:
 After planning and confirmation:
 
 - Use `/tdd` to implement with test-driven development
-- Use `/build-and-fix` if build errors occur
-- Use `/code-review` to review completed implementation

@@ -8,5 +8,6 @@
   "repository": "https://github.com/thanhnc1308/claude-engineer-toolkit",
   "license": "MIT",
   "keywords": ["php", "symfony", "silex", "backend"],
-  "skills": "./skills/"
+  "skills": "./skills/",
+  "agents": "./agents/"
 }

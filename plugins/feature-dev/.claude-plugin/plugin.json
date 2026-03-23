@@ -33,12 +33,9 @@
     "./agents/planner.md",
     "./agents/refactor-cleaner.md",
     "./agents/researcher.md",
-    "./agents/security-reviewer.md",
+    "./agents/security-scanner.md",
     "./agents/tdd-guide.md",
-    "./agents/code-comment-analyzer.md",
     "./agents/code-simplifier.md",
-    "./agents/pr-test-analyzer.md",
-    "./agents/silent-failure-hunter.md",
-    "./agents/type-design-analyzer.md"
+    "./agents/silent-failure-hunter.md"
   ]
 }

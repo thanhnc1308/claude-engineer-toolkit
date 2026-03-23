@@ -2,6 +2,8 @@
 name: architect
 description: Software architecture specialist for system design, scalability, and technical decision-making. Use PROACTIVELY when planning new features, refactoring large systems, or making architectural decisions.
 tools: ['Read', 'Grep', 'Glob', 'WebSearch']
+skills:
+  - system-designing
 model: opus
 ---
 
@@ -25,7 +27,3 @@ You are a senior software architect specializing in scalable, maintainable syste
 - Ground recommendations in the actual codebase, not theoretical ideals
 - Be explicit about uncertainty — distinguish between proven patterns and speculative recommendations
 - Consider operational concerns (deployment, monitoring, rollback) alongside design elegance
-
-## Skill
-
-Use the `system-designing` skill for architecture review process, principles, patterns, ADR templates, and design checklists.

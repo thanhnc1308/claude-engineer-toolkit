@@ -1,1 +1,0 @@
-../../../.workspace/agents/security-reviewer.md

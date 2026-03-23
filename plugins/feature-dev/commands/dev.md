@@ -8,7 +8,7 @@ argument-hint: [feature or task description]
 
 **REQUIRED SKILLS:** `brainstorming`, `planning`, `test-driven-development`, `code-review`, `verification-before-completion`, `finishing-a-development-branch`
 
-**REQUIRED AGENTS:** `planner`, `tdd-guide`, `code-reviewer`, `security-reviewer`, `performance-reviewer`, `code-explorer`
+**REQUIRED AGENTS:** `planner`, `tdd-guide`, `code-reviewer`, `security-scanner`, `performance-reviewer`, `code-explorer`
 
 ## Usage
 
@@ -142,12 +142,12 @@ All tests must pass before leaving this phase.
 
 ## Phase 6 — Review
 
-**Skill:** `code-review`, `security-audit` | **Agents:** `code-reviewer`, `security-reviewer`, `performance-reviewer`
+**Skill:** `code-review`, `security-audit` | **Agents:** `code-reviewer`, `security-scanner`, `performance-reviewer`
 
 Dispatch three review agents in parallel:
 
 1. **`code-reviewer`** — Correctness, edge cases, error handling, code quality, naming, duplication, test quality and coverage
-2. **`security-reviewer`** — OWASP Top 10, injection, auth/authz flaws, secrets exposure, unsafe dependencies
+2. **`security-scanner`** — OWASP Top 10, injection, auth/authz flaws, secrets exposure, unsafe dependencies
 3. **`performance-reviewer`** — N+1 queries, missing indexes, unbounded queries, missing caching, synchronous blocking
 
 Merge all three reports into a single findings list grouped by severity (blocking / non-blocking).

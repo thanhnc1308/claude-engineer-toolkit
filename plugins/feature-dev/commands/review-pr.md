@@ -29,13 +29,21 @@ Fetch PR data using the `gh` CLI:
 
 Run `gh pr diff <number> --repo <owner>/<repo> --name-only` to get the list of changed files, then determine which reviews apply:
 
-- **Always run**: **code-reviewer** (general code quality, CLAUDE.md compliance, bugs)
-- **Always run**: **security-reviewer** (injection vulnerabilities, hardcoded secrets, auth bypass, OWASP Top 10, unsafe crypto — uses `security-audit` skill)
-- **Always run**: **performance-reviewer** (N+1 queries, missing indexes, poor caching, synchronous blocking, unbounded queries — uses `performance-check` skill)
-- **If test files changed**: **pr-test-analyzer** (behavioral coverage, critical gaps, test quality)
-- **If comments/docs added**: **code-comment-analyzer** (comment accuracy, comment rot, documentation completeness)
-- **If error handling changed**: **silent-failure-hunter** (silent failures, empty catch blocks, missing error logging)
-- **If types added/modified**: **type-design-analyzer** (type encapsulation, invariant expression, type design quality)
+**Always run:**
+
+- **code-reviewer** — general code quality, CLAUDE.md compliance, bugs
+- **security-scanner** — injection vulnerabilities, hardcoded secrets, auth bypass, OWASP Top 10, unsafe crypto (uses `security-audit` skill)
+- **performance-reviewer** — N+1 queries, missing indexes, poor caching, synchronous blocking, unbounded queries (uses `performance-check` skill)
+
+**Conditional — error handling:**
+
+- **silent-failure-hunter** — if diff contains error handling patterns (`catch`, `try`, `except`, `.catch(`, `on_error`, `fallback`, `rescue`)
+
+**Conditional — language/framework specific:**
+
+- **nestjs-reviewer** (`nestjs:nestjs-reviewer`) — if changed files import from `@nestjs/` or match NestJS conventions (`.module.ts`, `.controller.ts`, `.service.ts`, `.guard.ts`, `.interceptor.ts`, `.pipe.ts`, `.filter.ts`, `.decorator.ts`)
+- **nextjs-reviewer** (`nextjs:nextjs-reviewer`) — if changed files are under `app/` directory, import from `next/`, or include `next.config.*`, `middleware.ts`
+- **php-reviewer** (`php:php-reviewer`) — if changed files have `.php` extension, or the repo contains `composer.json`
 
 ### Step 3: Dispatch Applicable Agents in Parallel
 
@@ -43,7 +51,7 @@ Launch all applicable review agents **in parallel** using the Agent tool. Pass e
 
 ### Step 4: Run Code Simplifier (Post-Review Polish)
 
-After all review agents complete and if no critical issues are found, launch **code-simplifier** to:
+After all review agents complete and if no critical issues are found, launch **code-simplifier** agent to:
 
 - Simplify complex code for clarity and readability
 - Apply project standards and conventions

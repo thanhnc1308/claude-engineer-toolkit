@@ -8,6 +8,10 @@ user-invocable: false
 
 Structured workflow for designing system architecture through analysis, trade-off evaluation, and decision documentation.
 
+> **Brainstorming vs System Designing:** Brainstorming explores _which_ approach to take.
+> System designing details _how_ a chosen approach works (components, APIs, data models, ADRs).
+> Use brainstorming first when the approach is undecided.
+
 ## Architecture Review Process
 
 ### 1. Current State Analysis
@@ -39,6 +43,25 @@ For each design decision, document:
 - **Decision**: Final choice and rationale
 
 ## Architectural Principles
+
+### YAGNI — You Aren't Gonna Need It
+
+- Only implement features when they are actually needed, not when you think they might be needed in the future
+- Avoid over-design — keep things simple and focused on current requirements
+- Speculative features add complexity, maintenance burden, and often never get used
+
+### KISS — Keep It Simple, Stupid
+
+- Favor simplicity in design and implementation — avoid unnecessary complexity
+- Complex solutions are difficult to debug and scale; simple solutions are more robust and flexible
+- DONE is better than PERFECT — do NOT over-engineer
+- By keeping things simple, you minimize the risk of errors and make it easier for others (and your future self) to work with the code
+
+### DRY — Don't Repeat Yourself
+
+- Have a single, clear source of truth for every piece of knowledge or logic in the codebase
+- When code is duplicated, any changes or bug fixes need to be applied in multiple places, increasing the risk of errors and inconsistencies
+- Extract shared logic into reusable functions, modules, or components
 
 ### Modularity & Separation of Concerns
 

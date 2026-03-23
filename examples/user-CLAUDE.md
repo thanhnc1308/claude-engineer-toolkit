@@ -51,7 +51,7 @@ Located in `~/.claude/agents/`:
 | architect            | System design and architecture   |
 | tdd-guide            | Test-driven development          |
 | code-reviewer        | Code review for quality/security |
-| security-reviewer    | Security vulnerability analysis  |
+| security-scanner     | Security vulnerability analysis  |
 | build-error-resolver | Build error resolution           |
 | e2e-runner           | Playwright E2E testing           |
 | refactor-cleaner     | Dead code cleanup                |

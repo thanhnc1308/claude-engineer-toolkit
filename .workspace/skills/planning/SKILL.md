@@ -12,20 +12,19 @@ Write comprehensive implementation plans assuming the engineer has zero context 
 
 **Announce at start:** "I'm using the planning skill to create the implementation plan."
 
-**Save plans to:** `docs/plans/YYYY-MM-DD-<feature-name>.md`
-
 ## Planning Process
 
 ### 1. Requirements Analysis
 
 - Understand the feature request completely
+- If a brainstorming design brief file path is provided (e.g. `claude-docs/tech-design/YYYY-MM-DD-<feature-name>-design.md`), read the file and use its Recommendation, Constraints, Success Criteria, and Scope Definition as the starting point — do not re-evaluate approaches already decided
 - Ask clarifying questions if needed
 - Identify success criteria
 - List assumptions and constraints
 
 ### 2. Architecture Review
 
-- Analyze existing codebase structure
+- Dispatch `code-explorer` agent to analyze existing codebase structure
 - Identify affected components
 - Review similar implementations for reusable patterns
 - Consider integration points and dependencies
@@ -62,8 +61,6 @@ Create detailed steps with:
 
 ```markdown
 # [Feature Name] Implementation Plan
-
-> **For Claude:** REQUIRED SUB-SKILL: Use feature-dev:executing-plans to implement this plan task-by-task.
 
 **Goal:** [One sentence describing what this builds]
 
@@ -204,9 +201,11 @@ Iterate on the plan until the user confirms.
 
 ## Execution Handoff
 
+Save the plan to `claude-docs/plans/YYYY-MM-DD-<feature-name>.md`
+
 After saving the plan, offer execution choice:
 
-**"Plan complete and saved to `docs/plans/<filename>.md`. Two execution options:**
+**"Plan complete and saved to `claude-docs/plans/<filename>.md`. Two execution options:**
 
 **1. Subagent-Driven (faster, continuous and automated flow, AI reviews)** - I dispatch fresh subagent per task, review between tasks, fast iteration
 

@@ -8,7 +8,7 @@ user-invocable: false
 
 # Brainstorming Session
 
-Structured workflow for turning ideas into fully formed designs through collaborative dialogue.
+Structured workflow for exploring approaches, evaluating trade-offs, and producing a design brief for the planner.
 
 ## Process
 
@@ -47,21 +47,23 @@ Structured workflow for turning ideas into fully formed designs through collabor
 - Assess alignment with existing architecture and team capabilities
 - Consider existing patterns in the codebase
 
-### 4. Recommend
+### 4. Recommend and Resolve
 
 - Provide a clear recommendation with supporting rationale
 - Define measurable success criteria
 - List open questions that need resolution before committing
+- Resolve all open questions with the user before writing the design brief — do not hand off unresolved questions to the planner
 - Identify what would change your recommendation (different constraints, scale, etc.)
 
-### 5. Present the Design
+### 5. Write the Design Brief
 
-- Present the design in sections of 200-300 words
-- Ask after each section whether it looks right so far
-- Cover: architecture, components, data flow, error handling, testing
-- Be ready to go back and clarify if something doesn't make sense
+Write the complete design brief using the output format below and save it to `claude-docs/tech-design/YYYY-MM-DD-<feature-name>-design.md`.
 
-## Output Format
+## Output Format (Design Brief)
+
+> This format is the handoff contract to the planning phase. The planner uses
+> the Recommendation, Constraints, Success Criteria, and Scope Definition as input.
+> All questions must be resolved before writing this brief.
 
 ```markdown
 # Brainstorm: [Problem Statement]
@@ -120,15 +122,15 @@ Structured workflow for turning ideas into fully formed designs through collabor
 - [ ] Criterion 1
 - [ ] Criterion 2
 
-## Open Questions
+## Resolved Questions
 
-- [ ] Question that needs answering before committing
-- [ ] Decision that the team must make
+[List questions that came up during brainstorming and how they were resolved. All open questions must be answered before handing off to the planner.]
 
-## Next Steps
+## Scope Definition
 
-1. Resolve open questions
-2. Plan first (`/plan`) or implement now?
+- **In scope**: [What the recommended approach covers]
+- **Out of scope**: [What it explicitly does not cover]
+- **Assumptions**: [Assumptions the recommendation depends on]
 ```
 
 ## Key Principles
@@ -137,56 +139,10 @@ Structured workflow for turning ideas into fully formed designs through collabor
 - **Leverage existing patterns** — reference existing code patterns when relevant
 - **Consider edge cases** — think through failure modes and boundary conditions
 - **Stay focused** — keep the discussion on topic: $ARGUMENTS
-- **YAGNI ruthlessly** — remove unnecessary features from all designs
 - **Explore alternatives** — always propose 2-3 approaches before settling
 - **Be flexible** — go back and clarify when something doesn't make sense
+- **Engineering Rules** — YAGNI, KISS, DRY
 
 ## After the Design
 
-**Documentation:**
-
-- Write the validated design to `docs/plans/YYYY-MM-DD-<topic>-design.md`
-- Use elements-of-style:writing-clearly-and-concisely skill if available
-- Commit the design document to git
-
-**Next: Ask the user how they want to proceed.**
-
-Present these options:
-
-> **What would you like to do next?**
->
-> **A. Plan first** — Use `/plan` to create a detailed implementation plan before coding
->
-> **B. Implement now** — Start building right away
->
-> Which do you prefer?
-
-**If Plan first (A):**
-
-- Use feature-dev:using-git-worktrees skill to create isolated workspace
-- Use feature-dev:planning skill to create the implementation plan
-- After the plan is written, re-ask option B below
-
-**If Implement now (B):**
-
-Ask which execution approach they prefer:
-
-> **Two execution options:**
->
-> **1. Subagent-Driven** (faster, continuous and automated flow, AI reviews) — I dispatch a fresh subagent per task, review between tasks, fast iteration. Best for small-to-medium plans.
->
-> **2. Separate Session** (fresh context, large plan, human review) — Open a new session with a worktree for batch execution with checkpoints. Best for large plans or when you want manual review gates.
->
-> Which approach?
-
-**If Subagent-Driven (1):**
-
-- Stay in this session
-- **REQUIRED:** Use feature-dev:subagent-driven-development skill
-- Fresh subagent per task + code review between tasks
-
-**If Separate Session (2):**
-
-- Guide the user to create an isolated workspace with feature-dev:using-git-worktrees skill
-- Guide them to open a new session in that worktree
-- **REQUIRED:** New session uses feature-dev:executing-plans skill
+All open questions must be resolved before handing off to the planner. Save the validated design brief to `claude-docs/tech-design/YYYY-MM-DD-<feature-name>-design.md` and hand off the file path to the planner. The planner agent/skill will read the design file and use the recommended approach, constraints, success criteria, and scope definition to create a detailed implementation plan.

@@ -41,9 +41,3 @@ If an argument is provided, begin a systematic debugging session for that issue.
 If you catch yourself thinking "quick fix for now", "just try changing X", or "I don't fully understand but this might work" — **STOP and return to Phase 1**.
 
 If 3+ fix attempts have failed, **stop fixing and question the architecture**.
-
-## Integration with Other Commands
-
-- Use `/debug` to find and fix the root cause
-- Use `/tdd` to write regression tests for the fix
-- Use `/review` to review the completed fix
