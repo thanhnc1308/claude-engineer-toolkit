@@ -1,7 +1,7 @@
 {
   "name": "feature-dev",
   "version": "1.1.0",
-  "description": "Full-stack development workflow with 16 specialized agents: planning, brainstorming, TDD, code review, security audit, performance check, refactoring, orchestration, and verification",
+  "description": "Full-stack development workflow with 16 specialized agents: planning, TDD, code review, security audit, performance check, refactoring, orchestration, and verification",
   "author": {
     "name": "CThanh Nguyen"
   },
@@ -11,7 +11,6 @@
     "workflow",
     "planning",
     "review",
-    "brainstorming",
     "tdd",
     "security",
     "performance",
@@ -25,16 +24,19 @@
   "commands": "./commands/",
   "agents": [
     "./agents/architect.md",
-    "./agents/brainstormer.md",
     "./agents/code-explorer.md",
     "./agents/code-reviewer.md",
+    "./agents/debugger.md",
     "./agents/e2e-runner.md",
+    "./agents/log-tracer.md",
     "./agents/performance-reviewer.md",
     "./agents/planner.md",
+    "./agents/planner-researcher.md",
     "./agents/refactor-cleaner.md",
     "./agents/researcher.md",
     "./agents/security-scanner.md",
     "./agents/tdd-guide.md",
+    "./agents/tester.md",
     "./agents/code-simplifier.md",
     "./agents/silent-failure-hunter.md"
   ]
