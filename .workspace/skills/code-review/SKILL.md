@@ -43,6 +43,7 @@ Based on changed files, determine which reviews apply:
 - **If NestJS code changed**: **nestjs-reviewer** — module architecture, DI patterns, guards/pipes/interceptors, NestJS-idiomatic practices
 - **If Next.js code changed**: **nextjs-reviewer** — App Router, Server/Client Components, data fetching, Server Actions, Next.js anti-patterns
 - **If PHP code changed**: **php-reviewer** — DDD architecture, DI patterns, PHP 8.3+ usage, Doctrine, Silex/Symfony-idiomatic practices
+- **If database code changed**: **database-reviewer** — query optimization, schema design, indexing, security, PostgreSQL/MongoDB best practices
 
 To detect error handling changes, check if the diff contains patterns like `catch`, `try`, `except`, `.catch(`, `on_error`, `fallback`, `rescue`.
 
@@ -51,6 +52,8 @@ To detect NestJS code, check if changed files import from `@nestjs/` or are in d
 To detect Next.js code, check if changed files are under `app/` directory (App Router pages, layouts, routes), or import from `next/`, or include files like `next.config.*`, `middleware.ts`.
 
 To detect PHP code, check if changed files have `.php` extension or are in directories with PHP conventions (`composer.json`, `src/`, `config/`).
+
+To detect database code, check if changed files contain SQL queries (`SELECT`, `INSERT`, `UPDATE`, `DELETE`, `CREATE TABLE`, `ALTER TABLE`, `CREATE INDEX`), database migration files (under `migrations/`, `db/`, or `prisma/`), ORM model definitions (Prisma schema, TypeORM/Sequelize/Drizzle entities, Mongoose models), or imports from database libraries (`pg`, `prisma`, `knex`, `sequelize`, `drizzle`, `typeorm`, `mongoose`, `mongodb`, `@supabase/supabase-js`).
 
 ### Step 3: Dispatch Agents in Parallel
 

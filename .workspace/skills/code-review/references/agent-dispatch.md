@@ -30,12 +30,12 @@ Return findings as a structured list. For each finding:
 
 ```
 ALWAYS dispatch:
-  - code-reviewer (subagent_type: feature-dev:code-reviewer)
-  - security-scanner (subagent_type: feature-dev:security-scanner)
-  - performance-reviewer (subagent_type: feature-dev:performance-reviewer)
+  - code-reviewer (subagent_type: eng-toolkit:code-reviewer)
+  - security-scanner (subagent_type: eng-toolkit:security-scanner)
+  - performance-reviewer (subagent_type: eng-toolkit:performance-reviewer)
 
 IF diff contains error handling patterns (catch|try|except|\.catch\(|on_error|fallback|rescue):
-  - silent-failure-hunter (subagent_type: feature-dev:silent-failure-hunter)
+  - silent-failure-hunter (subagent_type: eng-toolkit:silent-failure-hunter)
 
 IF changed files contain NestJS code (.module.ts, .controller.ts, .service.ts, .guard.ts, .interceptor.ts, .pipe.ts, .filter.ts, .decorator.ts, or imports from @nestjs/):
   - nestjs-reviewer (subagent_type: nestjs:nestjs-reviewer)
@@ -46,8 +46,11 @@ IF changed files contain Next.js code (app/ directory, next.config.*, middleware
 IF changed files contain PHP code (.php extension, composer.json, or PHP project directories):
   - php-reviewer (subagent_type: php:php-reviewer)
 
+IF changed files contain database code (SQL queries, migration files, ORM models/schemas, or imports from pg/prisma/knex/sequelize/drizzle/typeorm/mongoose/mongodb/@supabase/supabase-js):
+  - database-reviewer (subagent_type: database:database-reviewer)
+
 AFTER all above complete AND no critical issues:
-  - code-simplifier (subagent_type: feature-dev:code-simplifier)
+  - code-simplifier (subagent_type: eng-toolkit:code-simplifier)
 ```
 
 ## Parallel Dispatch

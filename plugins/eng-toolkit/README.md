@@ -1,4 +1,4 @@
-# feature-dev
+# eng-toolkit
 
 Full-stack development workflow with 16 specialized agents, 17 skills, and 11 commands for planning, implementing, reviewing, and shipping code.
 
@@ -104,4 +104,3 @@ Sync documentation from source-of-truth files (package.json, .env.example).
 - **dispatching-parallel-agents** — Parallel agent dispatch for independent tasks
 - **security-audit** / **performance-check** — Security and performance auditing
 - **using-git-worktrees** — Isolated workspaces
-- **finishing-a-development-branch** — Branch completion and integration

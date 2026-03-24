@@ -9,8 +9,8 @@
   },
   "plugins": [
     {
-      "name": "feature-dev",
-      "source": "./plugins/feature-dev",
+      "name": "eng-toolkit",
+      "source": "./plugins/eng-toolkit",
       "description": "Full-stack development workflow with 16 specialized agents: planning, TDD, code review, security audit, performance check, refactoring, orchestration, and verification",
       "category": "workflow",
       "tags": [
