@@ -50,6 +50,20 @@ Only reviewed when diff contains error handling patterns.
 - Retry logic exhausting attempts silently
 - Optional chaining hiding meaningful failures
 
+## Database (database-reviewer)
+
+Only reviewed when diff contains database code.
+
+- Missing indexes on filtered/sorted/joined columns
+- SQL injection via string concatenation
+- N+1 queries in ORM code
+- Unbounded queries without LIMIT
+- Schema design — proper data types, constraints, foreign keys
+- Migration safety — both up/down paths, no data loss
+- PostgreSQL: RLS policies, connection pooling, EXPLAIN ANALYZE verification
+- MongoDB: schema validation, bounded arrays, indexed queries, aggregation pipeline efficiency
+- ORM anti-patterns — eager loading misuse, raw queries without parameterization
+
 ## Code Simplification (code-simplifier)
 
 Only runs when no critical issues found.

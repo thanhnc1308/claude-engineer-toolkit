@@ -60,7 +60,6 @@ digraph process {
     "Read plan, extract all tasks with full text, note context, create TodoWrite" [shape=box];
     "More tasks remain?" [shape=diamond];
     "Dispatch final code reviewer subagent for entire implementation" [shape=box];
-    "Use feature-dev:finishing-a-development-branch" [shape=box style=filled fillcolor=lightgreen];
 
     "Read plan, extract all tasks with full text, note context, create TodoWrite" -> "Dispatch implementer subagent (./implementer-prompt.md)";
     "Dispatch implementer subagent (./implementer-prompt.md)" -> "Implementer subagent asks questions?";
@@ -79,7 +78,6 @@ digraph process {
     "Mark task complete in TodoWrite" -> "More tasks remain?";
     "More tasks remain?" -> "Dispatch implementer subagent (./implementer-prompt.md)" [label="yes"];
     "More tasks remain?" -> "Dispatch final code reviewer subagent for entire implementation" [label="no"];
-    "Dispatch final code reviewer subagent for entire implementation" -> "Use feature-dev:finishing-a-development-branch";
 }
 ```
 
@@ -241,15 +239,14 @@ Done!
 
 **Required workflow skills:**
 
-- **feature-dev:using-git-worktrees** - REQUIRED: Set up isolated workspace before starting
-- **feature-dev:planning** - Creates the plan this skill executes
-- **feature-dev:requesting-code-review** - Code review template for reviewer subagents
-- **feature-dev:finishing-a-development-branch** - Complete development after all tasks
+- **eng-toolkit:using-git-worktrees** - REQUIRED: Set up isolated workspace before starting
+- **eng-toolkit:planning** - Creates the plan this skill executes
+- **eng-toolkit:requesting-code-review** - Code review template for reviewer subagents
 
 **Subagents should use:**
 
-- **feature-dev:test-driven-development** - Subagents follow TDD for each task
+- **eng-toolkit:test-driven-development** - Subagents follow TDD for each task
 
 **Alternative workflow:**
 
-- **feature-dev:executing-plans** - Use for separate session instead of same-session execution
+- **eng-toolkit:executing-plans** - Use for separate session instead of same-session execution

@@ -215,11 +215,11 @@ After saving the plan, offer execution choice:
 
 **If Subagent-Driven chosen:**
 
-- **REQUIRED SUB-SKILL:** Use feature-dev:subagent-driven-development
+- **REQUIRED SUB-SKILL:** Use eng-toolkit:subagent-driven-development
 - Stay in this session
 - Fresh subagent per task + code review
 
 **If Separate Session chosen:**
 
 - Guide them to open new session in worktree
-- **REQUIRED SUB-SKILL:** New session uses feature-dev:executing-plans
+- **REQUIRED SUB-SKILL:** New session uses eng-toolkit:executing-plans

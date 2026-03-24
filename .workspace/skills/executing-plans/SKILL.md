@@ -51,11 +51,7 @@ Based on feedback:
 
 ### Step 5: Complete Development
 
-After all tasks complete and verified:
-
-- Announce: "I'm using the finishing-a-development-branch skill to complete this work."
-- **REQUIRED SUB-SKILL:** Use feature-dev:finishing-a-development-branch
-- Follow that skill to verify tests, present options, execute choice
+After all tasks complete and verified, announce completion and present integration options (merge, PR, keep branch, discard).
 
 ## When to Stop and Ask for Help
 
@@ -91,6 +87,5 @@ After all tasks complete and verified:
 
 **Required workflow skills:**
 
-- **feature-dev:using-git-worktrees** - REQUIRED: Set up isolated workspace before starting
-- **feature-dev:planning** - Creates the plan this skill executes
-- **feature-dev:finishing-a-development-branch** - Complete development after all tasks
+- **eng-toolkit:using-git-worktrees** - REQUIRED: Set up isolated workspace before starting
+- **eng-toolkit:planning** - Creates the plan this skill executes

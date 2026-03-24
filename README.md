@@ -33,7 +33,7 @@ Knowledge plugins that provide architecture patterns, code review checklists, an
 
 | Plugin        | Description                                                                                              |
 | ------------- | -------------------------------------------------------------------------------------------------------- |
-| `feature-dev` | Full-stack development workflow with planning, brainstorming, TDD, code review, security audit, and more |
+| `eng-toolkit` | Full-stack development workflow with planning, brainstorming, TDD, code review, security audit, and more |
 | `git`         | Git workflow commands (commit, PR) with Conventional Commits conventions                                 |
 
 ### Tools
@@ -56,7 +56,7 @@ Knowledge plugins that provide architecture patterns, code review checklists, an
 
 ## Commands
 
-### feature-dev
+### eng-toolkit
 
 | Command                  | Description                                                 |
 | ------------------------ | ----------------------------------------------------------- |
@@ -118,7 +118,7 @@ Knowledge plugins that provide architecture patterns, code review checklists, an
 ### NestJS Project
 
 ```bash
-/plugin install feature-dev@claude-engineer-toolkit
+/plugin install eng-toolkit@claude-engineer-toolkit
 /plugin install backend@claude-engineer-toolkit
 /plugin install debugging@claude-engineer-toolkit
 /plugin install typescript@claude-engineer-toolkit
@@ -135,7 +135,7 @@ Knowledge plugins that provide architecture patterns, code review checklists, an
 ### Next.js Project
 
 ```bash
-/plugin install feature-dev@claude-engineer-toolkit
+/plugin install eng-toolkit@claude-engineer-toolkit
 /plugin install frontend@claude-engineer-toolkit
 /plugin install typescript@claude-engineer-toolkit
 /plugin install nextjs@claude-engineer-toolkit
@@ -150,7 +150,7 @@ Knowledge plugins that provide architecture patterns, code review checklists, an
 ### Full-Stack Project
 
 ```bash
-/plugin install feature-dev@claude-engineer-toolkit
+/plugin install eng-toolkit@claude-engineer-toolkit
 /plugin install backend@claude-engineer-toolkit
 /plugin install frontend@claude-engineer-toolkit
 /plugin install database@claude-engineer-toolkit
