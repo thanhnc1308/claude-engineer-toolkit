@@ -77,7 +77,7 @@ Pin to specific branch, tag, or commit:
   "description": "Enterprise workflow automation tools",
   "version": "2.1.0",
   "commands": ["./commands/core/", "./commands/enterprise/"],
-  "agents": ["./agents/security-reviewer.md"],
+  "agents": ["./agents/security-scanner.md"],
   "hooks": {
     "PostToolUse": [
       {

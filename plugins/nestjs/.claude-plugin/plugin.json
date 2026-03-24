@@ -8,5 +8,6 @@
   "repository": "https://github.com/thanhnc1308/claude-engineer-toolkit",
   "license": "MIT",
   "keywords": ["nestjs", "backend", "nodejs", "dependency-injection"],
-  "skills": "./skills/"
+  "skills": "./skills/",
+  "agents": ["./agents/nestjs-reviewer.md"]
 }

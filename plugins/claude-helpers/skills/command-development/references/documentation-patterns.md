@@ -135,7 +135,7 @@ description: Complex multi-step command
 
 Checking prerequisites...
 
-- Git repository: !`git rev-parse --git-dir 2>/dev/null`
+- Git repository: !\`git rev-parse --git-dir 2>/dev/null`
 - Branch exists: [validation logic]
 
 <!-- SECTION 2: ANALYSIS -->
@@ -166,7 +166,7 @@ description: Deployment command with inline docs
 
 <!-- We check branch status to prevent deploying from wrong branch -->
 
-Current branch: !`git branch --show-current`
+Current branch: !\`git branch --show-current`
 
 <!-- Production deploys must come from main/master -->
 
@@ -177,7 +177,7 @@ fi
 
 <!-- Test status ensures we don't deploy broken code -->
 
-Running tests: !`npm test`
+Running tests: !\`npm test`
 
 ✓ All checks passed
 
@@ -217,7 +217,7 @@ description: Interactive deployment command
 ## Configuration Review
 
 Target: $1
-Current version: !`cat version.txt`
+Current version: !\`cat version.txt`
 New version: $2
 
 <!-- DECISION POINT: User confirms configuration -->
@@ -379,7 +379,7 @@ description: Command with recovery guidance
 
 Running operation...
 
-!`risky-operation.sh`
+!\`risky-operation.sh`
 
 if [ $? -ne 0 ]; then
 ❌ OPERATION FAILED

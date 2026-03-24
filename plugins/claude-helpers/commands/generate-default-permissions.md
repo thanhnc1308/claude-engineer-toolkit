@@ -61,7 +61,32 @@ If the project matches multiple stacks, include rules for all of them.
   "Read(./**/*.p12)",
   "Read(./**/*.pfx)",
   "Read(./**/*credentials*)",
-  "Read(./**/*service-account*)"
+  "Read(./**/*service-account*)",
+  "Bash(rm ~/)",
+  "Bash(rm /)",
+  "Bash(prisma db push)",
+  "Bash(npx prisma db push)",
+  "Bash(npm run db:push)",
+  "Bash(bun run db:push)",
+  "Bash(pnpm run db:push)",
+  "Bash(rm -rf /:*)",
+  "Bash(rm -rf ~:*)",
+  "Bash(sudo rm -rf *:*)",
+  "Bash(dd if=/dev/zero of=/dev/sd*:*)",
+  "Bash(mkfs.*:*)",
+  "Bash(fdisk:*)",
+  "Bash(parted:*)",
+  "Bash(chown -R /:*)",
+  "Bash(chmod -R 0 /:*)",
+  "Bash(shutdown:*)",
+  "Bash(reboot:*)",
+  "Bash(systemctl poweroff:*)",
+  "Bash(git reset --hard:*)",
+  "Bash(git clean -fdx:*)",
+  "Bash(git push --force:*)",
+  "Bash(docker system prune -af:*)",
+  "Bash(docker volume rm -f *:*)",
+  "Bash(prisma migrate reset:*)"
 ]
 ```
 

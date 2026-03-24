@@ -1,1 +1,0 @@
-../../../.workspace/agents/type-design-analyzer.md

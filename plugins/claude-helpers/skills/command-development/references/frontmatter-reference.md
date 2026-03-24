@@ -389,7 +389,7 @@ description: Review Git changes
 allowed-tools: Bash(git:*), Read
 ---
 
-Current changes: !`git diff --name-only`
+Current changes: !\`git diff --name-only`
 
 Review each changed file for:
 
@@ -415,7 +415,7 @@ Deploy $1 to $2 environment using version $3
 Pre-deployment checks:
 
 - Verify $2 configuration
-- Check cluster status: !`kubectl cluster-info`
+- Check cluster status: !\`kubectl cluster-info`
 - Validate version $3 exists
 
 Proceed with deployment following deployment runbook.
@@ -440,7 +440,7 @@ This command requires human judgment and cannot be automated.
 
 Review deployment $1 for production approval:
 
-Deployment details: !`gh api /deployments/$1`
+Deployment details: !\`gh api /deployments/$1`
 
 Verify:
 

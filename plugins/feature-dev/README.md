@@ -18,7 +18,7 @@ Full-stack development workflow with 16 specialized agents, 17 skills, and 11 co
 | Agent                    | Description                                             |
 | ------------------------ | ------------------------------------------------------- |
 | **code-reviewer**        | Reviews code for quality, security, and maintainability |
-| **security-reviewer**    | OWASP Top 10, secrets detection, injection risks        |
+| **security-scanner**     | OWASP Top 10, secrets detection, injection risks        |
 | **performance-reviewer** | N+1 queries, missing indexes, caching, bottlenecks      |
 | **tdd-guide**            | Enforces test-first methodology, 80%+ coverage          |
 
@@ -74,10 +74,10 @@ Safely identify and remove dead code with test verification.
 
 Sequential agent workflow. Built-in workflows:
 
-- `feature` — planner -> tdd-guide -> code-reviewer -> security-reviewer
+- `feature` — planner -> tdd-guide -> code-reviewer -> security-scanner
 - `bugfix` — code-explorer -> tdd-guide -> code-reviewer
 - `refactor` — architect -> code-reviewer -> tdd-guide
-- `security` — security-reviewer -> code-reviewer -> architect
+- `security` — security-scanner -> code-reviewer -> architect
 - `custom "agent1,agent2" "description"` — custom agent sequence
 
 ### `/verify`

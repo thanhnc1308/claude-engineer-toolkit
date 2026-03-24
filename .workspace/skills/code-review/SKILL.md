@@ -1,296 +1,86 @@
 ---
 name: code-review
-description: Use when receiving code review feedback (especially if unclear or technically questionable), when completing tasks or major features requiring review before proceeding, or before making any completion/success claims. Covers three practices - receiving feedback with technical rigor over performative agreement, requesting reviews via code-reviewer subagent, and verification gates requiring evidence before any status claims. Essential for subagent-driven development, pull requests, and preventing false completion claims.
+description: Review commits diverged from main/master using parallel specialized agents (code quality, security, performance, error handling). Use when completing features, before merging, or when asked to review current branch changes.
 ---
 
 # Code Review
 
-Guide proper code review practices emphasizing technical rigor, evidence-based claims, and verification over performative responses.
+Review all commits on the current branch that diverge from the base branch (main or master), using parallel specialized agents.
 
-## Overview
+## Workflow
 
-Code review requires three distinct practices:
+### Step 1: Detect Base Branch and Gather Diff
 
-1. **Receiving feedback** - Technical evaluation over performative agreement
-2. **Requesting reviews** - Systematic review via code-reviewer subagent
-3. **Verification gates** - Evidence before any completion claims
+Detect the base branch and collect diff data:
 
-Each practice has specific triggers and protocols detailed in reference files.
+```bash
+# Detect base branch
+git rev-parse --verify main >/dev/null 2>&1 && BASE=main || BASE=master
 
-## Core Principle
+# Ensure up-to-date base reference
+git fetch origin $BASE 2>/dev/null || true
 
-**Technical correctness over social comfort.** Verify before implementing. Ask before assuming. Evidence before claims.
+# Get changed files
+git diff origin/$BASE...HEAD --name-only
 
-## When to Use This Skill
+# Get full diff
+git diff origin/$BASE...HEAD
 
-### Receiving Feedback
-
-Trigger when:
-
-- Receiving code review comments from any source
-- Feedback seems unclear or technically questionable
-- Multiple review items need prioritization
-- External reviewer lacks full context
-- Suggestion conflicts with existing decisions
-
-**Reference:** `references/code-review-reception.md`
-
-### Requesting Review
-
-Trigger when:
-
-- Completing tasks in subagent-driven development (after EACH task)
-- Finishing major features or refactors
-- Before merging to main branch
-- Stuck and need fresh perspective
-- After fixing complex bugs
-
-**Reference:** `references/requesting-code-review.md`
-
-### Verification Gates
-
-Trigger when:
-
-- About to claim tests pass, build succeeds, or work is complete
-- Before committing, pushing, or creating PRs
-- Moving to next task
-- Any statement suggesting success/completion
-- Expressing satisfaction with work
-
-**Reference:** `references/verification-before-completion.md`
-
-## Quick Decision Tree
-
-```
-SITUATION?
-│
-├─ Received feedback
-│  ├─ Unclear items? → STOP, ask for clarification first
-│  ├─ From human partner? → Understand, then implement
-│  └─ From external reviewer? → Verify technically before implementing
-│
-├─ Completed work
-│  ├─ Major feature/task? → Request code-reviewer subagent review
-│  └─ Before merge? → Request code-reviewer subagent review
-│
-└─ About to claim status
-   ├─ Have fresh verification? → State claim WITH evidence
-   └─ No fresh verification? → RUN verification command first
+# Get commit log
+git log origin/$BASE...HEAD --oneline
 ```
 
-## Receiving Feedback Protocol
+If no diverged commits exist, inform the user and stop.
 
-For the full protocol on receiving code review feedback (response pattern, source handling, YAGNI checks, pushback guidelines), use the **receiving-code-review** skill or see `references/code-review-reception.md`.
+### Step 2: Determine Applicable Reviews
 
-**Key rules (summary):**
+Based on changed files, determine which reviews apply:
 
-- No performative agreement — restate requirement, ask questions, or just start working
-- No implementation before verification
-- If unclear: STOP and ask for clarification on ALL unclear items first
+- **Always run**: **code-reviewer** — code quality, patterns, bugs, CLAUDE.md compliance
+- **Always run**: **security-scanner** — injection, secrets, auth bypass, OWASP Top 10 (uses `security-audit` skill)
+- **Always run**: **performance-reviewer** — N+1 queries, missing indexes, caching, blocking, unbounded queries (uses `performance-check` skill)
+- **If error handling changed**: **silent-failure-hunter** — silent failures, empty catch blocks, missing error logging
+- **If NestJS code changed**: **nestjs-reviewer** — module architecture, DI patterns, guards/pipes/interceptors, NestJS-idiomatic practices
+- **If Next.js code changed**: **nextjs-reviewer** — App Router, Server/Client Components, data fetching, Server Actions, Next.js anti-patterns
+- **If PHP code changed**: **php-reviewer** — DDD architecture, DI patterns, PHP 8.3+ usage, Doctrine, Silex/Symfony-idiomatic practices
 
-## Requesting Review Protocol
+To detect error handling changes, check if the diff contains patterns like `catch`, `try`, `except`, `.catch(`, `on_error`, `fallback`, `rescue`.
 
-For the full protocol on requesting code reviews (when to request, dispatch template, acting on feedback), use the **requesting-code-review** skill or see `references/requesting-code-review.md`.
+To detect NestJS code, check if changed files import from `@nestjs/` or are in directories with NestJS conventions (`.module.ts`, `.controller.ts`, `.service.ts`, `.guard.ts`, `.interceptor.ts`, `.pipe.ts`, `.filter.ts`, `.decorator.ts`).
 
-**Key rules (summary):**
+To detect Next.js code, check if changed files are under `app/` directory (App Router pages, layouts, routes), or import from `next/`, or include files like `next.config.*`, `middleware.ts`.
 
-- Mandatory after each task in subagent-driven development, after major features, before merge
-- Dispatch code-reviewer subagent with git SHAs and context
-- Fix Critical immediately, Important before proceeding, note Minor for later
+To detect PHP code, check if changed files have `.php` extension or are in directories with PHP conventions (`composer.json`, `src/`, `config/`).
 
-## Verification Gates Protocol
+### Step 3: Dispatch Agents in Parallel
 
-For the full protocol on verification gates (the Iron Law, gate function, red flags, rationalization prevention), use the **verification-before-completion** skill or see `references/verification-before-completion.md`.
+Launch all applicable review agents **in parallel** using the Agent tool. Pass each agent:
 
-**Key rules (summary):**
+- The full diff (from `git diff origin/$BASE...HEAD`)
+- The list of changed files
+- The commit log for context
 
-- NO COMPLETION CLAIMS WITHOUT FRESH VERIFICATION EVIDENCE
-- IDENTIFY command → RUN → READ output → VERIFY → THEN claim
-- Skip any step = lying, not verifying
+Each agent returns findings as a structured list with severity (critical/important/suggestion) and `file:line` references.
 
-## Performing a Review
+### Step 4: Code Simplifier (Post-Review Polish)
 
-When the code-reviewer agent is invoked, follow this checklist and output format.
+After all review agents complete and if **no critical issues** found, launch **code-simplifier** agent to suggest clarity and readability improvements on the changed code.
 
-### Review Checklist
+### Step 5: Aggregate and Present Results
 
-#### 1. Plan Alignment Analysis
+Collect all agent results into a single summary. See `references/output-format.md` for the template.
 
-- Compare the implementation against the original planning document or step description
-- Identify any deviations from the planned approach, architecture, or requirements
-- Assess whether deviations are justified improvements or problematic departures
-- Verify that all planned functionality has been implemented
+**Severity ordering:** Critical > Important > Suggestion > Strengths
 
-#### 2. Code Quality Assessment
+### Step 6: User Decision
 
-- Review code for adherence to established patterns and conventions
-- Check for edge cases, proper error handling, type safety, and defensive programming
-- Evaluate code organization, naming conventions, and maintainability
-- Assess test coverage and quality of test implementations
-- Flag: Large functions (>50 lines), large files (>800 lines), deep nesting (>4 levels)
-- Flag: Missing error handling (try/catch), console.log statements, mutation patterns
-- Flag: Missing tests for new code
+Present the summary and ask:
 
-#### 3. Architecture and Design Review
+- **If issues found**: "Would you like me to fix these issues?"
+- **If no issues**: "No issues found. The branch looks good!"
 
-- Ensure the implementation follows SOLID principles and established architectural patterns
-- Check for proper separation of concerns and loose coupling
-- Verify that the code integrates well with existing systems
-- Assess scalability and extensibility considerations
+## References
 
-#### 4. Security Checks (CRITICAL)
-
-- Hardcoded credentials (API keys, passwords, tokens)
-- SQL injection risks (string concatenation in queries)
-- XSS vulnerabilities (unescaped user input)
-- Missing input validation
-- Insecure dependencies (outdated, vulnerable)
-- Path traversal risks (user-controlled file paths)
-- CSRF vulnerabilities
-- Authentication bypasses
-
-#### 5. Production Readiness (HIGH)
-
-- Migration strategy (if schema changes)?
-- Backward compatibility considered?
-- No obvious bugs?
-
-#### 6. Performance (MEDIUM)
-
-- Inefficient algorithms (O(n^2) when O(n log n) possible)
-- Unnecessary re-renders in React
-- Missing memoization
-- Large bundle sizes
-- Missing caching
-- N+1 queries
-- Memory leaks
-- Unnecessary computation
-
-#### 7. Best Practices (MEDIUM)
-
-- TODO/FIXME without tickets
-- Missing JSDoc for public APIs
-- Accessibility issues (missing ARIA labels, poor contrast)
-- Poor variable naming (x, tmp, data)
-- Magic numbers without explanation
-- Inconsistent formatting
-
-#### 8. Documentation and Standards
-
-- Verify that code includes appropriate comments and documentation
-- Ensure adherence to project-specific coding standards and conventions
-- Follow existing project conventions -- don't impose new ones
-
-### Technology-Specific Patterns
-
-When reviewing code, detect the project's technology stack and apply framework-specific patterns from installed plugins:
-
-1. Check `package.json` (or equivalent) to identify frameworks in use
-2. Look for matching plugin patterns in `plugins/*/skills/*/references/` and `plugins/*/patterns/`
-3. Read and apply relevant review checklists and patterns alongside the standard checklist above
-
-Examples:
-
-- NestJS (`@nestjs/core` in dependencies) — read `nestjs-patterns` skill and its `references/review-checklist.md`
-- Next.js (`next` in dependencies) — read relevant nextjs plugin patterns
-
-These supplement the standard checklist — they don't replace it.
-
-### Output Format
-
-```markdown
-### Strengths
-
-[What's well done? Be specific with file:line references.]
-
-### Issues
-
-#### Critical (Must Fix)
-
-[Bugs, security issues, data loss risks, broken functionality]
-
-#### Important (Should Fix)
-
-[Architecture problems, missing features, poor error handling, test gaps, plan deviations]
-
-#### Minor (Nice to Have)
-
-[Code style, optimization opportunities, documentation improvements]
-
-**For each issue:**
-
-- File:line reference
-- What's wrong
-- Why it matters
-- How to fix (if not obvious)
-
-### Recommendations
-
-[Improvements for code quality, architecture, or process]
-
-### Assessment
-
-**Ready to merge?** [Yes/No/With fixes]
-
-**Reasoning:** [Technical assessment in 1-2 sentences]
-```
-
-### Review Standards
-
-- Be specific: reference exact file paths and line numbers
-- Be actionable: explain how to fix each issue
-- Be proportionate: critical bugs > style nits
-- Be constructive: acknowledge good patterns, not just problems
-- Follow existing project conventions -- don't impose new ones
-
-### Example Output
-
-```
-### Strengths
-- Clean database schema with proper migrations (db.ts:15-42)
-- Comprehensive test coverage (18 tests, all edge cases)
-- Good error handling with fallbacks (summarizer.ts:85-92)
-
-### Issues
-
-#### Important
-1. **Missing help text in CLI wrapper**
-   - File: index-conversations:1-31
-   - Issue: No --help flag, users won't discover --concurrency
-   - Fix: Add --help case with usage examples
-
-2. **Date validation missing**
-   - File: search.ts:25-27
-   - Issue: Invalid dates silently return no results
-   - Fix: Validate ISO format, throw error with example
-
-#### Minor
-1. **Progress indicators**
-   - File: indexer.ts:130
-   - Issue: No "X of Y" counter for long operations
-   - Impact: Users don't know how long to wait
-
-### Recommendations
-- Add progress reporting for user experience
-- Consider config file for excluded projects (portability)
-
-### Assessment
-
-**Ready to merge: With fixes**
-
-**Reasoning:** Core implementation is solid with good architecture and tests. Important issues (help text, date validation) are easily fixed and don't affect core functionality.
-```
-
-## Integration with Workflows
-
-- **Subagent-Driven:** Review after EACH task, verify before moving to next
-- **Pull Requests:** Verify tests pass, request code-reviewer review before merge
-- **General:** Apply verification gates before any status claims, push back on invalid feedback
-
-## Bottom Line
-
-1. Technical rigor over social performance - No performative agreement
-2. Systematic review processes - Use code-reviewer subagent
-3. Evidence before claims - Verification gates always
-
-Verify. Question. Then implement. Evidence. Then claim.
+- Output format and template: `references/output-format.md`
+- Review checklist details: `references/review-checklist.md`
+- Agent dispatch instructions: `references/agent-dispatch.md`
