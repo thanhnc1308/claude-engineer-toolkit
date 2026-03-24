@@ -25,22 +25,23 @@ You are helping a developer implement a new feature. Follow a systematic approac
 **Actions**:
 
 1. **Capture request** — If `$ARGUMENTS` is empty, ask the user to describe the feature before continuing. Otherwise, use `$ARGUMENTS` as the initial request.
-2. **Gather** — Always confirm understanding with the user, even if the request seems clear:
+2. **Challenge assumptions** — Before diving in, ask whether this is the right problem to solve. Is there a simpler framing? Could doing nothing be acceptable?
+3. **Gather** — Always confirm understanding with the user, even if the request seems clear. Prefer multiple choice questions when possible:
    - What problem are they solving and for whom?
    - Any constraints, requirements, or preferences?
    - Have they tried or considered any existing solutions?
-3. **Synthesize** — From the request and answers, produce:
+4. **Synthesize** — From the request and answers, produce:
    - **Goal**: Single sentence describing the desired end state (e.g. "Users can reset their password via email link")
    - **Scope**: What is in-scope and what is explicitly out-of-scope
    - **Acceptance criteria**: Concrete, testable conditions that define "done" (e.g. "User can X", "API returns Y when Z", "Error message shown if…")
    - **Deliverables**: Specific artifacts to produce (e.g. "new API endpoint at POST /reset", "migration file", "unit tests for service layer")
-4. **Document** — Save the synthesized requirements to `.claude-workspace/<YYYY-MM-DD>/<feature-name>-requirements.md` with:
+5. **Document** — Save the synthesized requirements to `.claude-workspace/<YYYY-MM-DD>/<feature-name>-requirements.md` with:
    - Goal
    - Scope (in-scope / out-of-scope)
    - Acceptance criteria checklist
    - Deliverables
    - Any constraints or preferences gathered from the user
-5. **Plan phases** — Create a todo list with one item per phase (Discovery through Summary). Add sub-tasks only for the current phase; later phases get sub-tasks when you reach them.
+6. **Plan phases** — Create a todo list with one item per phase (Discovery through Summary). Add sub-tasks only for the current phase; later phases get sub-tasks when you reach them.
 
 **Gate:** Present the path to the requirements document and ask for confirmation:
 
@@ -70,7 +71,12 @@ You are helping a developer implement a new feature. Follow a systematic approac
    npx repomix --include "src/relevant-dir/**" --output .claude-workspace/<feature-name>-codebase.xml
    ```
 
-2. **Launch 2-3 code-explorer agents in parallel.** Pass the repomix output path so each agent reads it for orientation before deeper investigation. Each agent should:
+2. **Scale agent count to project size:**
+   - **Small projects** (< 50 files): 1 code-explorer
+   - **Medium projects** (50-500 files): 2 code-explorers
+   - **Large projects** (500+ files): 2-3 code-explorers
+
+   **Launch code-explorer agents in parallel.** Pass the repomix output path so each agent reads it for orientation before deeper investigation. Each agent should:
    - Read the repomix snapshot at `.claude-workspace/<feature-name>-codebase.xml` first for broad codebase context
    - Then trace through the code comprehensively, focusing on abstractions, architecture, and flow of control
    - Target a different aspect of the codebase (e.g. similar features, high-level understanding, architectural understanding, user experience, etc.)
@@ -82,7 +88,12 @@ You are helping a developer implement a new feature. Follow a systematic approac
    - "Read the repomix codebase snapshot at `.claude-workspace/<feature>-codebase.xml` for context, then analyze the current implementation of [existing feature/area], tracing through the code comprehensively"
    - "Read the repomix codebase snapshot at `.claude-workspace/<feature>-codebase.xml` for context, then identify UI patterns, testing approaches, or extension points relevant to [feature]"
 
-3. **Launch 2-3 `researcher` agents in parallel** (alongside the code-explorer agents) to search for relevant documentation and best practices online. Only dispatch these when the feature involves unfamiliar technologies, external integrations, or patterns that benefit from external research. Each agent should target a different research angle:
+3. **Launch `researcher` agents in parallel** (alongside the code-explorer agents) to search for relevant documentation and best practices online. Only dispatch these when the feature involves unfamiliar technologies, external integrations, or patterns that benefit from external research. Scale to project complexity:
+   - **Narrow scope** (single library/API): 1 researcher
+   - **Moderate scope** (multiple integrations): 1-2 researchers
+   - **Broad scope** (unfamiliar stack or complex integrations): 2-3 researchers
+
+   Each agent should target a different research angle:
    - Search for latest documentation, API references, and official guides for relevant libraries or frameworks
    - Find best practices, common patterns, and known pitfalls for the specific problem domain
    - Research similar implementations, case studies, or community solutions
@@ -140,7 +151,10 @@ If the user says "whatever you think is best", provide your recommendation and g
 
 **Do not proceed to Phase 4 until the user confirms.**
 
-5. **Document** — After user confirms, update the requirements document (`.claude-workspace/<YYYY-MM-DD>/<feature-name>-requirements.md`) with the confirmed changes.
+5. **Document** — After user confirms, update the requirements document (`.claude-workspace/<YYYY-MM-DD>/<feature-name>-requirements.md`) with:
+   - Resolved decisions and answers
+   - Updated acceptance criteria (if any changed)
+   - **Resolved Questions Log**: Each question raised, how it was resolved, and who decided — this log carries forward into the technical design document
 
 ---
 
@@ -150,16 +164,31 @@ If the user says "whatever you think is best", provide your recommendation and g
 
 **Actions**:
 
-1. Launch 2-3 code-architect agents in parallel with different focuses: minimal changes (smallest change, maximum reuse), clean architecture (maintainability, elegant abstractions), or pragmatic balance (speed + quality)
+1. Launch 2-3 `architect` agents in parallel with different focuses: minimal changes (smallest change, maximum reuse), clean architecture (maintainability, elegant abstractions), or pragmatic balance (speed + quality). Ensure at least one approach is unconventional or contrarian — a non-obvious solution that challenges conventional thinking.
 2. Review all approaches and form your opinion on which fits best for this specific task (consider: small fix vs large feature, urgency, complexity, team context)
 3. Document all approaches in `.claude-workspace/<YYYY-MM-DD>/<feature-name>-tech-design.md` with:
    - Summary of each approach
-   - Trade-offs comparison (table or bullets)
-   - Your recommendation with reasoning
-   - Concrete implementation differences (files to change, new abstractions, migration steps)
-4. Present the tech design document path to the user and ask which approach they prefer:
+   - **Trade-off matrix** comparing approaches across these dimensions:
 
-> I've saved the tech design document to `.claude-workspace/<YYYY-MM-DD>/<feature-name>-tech-design.md`. Please review the approaches and trade-offs.
+     | Dimension      | Approach 1 | Approach 2 | Approach 3 |
+     | -------------- | ---------- | ---------- | ---------- |
+     | Complexity     | ...        | ...        | ...        |
+     | Maintenance    | ...        | ...        | ...        |
+     | Performance    | ...        | ...        | ...        |
+     | Cost           | ...        | ...        | ...        |
+     | Technical Debt | ...        | ...        | ...        |
+
+   - **Hidden costs and second-order effects** for each approach
+   - **Failure modes and rollback strategies** for each approach
+   - **Honest assessment**: Unfiltered opinion — flag overengineering, unnecessary complexity, or if the problem doesn't need solving
+   - Your recommendation with reasoning
+   - **What would change the recommendation**: Identify conditions (different constraints, scale, timeline) that would flip the choice
+   - Concrete implementation differences (files to change, new abstractions, migration steps)
+   - **Resolved Questions Log** (carried forward from Phase 3 requirements document)
+
+4. Present the technical design document path to the user and ask which approach they prefer:
+
+> I've saved the technical design document to `.claude-workspace/<YYYY-MM-DD>/<feature-name>-tech-design.md`. Please review the approaches and trade-offs.
 >
 > Which approach do you prefer? (Or describe adjustments.)
 
@@ -169,13 +198,13 @@ If the user says "whatever you think is best", provide your recommendation and g
 
 ## Phase 5: Plan
 
-**Goal**: Create a detailed, actionable implementation plan based on the approved tech design
+**Goal**: Create a detailed, actionable implementation plan based on the approved technical design
 
 **Actions**:
 
 1. Dispatch a `planner` agent with the following context:
    - The requirements document at `.claude-workspace/<YYYY-MM-DD>/<feature-name>-requirements.md`
-   - The tech design document at `.claude-workspace/<YYYY-MM-DD>/<feature-name>-tech-design.md`
+   - The technical design document at `.claude-workspace/<YYYY-MM-DD>/<feature-name>-tech-design.md`
    - The user's chosen approach from Phase 4
    - Codebase patterns and conventions discovered in Phase 2
 

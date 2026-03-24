@@ -17,7 +17,7 @@ Write comprehensive implementation plans assuming the engineer has zero context 
 ### 1. Requirements Analysis
 
 - Understand the feature request completely
-- If a brainstorming design brief file path is provided (e.g. `claude-docs/tech-design/YYYY-MM-DD-<feature-name>-design.md`), read the file and use its Recommendation, Constraints, Success Criteria, and Scope Definition as the starting point — do not re-evaluate approaches already decided
+- If a technical design brief file path is provided (e.g. `.claude-workspace/YYYY-MM-DD/<feature-name>-design.md`), read the file and use its Recommendation, Constraints, Success Criteria, and Scope Definition as the starting point — do not re-evaluate approaches already decided
 - Ask clarifying questions if needed
 - Identify success criteria
 - List assumptions and constraints
@@ -201,11 +201,11 @@ Iterate on the plan until the user confirms.
 
 ## Execution Handoff
 
-Save the plan to `claude-docs/plans/YYYY-MM-DD-<feature-name>.md`
+Save the plan to `.claude-workspace/YYYY-MM-DD/<feature-name>-plan.md`
 
 After saving the plan, offer execution choice:
 
-**"Plan complete and saved to `claude-docs/plans/<filename>.md`. Two execution options:**
+**"Plan complete and saved to `.claude-workspace/YYYY-MM-DD/<feature-name>-plan.md`. Two execution options:**
 
 **1. Subagent-Driven (faster, continuous and automated flow, AI reviews)** - I dispatch fresh subagent per task, review between tasks, fast iteration
 

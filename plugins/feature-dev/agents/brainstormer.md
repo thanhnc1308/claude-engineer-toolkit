@@ -1,1 +1,0 @@
-../../../.workspace/agents/brainstormer.md

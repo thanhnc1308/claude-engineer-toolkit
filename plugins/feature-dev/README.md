@@ -6,12 +6,11 @@ Full-stack development workflow with 16 specialized agents, 17 skills, and 11 co
 
 ### Core Workflow
 
-| Agent            | Description                                                             |
-| ---------------- | ----------------------------------------------------------------------- |
-| **planner**      | Creates detailed implementation plans with bite-sized tasks             |
-| **architect**    | System design, scalability analysis, technical decisions                |
-| **researcher**   | Multi-source technology research across docs, GitHub, articles          |
-| **brainstormer** | Challenges assumptions, debates approaches, provides honest assessments |
+| Agent          | Description                                                    |
+| -------------- | -------------------------------------------------------------- |
+| **planner**    | Creates detailed implementation plans with bite-sized tasks    |
+| **architect**  | System design, scalability analysis, technical decisions       |
+| **researcher** | Multi-source technology research across docs, GitHub, articles |
 
 ### Quality Gates
 

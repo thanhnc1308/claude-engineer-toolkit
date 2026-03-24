@@ -8,10 +8,6 @@ user-invocable: false
 
 Structured workflow for designing system architecture through analysis, trade-off evaluation, and decision documentation.
 
-> **Brainstorming vs System Designing:** Brainstorming explores _which_ approach to take.
-> System designing details _how_ a chosen approach works (components, APIs, data models, ADRs).
-> Use brainstorming first when the approach is undecided.
-
 ## Architecture Review Process
 
 ### 1. Current State Analysis

@@ -105,10 +105,3 @@ Structured workflow for gathering, validating, and synthesizing technology intel
 **Documentation:**
 
 - Write the validated report to `.claude-workspace//<YYYY-MM-DD>/<feature-name>-research.md`
-- Commit the research document to git
-
-**Implementation (if continuing):**
-
-- Ask: "Ready to move to implementation planning?"
-- Use feature-dev:planning skill to create a detailed implementation plan
-- Use feature-dev:brainstorming skill if trade-off evaluation is still needed
