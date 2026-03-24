@@ -55,7 +55,7 @@ fi
 ```markdown
 <!-- BAD: macOS-specific -->
 
-!`pbcopy < file.txt`
+!\`pbcopy < file.txt`
 
 <!-- GOOD: Platform detection -->
 

@@ -252,7 +252,7 @@ rm /tmp/test-file*.txt /tmp/large-file.bin
 
 **What to test:**
 
-- !` commands execute correctly
+- !\` commands execute correctly
 - Command output included in prompt
 - Command failures handled
 - Security: only allowed commands run
@@ -267,8 +267,8 @@ description: Test bash execution
 allowed-tools: Bash(echo:*), Bash(date:*)
 ---
 
-Current date: !`date`
-Test output: !`echo "Hello from bash"`
+Current date: !\`date`
+Test output: !\`echo "Hello from bash"`
 
 Analysis of output above...
 EOF
@@ -287,7 +287,7 @@ description: Test forbidden command
 allowed-tools: Bash(echo:*)
 ---
 
-Trying forbidden: !`ls -la /`
+Trying forbidden: !\`ls -la /`
 EOF
 
 > /test-forbidden
@@ -499,15 +499,15 @@ jobs:
 ```markdown
 # Commands that might fail
 
-!`exit 1`
-!`false`
-!`command-that-does-not-exist`
+!\`exit 1`
+!\`false`
+!\`command-that-does-not-exist`
 
 # Commands with special output
 
-!`echo ""`
-!`cat /dev/null`
-!`yes | head -n 1000000`
+!\`echo ""`
+!\`cat /dev/null`
+!\`yes | head -n 1000000`
 ```
 
 ## Performance Testing

@@ -77,44 +77,39 @@ If a CRITICAL vulnerability is found in production or an actively exploited issu
 
 ## Output Format
 
-### Summary
+### Strengths
 
-- **Risk Level:** CRITICAL / HIGH / MEDIUM / LOW
-- **Critical Issues:** X | **High:** Y | **Medium:** Z | **Low:** W
+[Acknowledge well-implemented security patterns before highlighting problems.]
 
 ### Findings
 
-#### Critical (Fix Immediately)
+#### Critical (Must Fix)
 
-[Actively exploitable vulnerabilities, exposed secrets, missing auth on sensitive endpoints]
+[Actively exploitable vulnerabilities, exposed secrets, missing auth on sensitive endpoints.]
 
-#### High (Fix Before Production)
+#### Warning (Should Fix)
 
-[SQL injection vectors, missing input validation, insecure token storage, missing RLS]
+[SQL injection vectors, missing input validation, insecure token storage, missing RLS, missing rate limiting.]
 
-#### Medium (Fix When Possible)
+#### Suggestion (Nice to Have)
 
-[Missing rate limiting, weak CSP headers, overly verbose error messages]
+[Dependency updates, logging improvements, minor header hardening.]
 
-#### Low (Consider Fixing)
+**Per finding:**
 
-[Dependency updates, logging improvements, minor header hardening]
+- **Category**: Auth | Injection | Secrets | Input Validation | XSS | CSRF | Data Exposure | Dependencies | Rate Limiting | Cryptography
+- **Location**: `file:line`
+- **Issue**: What the vulnerability is
+- **Impact**: Quantified (e.g., "allows unauthenticated access to admin endpoints" or "SQL injection via unsanitized user input in search query")
+- **Fix**: Specific code change or pattern
 
-**For each finding:**
+### Prioritized Action List
 
-- File:line reference
-- OWASP category (e.g., A03:2021 Injection)
-- What's vulnerable and how it could be exploited
-- Remediation with code example
+[Ordered by impact.]
 
-### Pre-Deployment Checklist Result
-
-[Pass/Fail status of each item from `references/automated-scanning.md`]
-
-### Verdict
+### Assessment
 
 **Safe to deploy?** [Yes / No / With fixes]
-
 **Reasoning:** [1-2 sentence technical assessment]
 
 ## References

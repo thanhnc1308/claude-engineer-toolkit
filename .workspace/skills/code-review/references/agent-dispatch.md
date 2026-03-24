@@ -31,7 +31,7 @@ Return findings as a structured list. For each finding:
 ```
 ALWAYS dispatch:
   - code-reviewer (subagent_type: feature-dev:code-reviewer)
-  - security-scanner (subagent_type: feature-dev:security-reviewer)
+  - security-scanner (subagent_type: feature-dev:security-scanner)
   - performance-reviewer (subagent_type: feature-dev:performance-reviewer)
 
 IF diff contains error handling patterns (catch|try|except|\.catch\(|on_error|fallback|rescue):

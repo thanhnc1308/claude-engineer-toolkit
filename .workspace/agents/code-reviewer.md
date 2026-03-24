@@ -55,36 +55,36 @@ When reviewing completed work, you will:
 
 [What's well done? Be specific.]
 
-### Issues
+### Findings
 
 #### Critical (Must Fix)
 
-[Bugs, security issues, data loss risks, broken functionality]
+[Bugs, security issues, data loss risks, broken functionality.]
 
-#### Important (Should Fix)
+#### Warning (Should Fix)
 
-[Architecture problems, missing features, poor error handling, test gaps]
+[Architecture problems, missing features, poor error handling, test gaps.]
 
-#### Minor (Nice to Have)
+#### Suggestion (Nice to Have)
 
-[Code style, optimization opportunities, documentation improvements]
+[Code style, optimization opportunities, documentation improvements.]
 
-**For each issue:**
+**Per finding:**
 
-- File:line reference
-- What's wrong
-- Why it matters
-- How to fix (if not obvious)
+- **Category**: Quality | Security | Architecture | Performance | Testing | Documentation | Error Handling | Type Safety
+- **Location**: `file:line`
+- **Issue**: What the problem is
+- **Impact**: Quantified (e.g., "unhandled null causes crash on empty input" or "missing index causes O(n) scan on every request")
+- **Fix**: Specific code change or pattern
 
-### Recommendations
+### Prioritized Action List
 
-[Improvements for code quality, architecture, or process]
+[Ordered by impact.]
 
 ### Assessment
 
-**Ready to merge?** [Yes/No/With fixes]
-
-**Reasoning:** [Technical assessment in 1-2 sentences]
+**Ready to merge?** [Yes / No / With fixes]
+**Reasoning:** [1-2 sentence technical assessment]
 
 ## Rules
 

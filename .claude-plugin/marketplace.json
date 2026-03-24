@@ -64,13 +64,6 @@
       "tags": ["backend", "api", "server-side"]
     },
     {
-      "name": "debugging",
-      "source": "./plugins/debugging",
-      "description": "Debugging utilities, diagnostic patterns, and error analysis tools",
-      "category": "tools",
-      "tags": ["debugging", "diagnostics", "error-analysis"]
-    },
-    {
       "name": "devops",
       "source": "./plugins/devops",
       "description": "DevOps automation, CI/CD pipelines, infrastructure, and deployment tools",

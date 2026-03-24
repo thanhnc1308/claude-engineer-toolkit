@@ -669,9 +669,9 @@ allowed-tools: AskUserQuestion, Bash, Read
 
 Check existing configuration:
 
-- Current language: !`detect-language.sh`
-- Existing frameworks: !`detect-frameworks.sh`
-- Available tools: !`check-tools.sh`
+- Current language: !\`detect-language.sh`
+- Existing frameworks: !\`detect-frameworks.sh`
+- Available tools: !\`check-tools.sh`
 
 ## Ask Context-Appropriate Questions
 
