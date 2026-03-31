@@ -35,7 +35,7 @@ You are helping a developer implement a new feature. Follow a systematic approac
    - **Scope**: What is in-scope and what is explicitly out-of-scope
    - **Acceptance criteria**: Concrete, testable conditions that define "done" (e.g. "User can X", "API returns Y when Z", "Error message shown if…")
    - **Deliverables**: Specific artifacts to produce (e.g. "new API endpoint at POST /reset", "migration file", "unit tests for service layer")
-5. **Document** — Save the synthesized requirements to `.claude-workspace/<YYYY-MM-DD>/<feature-name>-requirements.md` with:
+5. **Document** — Save the synthesized requirements to `.claude-workspace/<YYYY-MM-DD>/<feature-name>-requirements.md` (use today's date for `<YYYY-MM-DD>`) with:
    - Goal
    - Scope (in-scope / out-of-scope)
    - Acceptance criteria checklist
@@ -166,7 +166,7 @@ If the user says "whatever you think is best", provide your recommendation and g
 
 1. Launch 2-3 `architect` agents in parallel with different focuses: minimal changes (smallest change, maximum reuse), clean architecture (maintainability, elegant abstractions), or pragmatic balance (speed + quality). Ensure at least one approach is unconventional or contrarian — a non-obvious solution that challenges conventional thinking.
 2. Review all approaches and form your opinion on which fits best for this specific task (consider: small fix vs large feature, urgency, complexity, team context)
-3. Document all approaches in `.claude-workspace/<YYYY-MM-DD>/<feature-name>-tech-design.md` with:
+3. Document all approaches in `.claude-workspace/<YYYY-MM-DD>/<feature-name>-tech-design.md` (use the same date as the requirements document) with:
    - Summary of each approach
    - **Trade-off matrix** comparing approaches across these dimensions:
 

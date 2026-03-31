@@ -13,10 +13,11 @@ arguments:
 ## Context
 
 - Current branch: !`git branch --show-current`
+- Base branch: !`git symbolic-ref refs/remotes/origin/HEAD --short 2>/dev/null || echo main`
 
 ## Workflow
 
-1. Determine the base branch: use `$ARGUMENTS.base` if provided, otherwise default to `main`.
+1. Determine the base branch: use `$ARGUMENTS.base` if provided, otherwise use the base branch from Context above.
 2. Determine the head (source) branch: use `$ARGUMENTS.head` if provided, otherwise use the current branch from Context above.
 3. Push the head branch to the remote: run `git push -u origin <head>` to ensure the remote branch exists and is up to date.
 4. Run `git log --oneline <base>..<head>` and `git diff <base>...<head>` to review the changes since the branch diverged.

@@ -23,7 +23,7 @@ You are helping a developer implement a feature following an approved plan. Exec
 1. If `$ARGUMENTS` provides a path, read the plan from that path.
 2. Otherwise, search for the most recent plan document in `.claude-workspace/` directories.
 3. If no plan is found, ask the user for context or suggest running `/plan` first.
-4. Also load the corresponding requirements and technical design documents from the same `.claude-workspace/<YYYY-MM-DD>/` directory for reference.
+4. Also load the corresponding requirements and technical design documents from the same `.claude-workspace/<YYYY-MM-DD>/` directory for reference. Use the same `<YYYY-MM-DD>` date as the plan document.
 
 ---
 

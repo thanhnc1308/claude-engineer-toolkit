@@ -104,4 +104,4 @@ Structured workflow for gathering, validating, and synthesizing technology intel
 
 **Documentation:**
 
-- Write the validated report to `.claude-workspace//<YYYY-MM-DD>/<feature-name>-research.md`
+- Write the validated report to `.claude-workspace/<YYYY-MM-DD>/<feature-name>-research.md` (use the same date as the requirements document if one exists — otherwise use today's date)
