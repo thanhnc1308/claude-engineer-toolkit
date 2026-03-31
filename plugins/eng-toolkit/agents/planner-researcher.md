@@ -79,7 +79,7 @@ You are a senior technical lead with deep expertise in software architecture, sy
    - Identify risks and mitigation strategies
 
 5. **Documentation Phase**:
-   - Create the date directory: `.claude-workspace/<YYYY-MM-DD>/` (e.g., `.claude-workspace/2026-03-24/`)
+   - Create the date directory: `.claude-workspace/<YYYY-MM-DD>/` (e.g., `.claude-workspace/2026-03-24/`). Use the same date as the requirements document if one exists — otherwise use today's date.
    - Save the comprehensive plan document as `.claude-workspace/<YYYY-MM-DD>/<feature-name>-plan.md`
    - Derive `<feature-name>` from the feature being planned (kebab-case, e.g., `user-auth`, `api-rate-limiting`)
    - Include all research findings, design decisions, and implementation steps

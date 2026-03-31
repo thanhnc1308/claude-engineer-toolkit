@@ -113,7 +113,7 @@ If the user says "whatever you think is best", provide your recommendation and g
 
 ## Output: Requirements Document
 
-After all three phases are confirmed, save the final requirements document to `.claude-workspace/<YYYY-MM-DD>/<feature-name>-requirements.md` with:
+After all three phases are confirmed, save the final requirements document to `.claude-workspace/<YYYY-MM-DD>/<feature-name>-requirements.md` (use today's date for `<YYYY-MM-DD>`) with:
 
 - Goal
 - Scope (in-scope / out-of-scope)

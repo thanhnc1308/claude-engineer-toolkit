@@ -49,7 +49,7 @@ The agent must produce a plan that includes:
 
 ## Output: Implementation Plan
 
-Save to `.claude-workspace/<YYYY-MM-DD>/<feature-name>-plan.md` and present to the user:
+Save to `.claude-workspace/<YYYY-MM-DD>/<feature-name>-plan.md` (use the same `<YYYY-MM-DD>` date as the requirements document) and present to the user:
 
 > I've saved the implementation plan to `.claude-workspace/<YYYY-MM-DD>/<feature-name>-plan.md`. Please review it.
 >

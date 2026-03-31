@@ -70,7 +70,7 @@ After agents return, review all approaches and compile:
 
 ## Output: Tech Design Document
 
-Save to `.claude-workspace/<YYYY-MM-DD>/<feature-name>-tech-design.md` and present to the user:
+Save to `.claude-workspace/<YYYY-MM-DD>/<feature-name>-tech-design.md` (use the same `<YYYY-MM-DD>` date as the requirements document loaded in Step 1) and present to the user:
 
 > I've saved the technical design document to `.claude-workspace/<YYYY-MM-DD>/<feature-name>-tech-design.md`. Please review the approaches and trade-offs.
 >
