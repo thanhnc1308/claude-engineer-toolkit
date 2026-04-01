@@ -234,19 +234,3 @@ Done!
 
 - Dispatch fix subagent with specific instructions
 - Don't try to fix manually (context pollution)
-
-## Integration
-
-**Required workflow skills:**
-
-- **eng-toolkit:using-git-worktrees** - REQUIRED: Set up isolated workspace before starting
-- **eng-toolkit:planning** - Creates the plan this skill executes
-- **eng-toolkit:requesting-code-review** - Code review template for reviewer subagents
-
-**Subagents should use:**
-
-- **eng-toolkit:test-driven-development** - Subagents follow TDD for each task
-
-**Alternative workflow:**
-
-- **eng-toolkit:executing-plans** - Use for separate session instead of same-session execution

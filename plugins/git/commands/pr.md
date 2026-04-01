@@ -1,6 +1,6 @@
 ---
 description: Create a pull request
-allowed-tools: Bash(git log:*), Bash(git diff:*), Bash(git push:*), Bash(gh pr create:*)
+allowed-tools: Bash(git log:*), Bash(git diff:*), Bash(git push:*), Bash(gh pr create:*), Bash(git symbolic-ref:*), Bash(git branch:*)
 arguments:
   - name: base
     description: Target branch for the PR (e.g., main, master, develop)
